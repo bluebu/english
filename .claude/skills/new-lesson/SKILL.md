@@ -1,0 +1,46 @@
+---
+name: new-lesson
+description: 创建或修改"儿童英语语法小手册"的某一关(关卡)。当要新增第 N 关、或调整某一关的布局/内容时使用。内含关卡布局、组件、颜色与朗读机制、注意事项和发布步骤。
+---
+
+# 做一关 / 改一关
+
+先读根目录 `CLAUDE.md`(体系、教学法、发布准则)。本 skill 给出**关卡布局**、组件用法、机制、**注意事项**与步骤。
+
+## 一、关卡布局(每关固定结构,按此顺序)
+1. **封面公式** `.hero`:大标题 = 本关核心公式(如"谁 + 谓语");下面用句子积木拼出公式 + 一句副标题。
+2. **引入** `.card`:一两句话说清这关讲什么,配一个中文类比。
+3. **彩色步骤卡** `.card.who/.do/...`:**一个概念一张卡**,`.step` 编号 + `.what-line` 一句定义 + 句子积木例句。
+4. **★ 规则角** `.card.rule`:大小写 / 标点 / 拼写,用 `.judge` 做对错对照。
+5. **🍳 见物能聊** `.card`:一个生活场景(早餐桌等)几句真实句子,`.scene .node` + `.mini .b` 拆成色块。
+6. **🎯 练习** `.quiz`:3–5 题(找成分 / 排序 / 判断 / 改错 / 造句),每题配 `details.answer`("看答案")。
+7. **🏆 通关锦囊** `.card.rule`:童趣总结,3 条要点 + 一句鼓励金句。
+
+## 二、组件速查(都在 `assets/style.css`)
+- 卡片:`.card` + 角色色 `.who/.do/.what/.be/.rule`(决定顶部胶带色与主色)。
+- 句子积木:`.sentence` 容器 → `.brick.who/.do/.what/.be`(内含 `.role` 小标签 + `.word` 词);`.glue` 放 `+`/`=`;下方 `.trans` 译文。
+- 对错对照 `.judge`(`.ok`/`.no`);提示框 `.tip`(可加 `.who`/`.do` 变色);
+  场景 `.scene .node.who/.do/.be` + `.mini .b.who/...`;练习 `.quiz`/`.qitem`/`details.answer`。
+
+## 三、颜色与朗读机制(必守)
+- **颜色随概念渐进**:这一关只用"已经教过的概念"对应的颜色,别提前用后面才讲的颜色/术语。
+- **点击色块朗读中文术语**(`app.js` 自动接管,改内容无需动 JS):
+  - 默认按 class:`who→主语  do→谓语  what→宾语  be→系动词`。
+  - 与默认不符的色块,加 `data-say="…"`(如 be 句的表语词块 `data-say="表语"`;封面"一句话" `data-say="句子"`)。
+
+## 四、注意事项(踩过的坑)
+1. **"谓语"是大谓语**(主语之外的整块 = complete predicate),不是只指动词。`eat an apple` 整块都是谓语;`eat`=动词、`an apple`=宾语属于"谓语内部",留到后面关再拆——**讲到时点一句即可,别展开成长段**。
+2. **be 动词句**:am/is/are 念"**系动词**"(不是谓语),后面的词念"**表语**"(不是宾语)。对应主系表 / 美式 linking verb + subject complement。
+3. **低阅读压力**:定义一句话讲完,细节放进 `.tip`;不要密集长段,孩子读不动。
+4. **文案不标年级**(title / meta / 页眉 / 页脚都别写"三年级")。
+5. **朗读读中文术语,不读英文单词**——这是语法手册,不是单词书。
+6. iOS Safari 首次点击可能要再点一次才出声;中文音色用系统自带(PingFang 设备都有)。
+7. 全部用**相对路径**(`./assets/…`、`./lesson-NN.html`),保证根域名与子路径都能打开。
+
+## 五、步骤
+1. 复制 `lesson-01.html` → `lesson-NN.html`;改 `<title>`、`meta`、页眉 crumb、页脚、`.pager`(上一关 / 下一关)。
+2. 按"一、关卡布局"填内容;按"三"给色块加 `data-say`。
+3. `index.html`:把对应目录项从 `soon` 改 `ready`,加 `href="./lesson-NN.html"` 和英文副标题;给编号块上对应颜色 class(`c-who`/`c-do`/…)。
+4. **自检**:用 playwright(`playwright-core` + 系统缓存的 chromium)在手机(390/412)和 iPad(834)视口截图,检查排版、色块、朗读高亮;并核对每个色块 `aria-label` = 期望术语。(脚本可临时生成,参考会话里 `shot.js` / `verify3.js` 的写法。)
+5. **发布**:`make up` 本地预览 → `git add -A && git commit && git push origin master`;commit message 末尾加
+   `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>`。
