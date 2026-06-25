@@ -22,7 +22,7 @@
   if (typeof speechSynthesis === 'undefined') return;
 
   // 色块的角色 class → 默认朗读的语法成分；个别用 data-say 覆盖（如表语、句子）
-  var ROLE_TERM = { who: '主语', do: '谓语', what: '宾语', be: '谓语' };
+  var ROLE_TERM = { who: '主语', do: '谓语', what: '宾语', be: '系动词' };
 
   var voice = null;
   function pickVoice() {
