@@ -1,0 +1,310 @@
+/* ======================================================================
+   小学英语语法手册  ·  共享样式
+   设计语言：手账 / 贴纸笔记本风（参照孩子喜欢的思维导图卡片）
+   核心信号：用「颜色」教结构 —— 蓝=谁 / 珊瑚=做什么 / 绿=什么 / 紫=是 / 黄=规则
+   ====================================================================== */
+
+:root{
+  /* —— 纸张与墨水 —— */
+  --paper:      #FBF6EB;   /* 暖白笔记本纸 */
+  --paper-card: #FFFDF8;   /* 卡片纸面 */
+  --ink:        #4A3F36;   /* 暖棕墨色（比纯黑柔和，像手绘描边）*/
+  --ink-soft:   #9A8C7C;   /* 次要文字 */
+  --line:       rgba(120,104,84,.16);
+  --grid:       rgba(120,104,84,.05);
+
+  /* —— 角色色板（教学法的核心：每种成分一个颜色）—— */
+  --who:    #3E9BD6;  --who-bg:  #DCEFFB;  --who-sh:  rgba(62,155,214,.30);  /* 谁·主语 */
+  --do:     #EE7D5B;  --do-bg:   #FBE0D5;  --do-sh:   rgba(238,125,91,.30);  /* 做什么·动词 */
+  --what:   #45B988;  --what-bg: #D8F2E6;  --what-sh: rgba(69,185,136,.28);  /* 什么·宾语 */
+  --be:     #9A78D4;  --be-bg:   #E9E0F8;  --be-sh:   rgba(154,120,212,.28); /* 是·be动词 */
+  --rule:   #E2A413;  --rule-bg: #FBEFC9;  --rule-sh: rgba(226,164,19,.30);  /* 规则·标点 */
+
+  /* —— 字体 —— */
+  --font-display: ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN",
+                  "Varela Round", "Quicksand", "PingFang SC", system-ui, sans-serif;
+  --font-cn: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+             "Source Han Sans SC", system-ui, sans-serif;
+  --font-body: -apple-system, system-ui, "Segoe UI", "PingFang SC", sans-serif;
+
+  --radius: 20px;
+  --maxw: 760px;
+}
+
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  font-family:var(--font-cn);
+  color:var(--ink);
+  line-height:1.7;
+  background-color:var(--paper);
+  /* 淡淡的网格纸 + 角落水彩晕染（呼应参照图）*/
+  background-image:
+    radial-gradient(60% 50% at 88% -5%,  rgba(238,125,91,.10), transparent 70%),
+    radial-gradient(55% 45% at -8% 8%,   rgba(62,155,214,.10), transparent 70%),
+    radial-gradient(50% 40% at 50% 110%, rgba(69,185,136,.08), transparent 70%),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 26px 26px, 26px 26px;
+  background-attachment: fixed, fixed, fixed, scroll, scroll;
+}
+
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 20px 80px; }
+
+/* —————————————————— 文字基础 —————————————————— */
+h1,h2,h3{ line-height:1.25; margin:0; }
+p{ margin:.6em 0; }
+.en{ font-family:var(--font-display); letter-spacing:.2px; }
+.lead{ font-size:1.05rem; color:var(--ink); }
+.muted{ color:var(--ink-soft); }
+b,strong{ color:var(--ink); }
+
+/* 马克笔高亮（像参照图里被荧光笔划过的中文）*/
+mark.hl{
+  background:linear-gradient(180deg, transparent 52%, var(--rule-bg) 52%);
+  padding:0 2px; color:inherit; border-radius:3px;
+}
+
+/* —————————————————— 顶部小导航 —————————————————— */
+.topbar{
+  position:sticky; top:0; z-index:20;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:10px 16px;
+  background:rgba(251,246,235,.82);
+  backdrop-filter:saturate(1.4) blur(8px);
+  -webkit-backdrop-filter:saturate(1.4) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topbar a{ color:var(--ink); text-decoration:none; font-weight:700; }
+.topbar .home{
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:var(--font-display); font-size:1rem;
+}
+.topbar .home .dot{ font-size:1.15rem; }
+.topbar .crumb{ font-size:.85rem; color:var(--ink-soft); }
+
+/* —————————————————— 封面 / 大标题 —————————————————— */
+.hero{ text-align:center; padding:40px 0 8px; }
+.hero .eyebrow{
+  display:inline-block; font-family:var(--font-display); font-weight:700;
+  font-size:.8rem; letter-spacing:2px; color:var(--do);
+  background:var(--do-bg); padding:5px 14px; border-radius:999px;
+  transform:rotate(-2deg);
+}
+.hero h1{
+  font-family:var(--font-display); font-weight:800;
+  font-size:clamp(2rem, 7.5vw, 3.2rem); margin:.35em 0 .15em;
+  letter-spacing:.5px;
+}
+.hero h1 .pop{ color:var(--do); }
+.hero .sub{ color:var(--ink-soft); font-size:1.05rem; max-width:30ch; margin:0 auto; }
+
+/* —————————————————— 卡片 —————————————————— */
+.card{
+  position:relative; background:var(--paper-card);
+  border:2px solid var(--line); border-radius:var(--radius);
+  padding:26px 22px 24px; margin:26px 0;
+  box-shadow:0 10px 24px -16px rgba(74,63,54,.5);
+}
+/* 卡片顶部胶带（手账风，低调出现）*/
+.card::before{
+  content:""; position:absolute; top:-11px; left:50%;
+  width:92px; height:22px; transform:translateX(-50%) rotate(-2.5deg);
+  background:repeating-linear-gradient(45deg,
+     var(--tape,var(--rule-bg)) 0 7px, rgba(255,255,255,.55) 7px 14px);
+  border:1px solid rgba(255,255,255,.6);
+  border-radius:3px; opacity:.9;
+}
+.card.who  { --tape:var(--who-bg);  }
+.card.do   { --tape:var(--do-bg);   }
+.card.what { --tape:var(--what-bg); }
+.card.be   { --tape:var(--be-bg);   }
+.card.rule { --tape:var(--rule-bg); }
+
+.card .step{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-display); font-weight:800; font-size:.85rem;
+  color:var(--ink-soft); margin-bottom:8px;
+}
+.card .step .n{
+  display:grid; place-items:center; width:30px; height:30px; border-radius:50%;
+  background:var(--c,var(--rule)); color:#fff; font-size:.95rem;
+}
+.card h2{
+  font-family:var(--font-display); font-weight:800;
+  font-size:clamp(1.4rem,5vw,1.85rem); margin-bottom:.1em;
+}
+.card h2 .zh{ font-family:var(--font-cn); }
+.card .what-line{ color:var(--ink-soft); font-size:.95rem; margin-top:2px; }
+
+/* 角色着色：把卡片主色注入子元素 */
+.card.who  { --c:var(--who);  }
+.card.do   { --c:var(--do);   }
+.card.what { --c:var(--what); }
+.card.be   { --c:var(--be);   }
+.card.rule { --c:var(--rule); }
+.card.who  h2 .key,.card.do h2 .key,.card.what h2 .key,
+.card.be h2 .key,.card.rule h2 .key{ color:var(--c); }
+
+/* —————————————————— 句子积木（招牌元素）—————————————————— */
+.sentence{
+  display:flex; flex-wrap:wrap; align-items:flex-end; gap:8px;
+  justify-content:center; margin:16px 0 6px;
+}
+.brick{
+  --c:#b8ab9a; --cbg:#efe9df; --csh:rgba(0,0,0,.12);
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+  min-width:58px; padding:8px 14px 7px;
+  background:var(--cbg); border:2.5px solid var(--c);
+  border-radius:14px; box-shadow:3px 3px 0 var(--csh);
+}
+.brick .role{ font-size:.68rem; font-weight:700; color:var(--c); white-space:nowrap; }
+.brick .word{
+  font-family:var(--font-display); font-weight:800;
+  font-size:1.18rem; color:var(--ink); white-space:nowrap;
+}
+.brick.who  { --c:var(--who);  --cbg:var(--who-bg);  --csh:var(--who-sh);  }
+.brick.do   { --c:var(--do);   --cbg:var(--do-bg);   --csh:var(--do-sh);   }
+.brick.what { --c:var(--what); --cbg:var(--what-bg); --csh:var(--what-sh); }
+.brick.be   { --c:var(--be);   --cbg:var(--be-bg);   --csh:var(--be-sh);   }
+
+.glue{ font-family:var(--font-display); font-weight:800; font-size:1.3rem;
+       color:var(--ink-soft); align-self:center; padding-bottom:6px; }
+
+/* 句子下方的中文翻译 */
+.trans{ text-align:center; color:var(--ink-soft); font-size:.98rem; margin:0 0 4px; }
+.trans b{ color:var(--ink); }
+
+/* 一组例句 */
+.examples{ display:grid; gap:14px; margin-top:16px; }
+.ex{
+  background:var(--paper); border:1.5px dashed var(--line);
+  border-radius:14px; padding:12px 10px;
+}
+
+/* —————————————————— 小贴士 / 口诀 / 提醒 —————————————————— */
+.tip{
+  display:flex; gap:12px; align-items:flex-start;
+  background:var(--rule-bg); border:2px solid var(--rule);
+  border-radius:16px; padding:14px 16px; margin:18px 0 2px;
+}
+.tip .ic{ font-size:1.5rem; line-height:1.4; }
+.tip .body{ flex:1; }
+.tip .body b{ color:var(--ink); }
+.tip.do  { background:var(--do-bg);  border-color:var(--do);  }
+.tip.who { background:var(--who-bg); border-color:var(--who); }
+
+/* 对 / 错 对照 */
+.judge{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0; }
+.judge > div{ border-radius:14px; padding:12px 14px; font-family:var(--font-display); font-weight:700; }
+.judge .ok { background:var(--what-bg); border:2px solid var(--what); }
+.judge .no { background:#FBE0D5; border:2px solid var(--do); }
+.judge .tag{ display:block; font-family:var(--font-cn); font-size:.78rem; margin-bottom:3px; }
+.judge .ok .tag{ color:var(--what); }
+.judge .no .tag{ color:var(--do); }
+.judge .no s{ opacity:.7; }
+
+/* —————————————————— 见物能聊：思维导图场景 —————————————————— */
+.scene{ display:grid; gap:14px; }
+.scene .node{
+  position:relative; background:var(--paper-card);
+  border:2px solid var(--c,var(--who)); border-left-width:8px;
+  border-radius:14px; padding:12px 14px;
+}
+.scene .node .en{ font-weight:800; font-size:1.1rem; }
+.scene .node .zh{ color:var(--ink-soft); font-size:.95rem; }
+.scene .node.who  { --c:var(--who);  }
+.scene .node.do   { --c:var(--do);   }
+.scene .node.be   { --c:var(--be);   }
+.scene .node .mini{ margin-top:6px; }
+.mini .b{ font-size:.72rem; font-weight:700; padding:2px 8px; border-radius:8px;
+          display:inline-block; margin-right:5px; }
+.mini .b.who { color:var(--who);  background:var(--who-bg);  }
+.mini .b.do  { color:var(--do);   background:var(--do-bg);   }
+.mini .b.what{ color:var(--what); background:var(--what-bg); }
+.mini .b.be  { color:var(--be);   background:var(--be-bg);   }
+
+/* —————————————————— 练习 —————————————————— */
+.quiz{ background:var(--paper-card); border:2px solid var(--line);
+       border-radius:var(--radius); padding:22px; margin:26px 0; }
+.quiz h3{ font-family:var(--font-display); font-size:1.2rem; margin-bottom:4px; }
+.qitem{ border-top:1px dashed var(--line); padding:16px 0 4px; }
+.qitem:first-of-type{ border-top:0; }
+.qitem .q{ font-weight:700; margin-bottom:8px; }
+.qitem .q .num{ color:var(--do); font-family:var(--font-display); margin-right:6px; }
+details.answer{ margin-top:8px; }
+details.answer summary{
+  cursor:pointer; display:inline-block; font-family:var(--font-display);
+  font-weight:700; font-size:.85rem; color:var(--what);
+  background:var(--what-bg); padding:6px 14px; border-radius:999px;
+  list-style:none;
+}
+details.answer summary::-webkit-details-marker{ display:none; }
+details.answer[open] summary{ background:transparent; }
+details.answer .a{ margin-top:8px; color:var(--ink); }
+
+/* —————————————————— 目录（首页）—————————————————— */
+.toc{ display:grid; gap:12px; margin-top:6px; }
+.toc-item{
+  display:flex; align-items:center; gap:14px;
+  background:var(--paper-card); border:2px solid var(--line);
+  border-radius:16px; padding:14px 16px; text-decoration:none; color:var(--ink);
+  transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.toc-item .n{
+  flex:none; display:grid; place-items:center; width:38px; height:38px;
+  border-radius:12px; font-family:var(--font-display); font-weight:800;
+  background:var(--c,var(--rule-bg)); color:#fff;
+}
+.toc-item .tt{ flex:1; }
+.toc-item .tt .zh{ font-weight:700; }
+.toc-item .tt .en{ display:block; font-size:.82rem; color:var(--ink-soft); }
+.toc-item .go{ font-family:var(--font-display); font-weight:800; color:var(--ink-soft); }
+.toc-item.ready{ cursor:pointer; }
+.toc-item.ready:hover{ transform:translateY(-2px); box-shadow:0 12px 22px -16px rgba(74,63,54,.7); border-color:var(--c,var(--do)); }
+.toc-item.soon{ opacity:.62; }
+.toc-item.soon .badge{
+  font-family:var(--font-cn); font-size:.72rem; color:var(--ink-soft);
+  border:1px dashed var(--line); padding:2px 9px; border-radius:999px;
+}
+/* 给目录项编号块上色（按角色循环）*/
+.c-who{--c:var(--who)} .c-do{--c:var(--do)} .c-what{--c:var(--what)}
+.c-be{--c:var(--be)} .c-rule{--c:var(--rule)}
+
+/* —————————————————— 段落间小标题 —————————————————— */
+.mini-h{
+  font-family:var(--font-display); font-weight:800; font-size:1.05rem;
+  margin:20px 0 6px; display:flex; align-items:center; gap:8px;
+}
+.mini-h .pin{ font-size:1.05rem; }
+
+/* —————————————————— 底部导航 / 页脚 —————————————————— */
+.pager{ display:flex; gap:12px; margin:34px 0 8px; }
+.pager a{
+  flex:1; text-align:center; text-decoration:none; font-family:var(--font-display);
+  font-weight:800; color:var(--ink); background:var(--paper-card);
+  border:2px solid var(--line); border-radius:16px; padding:14px;
+}
+.pager a.next{ background:var(--do-bg); border-color:var(--do); color:var(--do); }
+.pager a.disabled{ opacity:.45; pointer-events:none; }
+.foot{ text-align:center; color:var(--ink-soft); font-size:.82rem; margin-top:40px; }
+
+/* —————————————————— 入场动画 —————————————————— */
+.reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
+.reveal.in{ opacity:1; transform:none; }
+
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity:1; transform:none; transition:none; }
+  .toc-item.ready:hover{ transform:none; }
+  html{ scroll-behavior:auto; }
+}
+html{ scroll-behavior:smooth; }
+
+/* —————————————————— 小屏微调 —————————————————— */
+@media (max-width:480px){
+  .judge{ grid-template-columns:1fr; }
+  .brick{ min-width:50px; padding:7px 11px 6px; }
+  .brick .word{ font-size:1.05rem; }
+}
