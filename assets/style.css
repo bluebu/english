@@ -331,3 +331,14 @@ html{ scroll-behavior:smooth; }
 .scene .node.comp{ --c:var(--comp); }
 .mini .b.comp{ color:var(--comp); background:var(--comp-bg); }
 .c-comp{ --c:var(--comp); }
+
+/* —— 词汇展示色块(柔和贴纸风,多彩、装饰性;区别于"句子积木"的成分色)—— */
+.brick.vocab{ border-color:rgba(120,104,84,.22); box-shadow:0 3px 9px -4px rgba(74,63,54,.45); }
+.brick.vocab .word{ color:var(--ink); }
+.brick.vocab.tint1{ background:var(--who-bg);  }
+.brick.vocab.tint2{ background:var(--what-bg); }
+.brick.vocab.tint3{ background:var(--do-bg);   }
+.brick.vocab.tint4{ background:var(--be-bg);   }
+.brick.vocab.tint5{ background:var(--comp-bg); }
+.brick.vocab.tint6{ background:var(--rule-bg); }
+.brick.vocab.speaking{ box-shadow:0 0 0 3px rgba(120,104,84,.4), 0 3px 9px -4px rgba(74,63,54,.45); }
