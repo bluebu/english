@@ -177,6 +177,18 @@ mark.hl{
 .trans{ text-align:center; color:var(--ink-soft); font-size:.98rem; margin:0 0 4px; }
 .trans b{ color:var(--ink); }
 
+/* —— 可点朗读的色块（点一下，念出它的语法成分）—— */
+.brick.say-able,
+.mini .b.say-able{ cursor:pointer; -webkit-tap-highlight-color:transparent; user-select:none; }
+.brick.say-able{ transition:transform .12s ease, box-shadow .12s ease; }
+.brick.say-able:hover{ transform:translateY(-2px); }
+.brick.say-able:active{ transform:scale(.95); }
+.brick.speaking{ box-shadow:0 0 0 4px var(--c), 3px 3px 0 var(--csh); animation:brickpop .4s ease; }
+@keyframes brickpop{ 0%{transform:scale(1)} 45%{transform:scale(1.09)} 100%{transform:scale(1)} }
+.mini .b.say-able:active{ filter:brightness(.92); }
+.mini .b.speaking{ box-shadow:0 0 0 2px currentColor; }
+.say-able:focus-visible{ outline:3px solid var(--ink); outline-offset:3px; }
+
 /* 一组例句 */
 .examples{ display:grid; gap:14px; margin-top:16px; }
 .ex{
@@ -298,6 +310,8 @@ details.answer .a{ margin-top:8px; color:var(--ink); }
 @media (prefers-reduced-motion: reduce){
   .reveal{ opacity:1; transform:none; transition:none; }
   .toc-item.ready:hover{ transform:none; }
+  .brick.say-able:hover{ transform:none; }
+  .brick.speaking{ animation:none; }
   html{ scroll-behavior:auto; }
 }
 html{ scroll-behavior:smooth; }
