@@ -322,3 +322,12 @@ html{ scroll-behavior:smooth; }
   .brick{ min-width:50px; padding:7px 11px 6px; }
   .brick .word{ font-size:1.05rem; }
 }
+
+/* —— 表语 / 补语(主系表的"表语",第 4 关引入)—— */
+:root{ --comp:#D9608A; --comp-bg:#FAE0EC; --comp-sh:rgba(217,96,138,.28); }
+.card.comp{ --c:var(--comp); --tape:var(--comp-bg); }
+.card.comp h2 .key{ color:var(--comp); }
+.brick.comp{ --c:var(--comp); --cbg:var(--comp-bg); --csh:var(--comp-sh); }
+.scene .node.comp{ --c:var(--comp); }
+.mini .b.comp{ color:var(--comp); background:var(--comp-bg); }
+.c-comp{ --c:var(--comp); }
