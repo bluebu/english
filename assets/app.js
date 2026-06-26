@@ -326,7 +326,7 @@
   checkUnlock();
   if (count >= tasks.length && pop) { pop.classList.add('done'); pop.classList.add('can-challenge'); if (bag) bag.classList.add('full'); }
 
-  // ---------- 隐藏款挑战：10 秒内全对 ----------
+  // ---------- 隐藏款挑战：15 秒内全对 ----------
   function startChallenge() {
     chActive = true;
     if (bag) { bag.classList.add('super'); bag.classList.remove('full'); }
