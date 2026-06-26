@@ -98,7 +98,7 @@
   var KEY = 'puzzle:' + (location.pathname.replace(/.*\//, '') || 'index');
   var secretSrc = body.getAttribute('data-puzzle-secret');
   var isChallenge = location.hash === '#challenge';   // 隐藏款挑战模式
-  var CH_MS = 10000;
+  var CH_MS = 15000;
   var chActive = false, chTimer = null, chTimerEl = null;
 
   function el(tag, cls) { var e = document.createElement(tag); if (cls) e.className = cls; return e; }
@@ -329,11 +329,19 @@
   // ---------- 隐藏款挑战：10 秒内全对 ----------
   function startChallenge() {
     chActive = true;
-    if (gate) gate.classList.remove('locked');          // 挑战时全题可答
     if (bag) { bag.classList.add('super'); bag.classList.remove('full'); }
     if (pop) { pop.classList.remove('done'); pop.hidden = true; }
+    // 只留题目：把所有 .task 移进挑战舞台（节点移动，事件监听器保留），讲解全部隐藏
+    var wrap = document.querySelector('.wrap') || body;
+    var stage = el('div', 'challenge-stage');
+    var tip = el('p', 'cs-tip'); tip.textContent = '⚡ 限时挑战 · 答对全部 ' + tasks.length + ' 题！';
+    stage.appendChild(tip);
+    tasks.forEach(function (t) { stage.appendChild(t); });
+    wrap.appendChild(stage);
+    body.classList.add('challenge-mode');
+    window.scrollTo(0, 0);                              // 开始后自动滚到顶
     chTimerEl = el('div', 'timer');
-    chTimerEl.innerHTML = '⏱ <span class="t">10.0</span>s';
+    chTimerEl.innerHTML = '⏱ <span class="t">15.0</span>s';
     body.appendChild(chTimerEl);
     var end = Date.now() + CH_MS;
     chTimer = setInterval(function () {
