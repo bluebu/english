@@ -13,7 +13,7 @@ description: 创建或修改"儿童英语语法小手册"的某一关(关卡)。
 3. **彩色步骤卡** `.card.who/.do/...`:**一个概念一张卡**,`.step` 编号 + `.what-line` 一句定义 + 句子积木例句。
 4. **★ 规则角** `.card.rule`:大小写 / 标点 / 拼写,用 `.judge` 做对错对照。
 5. **🍳 见物能聊** `.card`:一个生活场景(早餐桌等)几句真实句子,`.scene .node` + `.mini .b` 拆成色块。
-6. **🎯 练习** `.quiz`:3–5 题(找成分 / 排序 / 判断 / 改错 / 造句),每题配 `details.answer`("看答案")。
+6. **🎯 练习** `.quiz`:3–5 题(找成分 / 排序 / 判断 / 改错 / 造句)。**做成互动闯关**(答对点亮福袋拼图)→ 见「六」;若只做静态版,每题配 `details.answer`("看答案")。
 7. **🏆 通关锦囊** `.card.rule`:童趣总结,3 条要点 + 一句鼓励金句。
 
 ## 二、组件速查(都在 `assets/style.css`)
@@ -47,8 +47,43 @@ description: 创建或修改"儿童英语语法小手册"的某一关(关卡)。
 
 ## 五、步骤
 1. 复制 `lesson-01.html` → `lesson-NN.html`;改 `<title>`、`meta`、页眉 crumb、页脚、`.pager`(上一关 / 下一关)。
-2. 按"一、关卡布局"填内容;按"三"给色块加 `data-say`。
+2. 按"一、关卡布局"填内容;按"三"给色块加 `data-say`。**要做成互动闯关(答题 → 福袋拼图)→ 见「六」。**
 3. `index.html`:把对应目录项从 `soon` 改 `ready`,加 `href="./lesson-NN.html"` 和英文副标题;给编号块上对应颜色 class(`c-who`/`c-do`/…)。
 4. **自检**:用 playwright(`playwright-core` + 系统缓存的 chromium)在手机(390/412)和 iPad(834)视口截图,检查排版、色块、朗读高亮;并核对每个色块 `aria-label` = 期望术语。(脚本可临时生成,参考会话里 `shot.js` / `verify3.js` 的写法。)
 5. **发布**:`make up` 本地预览 → `git add -A && git commit && git push origin master`;commit message 末尾加
    `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>`。
+
+## 六、闯关测试 + 福袋拼图(互动闯关,第 1 关已落地)
+
+> 让一关变"答题闯关":答对小题 → 碎片飞入右下角**福袋** → 点亮一块拼图;集齐见全貌;通关后可玩 **10 秒隐藏款挑战**。**通用、数据驱动**——只写 HTML + 放两张图,`app.js` 自动注入福袋 / 拼图 / 倒计时;没有 `.task` 的关零影响。
+
+**1. 开关:`<body>` 上声明拼图**
+```html
+<body data-puzzle="./static/puzzles/lesson-NN.jpg"
+      data-puzzle-secret="./static/puzzles/lesson-NN-secret.jpg"
+      data-puzzle-name="形象名" data-puzzle-total="9">
+```
+`total` = 拼图块数(3×3 = 9),本关题数 ≤ 9。**第 i 题固定点亮第 i 块**;题数 < 9 时尾部空块默认显示。
+
+**2. 题目 `.task`(三种题型)**
+- **选择题** `data-task="choice"`:`.opts` > `.opt` 按钮,正确项加 `data-correct`。可配句子积木,把被考的块加 `.ask` 且 `.role` 写 `?`(答对自动翻成正确成分)。
+- **排序题** `data-task="order"`:`.order-slots`(留空)+ `.order-pool` > `.tok[data-pos=N]`(N = 正确位次,0 起)。点词排进槽,顺序对即过。
+- **造句打卡** `data-task="pledge"`:开放题,`.pledge-btn` 点一下即过;示例用 `.eg` **直接展示**(别折叠)。
+
+每题留一个空 `<p class="feedback"></p>` 放反馈。
+
+**3. 分区与解锁**
+- 不在 `.quiz` 内的 `.task` = **前置题**(分散在定义卡 / 规则角 / 见物能聊里,每区 1–2 题足矣)。
+- 主测试区 = **`.quiz.lockable`**,前置题全做完才解锁;**重点题量放主区**。
+- DOM 顺序:前置题在前、`.quiz` 在后。
+
+**4. 隐藏款挑战**(有 `data-puzzle-secret` 即自动启用):集齐后福袋弹层出现「⚡ 隐藏款挑战」,10 秒内全对 → 换隐藏款金图 + 超级福袋,超时弹「再来一次」。
+
+**5. 拼图图**:`static/puzzles/lesson-NN.jpg`(普通)+ `lesson-NN-secret.jpg`(隐藏款),统一 **800² JPG**(普通 ~35K / 隐藏款 ~160K)。用 PIL 裁正方(透明 PNG 先裁掉透明边、再 pad 米底 `#F4ECDD`),`quality 88–92`。**角色要填满画面**,否则切块发空。
+
+**6. 注意**
+- 题里的示例积木(`.task` 内的 `.brick`)**不朗读**、纯展示(`app.js` 已自动跳过)。
+- 句末标点放积木外(`.end-dot`),不算成分。
+- **以鼓励为主**:错误反馈别用"错 / 不对"等否定词。
+- 进度存 `localStorage`(按文件名);福袋弹层有「重新答题」入口。
+- 加了测试 → 用 playwright **点一遍验证**(答对 → 前置解锁 → 拼图点亮 → 集齐 → 10s 挑战成功/超时),参考会话里 `verify.js` / `verify3.js`。
