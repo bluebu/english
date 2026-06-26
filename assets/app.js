@@ -339,7 +339,12 @@
     tasks.forEach(function (t) { stage.appendChild(t); });
     wrap.appendChild(stage);
     body.classList.add('challenge-mode');
-    window.scrollTo(0, 0);                              // 开始后自动滚到顶
+    // 滚到顶：禁用浏览器滚动恢复 + 多次兜底（图片/布局异步会把单次 scrollTo 覆盖掉，导致"有时没到顶"）
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    var toTop = function () { window.scrollTo(0, 0); };
+    toTop();
+    requestAnimationFrame(toTop);
+    setTimeout(toTop, 120);
     chTimerEl = el('div', 'timer');
     chTimerEl.innerHTML = '⏱ <span class="t">15.0</span>s';
     body.appendChild(chTimerEl);
