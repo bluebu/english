@@ -199,7 +199,7 @@ mark.hl{
 /* —— 句子分两大区:主语 | 谓语,"+"是分界。每区下面一条横线 + 区名:
    主语区(蓝)托住主语;谓语区(橙,弱化)托住"动作词 + 宾语"整块。
    横线/区名用 ::before/::after 浮层画,不挤占排版,所以砖块照旧平排对齐。—— */
-.sentence.sb{ align-items:flex-end; margin-bottom:36px; }   /* 给区名留出下方空间 */
+.sentence.sb{ align-items:flex-end; margin-bottom:36px; row-gap:34px; }   /* 给区名留出下方空间;窄屏换行时,行距留出"主语"区名的位置(列距仍 8px) */
 .zone{ position:relative; display:inline-flex; align-items:flex-end; gap:8px; }
 .zone::before{                       /* 区域横线 */
   content:""; position:absolute; left:2px; right:2px; bottom:-9px; height:3px;
