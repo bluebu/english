@@ -49,10 +49,10 @@
       <p class="trans">跑 · 吃 · 跳 · 玩</p>
       <div class="examples">
         <div class="ex">
-          <div class="sentence">
-            <span class="brick who" data-say="名词作主语"><span class="role">名词</span><span class="word">Birds</span></span>
+          <div class="sentence sb">
+            <span class="zone z-who"><span class="brick who" data-say="名词作主语"><span class="role">名词</span><span class="word">Birds</span></span></span>
             <span class="glue">+</span>
-            <span class="brick do" data-say="动词作谓语"><span class="role">动词</span><span class="word">fly</span></span>
+            <span class="zone z-pred"><span class="brick do" data-say="动词作谓语"><span class="role">动词</span><span class="word">fly</span></span></span>
           </div>
           <p class="trans"><b>鸟</b> 会 <b>飞</b>。 &nbsp;<span class="muted">Birds fly.</span></p>
         </div>
@@ -61,10 +61,10 @@
       <div class="task" data-task="choice">
         <p class="q">🧩 试一试:带 <b>?</b> 的橙色这块,是哪类动词?</p>
         <p class="ask-cap"><b class="hl-do">fly</b> —— 鸟在"做"的动作</p>
-        <div class="sentence">
-          <span class="brick who"><span class="role">名词</span><span class="word">Birds</span></span>
+        <div class="sentence sb">
+          <span class="zone z-who"><span class="brick who"><span class="role">名词</span><span class="word">Birds</span></span></span>
           <span class="glue">+</span>
-          <span class="brick do ask"><span class="role">?</span><span class="word">fly</span></span>
+          <span class="zone z-pred"><span class="brick do ask"><span class="role">?</span><span class="word">fly</span></span></span>
           <span class="end-dot">.</span>
         </div>
         <div class="opts">
@@ -83,22 +83,18 @@
         <span class="en">am / is / are</span>(都是"是"),后面跟一个 <b>表语</b>(玫红)说明主角。</p>
       <div class="examples">
         <div class="ex">
-          <div class="sentence">
-            <span class="brick who" data-say="代词作主语"><span class="role">代词</span><span class="word">She</span></span>
+          <div class="sentence sb">
+            <span class="zone z-who"><span class="brick who" data-say="代词作主语"><span class="role">代词</span><span class="word">She</span></span></span>
             <span class="glue">+</span>
-            <span class="brick be" data-say="系动词"><span class="role">系动词</span><span class="word">is</span></span>
-            <span class="glue">+</span>
-            <span class="brick comp" data-say="表语"><span class="role">表语</span><span class="word">a teacher</span></span>
+            <span class="zone z-pred"><span class="brick be" data-say="系动词"><span class="role">系动词</span><span class="word">is</span></span><span class="brick comp" data-say="表语"><span class="role">表语</span><span class="word">a teacher</span></span></span>
           </div>
           <p class="trans"><b>她</b> <b>是</b> 一位<b>老师</b>。 &nbsp;<span class="muted">She is a teacher.</span></p>
         </div>
         <div class="ex">
-          <div class="sentence">
-            <span class="brick who" data-say="名词作主语"><span class="role">名词</span><span class="word">The sky</span></span>
+          <div class="sentence sb">
+            <span class="zone z-who"><span class="brick who" data-say="名词作主语"><span class="role">名词</span><span class="word">The sky</span></span></span>
             <span class="glue">+</span>
-            <span class="brick be" data-say="系动词"><span class="role">系动词</span><span class="word">is</span></span>
-            <span class="glue">+</span>
-            <span class="brick comp" data-say="表语"><span class="role">表语</span><span class="word">blue</span></span>
+            <span class="zone z-pred"><span class="brick be" data-say="系动词"><span class="role">系动词</span><span class="word">is</span></span><span class="brick comp" data-say="表语"><span class="role">表语</span><span class="word">blue</span></span></span>
           </div>
           <p class="trans"><b>天</b> <b>是</b> <b>蓝</b>的。 &nbsp;<span class="muted">The sky is blue.</span></p>
         </div>
@@ -112,12 +108,10 @@
       <div class="task" data-task="choice">
         <p class="q">🧩 试一试:带 <b>?</b> 的紫色这块,是什么?</p>
         <p class="ask-cap"><b style="color:var(--be)">is</b> —— "是"(不做动作)</p>
-        <div class="sentence">
-          <span class="brick who"><span class="role">代词</span><span class="word">She</span></span>
+        <div class="sentence sb">
+          <span class="zone z-who"><span class="brick who"><span class="role">代词</span><span class="word">She</span></span></span>
           <span class="glue">+</span>
-          <span class="brick be ask"><span class="role">?</span><span class="word">is</span></span>
-          <span class="glue">+</span>
-          <span class="brick comp"><span class="role">表语</span><span class="word">a teacher</span></span>
+          <span class="zone z-pred"><span class="brick be ask"><span class="role">?</span><span class="word">is</span></span><span class="brick comp"><span class="role">表语</span><span class="word">a teacher</span></span></span>
         </div>
         <div class="opts">
           <button class="opt" data-correct>系动词</button>
@@ -129,12 +123,10 @@
       <div class="task" data-task="choice">
         <p class="q">🧩 再试:带 <b>?</b> 的玫红这块,是什么?</p>
         <p class="ask-cap"><b style="color:var(--comp)">a teacher</b> —— 说明 She 是什么</p>
-        <div class="sentence">
-          <span class="brick who"><span class="role">代词</span><span class="word">She</span></span>
+        <div class="sentence sb">
+          <span class="zone z-who"><span class="brick who"><span class="role">代词</span><span class="word">She</span></span></span>
           <span class="glue">+</span>
-          <span class="brick be"><span class="role">系动词</span><span class="word">is</span></span>
-          <span class="glue">+</span>
-          <span class="brick comp ask"><span class="role">?</span><span class="word">a teacher</span></span>
+          <span class="zone z-pred"><span class="brick be"><span class="role">系动词</span><span class="word">is</span></span><span class="brick comp ask"><span class="role">?</span><span class="word">a teacher</span></span></span>
         </div>
         <div class="opts">
           <button class="opt" data-correct>表语</button>

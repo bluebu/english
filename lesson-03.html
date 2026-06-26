@@ -59,10 +59,10 @@
 
       <div class="examples">
         <div class="ex">
-          <div class="sentence">
-            <span class="brick who" data-say="代词作主语"><span class="role">代词</span><span class="word">He</span></span>
+          <div class="sentence sb">
+            <span class="zone z-who"><span class="brick who" data-say="代词作主语"><span class="role">代词</span><span class="word">He</span></span></span>
             <span class="glue">+</span>
-            <span class="brick do"><span class="role">谓语</span><span class="word">runs</span></span>
+            <span class="zone z-pred"><span class="brick pred-v"><span class="role">&nbsp;</span><span class="word">runs</span></span></span>
           </div>
           <p class="trans"><b>他</b> 在 <b>跑</b>。 &nbsp;<span class="muted">He runs.</span></p>
         </div>
@@ -71,10 +71,10 @@
       <div class="task" data-task="choice">
         <p class="q">🧩 试一试:带 <b>?</b> 的蓝色这块,在句子里当什么?</p>
         <p class="ask-cap"><b class="hl-who">He</b> —— 句子的主角</p>
-        <div class="sentence">
-          <span class="brick who ask"><span class="role">?</span><span class="word">He</span></span>
+        <div class="sentence sb">
+          <span class="zone z-who"><span class="brick who ask"><span class="role">?</span><span class="word">He</span></span></span>
           <span class="glue">+</span>
-          <span class="brick do"><span class="role">谓语</span><span class="word">runs</span></span>
+          <span class="zone z-pred"><span class="brick pred-v"><span class="role">&nbsp;</span><span class="word">runs</span></span></span>
           <span class="end-dot">.</span>
         </div>
         <div class="opts">
@@ -103,21 +103,49 @@
           </div>
         </div>
         <div class="ex">
-          <div class="sentence">
-            <span class="brick who" data-say="名词作主语"><span class="role">名词</span><span class="word">Mom</span></span>
+          <div class="sentence sb">
+            <span class="zone z-who"><span class="brick who" data-say="名词作主语"><span class="role">名词</span><span class="word">Mom</span></span></span>
             <span class="glue">+</span>
-            <span class="brick do"><span class="role">谓语</span><span class="word">loves</span></span>
-            <span class="glue">+</span>
-            <span class="brick what" data-say="代词作宾语"><span class="role">代词</span><span class="word">me</span></span>
+            <span class="zone z-pred"><span class="brick pred-v"><span class="role">&nbsp;</span><span class="word">loves</span></span><span class="brick what" data-say="代词作宾语"><span class="role">代词</span><span class="word">me</span></span></span>
           </div>
           <p class="trans"><b>妈妈</b> <b>爱</b> <b>我</b>。 &nbsp;<span class="muted">Mom loves me.</span>(不是 I)</p>
         </div>
       </div>
-      <div class="tip">
-        <span class="ic">🔁</span>
-        <div class="body">当主语用 <span class="en">I / he / she</span>,当宾语换成 <span class="en">me / him / her</span>。
-          <br><b>为什么会变?</b>这是英语的老习惯——同一个"我",站在前面当主角是 <span class="en">I</span>、被动作碰到就变 <span class="en">me</span>。
-          中文的"我"前后都一样,英语换个位置就换个样子,有点像换了身衣服 😄</div>
+      <div class="qa">
+        <div class="qa-row who">
+          <span class="q">谁会唱歌?<i class="en">Who can sing?</i></span>
+          <span class="a"><b class="en">I</b> can!</span>
+        </div>
+        <div class="qa-row what">
+          <span class="q">妈妈爱谁?<i class="en">Who does Mom love?</i></span>
+          <span class="a"><b class="en">Me</b>!</span>
+        </div>
+        <div class="switch">
+          <p class="switch-lead">她、他们、它,也跟着变:</p>
+          <div class="srow">
+            <span class="s en"><b class="who">She</b> is here.</span>
+            <span class="to">→</span>
+            <span class="s en">I see <b class="what">her</b>.</span>
+          </div>
+          <div class="srow">
+            <span class="s en"><b class="who">They</b> are here.</span>
+            <span class="to">→</span>
+            <span class="s en">I see <b class="what">them</b>.</span>
+          </div>
+          <div class="srow">
+            <span class="s en"><b class="who">It</b> is here.</span>
+            <span class="to">→</span>
+            <span class="s en">I see <b class="what">it</b>.</span>
+            <span class="note">没变!</span>
+          </div>
+        </div>
+        <div class="qa-key">
+          <span class="lead">🔑 同一个<b>"我"</b></span>
+          <span class="map">
+            <span class="m who">自己<b>做</b><span class="arr">→</span><b class="chip en">I</b></span>
+            <span class="m what">被动作<b>碰到</b><span class="arr">→</span><b class="chip en">me</b></span>
+          </span>
+        </div>
       </div>
 
       <div class="task" data-task="choice">
@@ -181,7 +209,7 @@
         <div class="node who">
           <div class="en">She helps me.</div>
           <div class="zh">她帮我。</div>
-          <div class="mini"><span class="b who" data-say="代词作主语">She 代词</span><span class="b do">helps 谓语</span><span class="b what" data-say="代词作宾语">me 代词</span></div>
+          <div class="mini"><span class="b who" data-say="代词作主语">She 代词</span><span class="mv">helps</span><span class="b what" data-say="代词作宾语">me 代词</span></div>
         </div>
         <div class="task" data-task="choice">
           <p class="q">🧩 <span class="en">We love ___</span>(我们爱他们)填哪个?</p>
