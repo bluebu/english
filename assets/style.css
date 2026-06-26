@@ -342,3 +342,242 @@ html{ scroll-behavior:smooth; }
 .brick.vocab.tint5{ background:var(--comp-bg); }
 .brick.vocab.tint6{ background:var(--rule-bg); }
 .brick.vocab.speaking{ box-shadow:0 0 0 3px rgba(120,104,84,.4), 0 3px 9px -4px rgba(74,63,54,.45); }
+
+/* ======================================================================
+   闯关测试 + 福袋拼图（通用机制，由 app.js 数据驱动）
+   答对一题 → 碎片飞入右下角福袋 → 点亮一块拼图；集齐见全貌。
+   ====================================================================== */
+
+/* —— 一道小题 —— */
+.task{
+  position:relative; background:var(--paper);
+  border:1.5px dashed var(--line); border-radius:14px;
+  padding:14px 16px 12px; margin:14px 0;
+  transition:border-color .2s ease, background .2s ease;
+}
+.task .q{ font-weight:700; margin:0 0 10px; }
+.task .q .en{ font-weight:800; }
+.task .q .num{ color:var(--do); font-family:var(--font-display); font-weight:800; margin-right:6px; }
+.scene .task{ margin:0; }
+/* 题目里的句子积木：跟教学卡同款，被考的那块标 ? 并轻轻呼吸 */
+.task .ask-cap{ text-align:center; color:var(--ink-soft); font-weight:700; font-size:.9rem; margin:8px 0 0; }
+.task .sentence{ margin:8px 0 12px; }
+/* 句末句号（标点不属于成分，放积木外、紧跟最后一块）*/
+.sentence .end-dot{ font-family:var(--font-display); font-weight:800; font-size:1.35rem;
+  color:var(--ink); align-self:flex-end; padding-bottom:6px; margin-left:-2px; }
+.brick.ask .role{ font-size:.98rem; }
+.brick.ask{ animation:ask-pulse 1.3s ease-in-out infinite; }
+@keyframes ask-pulse{ 0%,100%{ box-shadow:3px 3px 0 var(--csh) }
+  50%{ box-shadow:0 0 0 5px var(--csh), 3px 3px 0 var(--csh) } }
+.task .hl-who { color:var(--who);  font-weight:800; }
+.task .hl-do  { color:var(--do);   font-weight:800; }
+.task .hl-what{ color:var(--what); font-weight:800; }
+
+/* 选项按钮 */
+.opts{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+.opt{
+  font-family:var(--font-display); font-weight:800; font-size:1rem; color:var(--ink);
+  background:var(--paper-card); border:2.5px solid var(--line); border-radius:12px;
+  padding:9px 18px; cursor:pointer; box-shadow:2px 2px 0 rgba(74,63,54,.12);
+  transition:transform .1s ease, background .15s, border-color .15s, color .15s, opacity .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.opt:hover{ transform:translateY(-2px); }
+.opt:active{ transform:scale(.96); }
+.opt.correct{ background:var(--what-bg); border-color:var(--what); color:var(--what); }
+.opt.wrong{ background:var(--do-bg); border-color:var(--do); color:var(--do); animation:tk-shake .4s; }
+.task.solved .opt{ cursor:default; }
+.task.solved .opt:not(.correct){ opacity:.4; }
+@keyframes tk-shake{ 10%,90%{transform:translateX(-2px)} 30%,70%{transform:translateX(4px)} 50%{transform:translateX(-6px)} }
+
+/* 解出后的整题状态 + 角标 */
+.task.solved{ border-style:solid; border-color:var(--what); background:var(--what-bg); }
+.task.solved::after{
+  content:"✓"; position:absolute; top:-12px; right:-10px;
+  width:30px; height:30px; display:grid; place-items:center;
+  background:var(--what); color:#fff; border-radius:50%; font-weight:900;
+  box-shadow:0 3px 8px -2px var(--what-sh); animation:tk-pop .4s ease;
+}
+@keyframes tk-pop{ 0%{transform:scale(0)} 60%{transform:scale(1.25)} 100%{transform:scale(1)} }
+
+.task .feedback{ margin:10px 0 0; font-family:var(--font-display); font-weight:800;
+  font-size:.92rem; min-height:1.1em; }
+.task .feedback.ok{ color:var(--what); }
+.task .feedback.no{ color:var(--do); }
+
+/* —— 排序题 —— */
+.order-slots{
+  display:flex; flex-wrap:wrap; gap:8px; min-height:46px; align-items:center; justify-content:center;
+  margin:10px 0; padding:8px 10px; border-radius:12px;
+  background:var(--paper-card); border:2px dashed var(--line);
+}
+.order-slots:empty::before{ content:"点下面的词，按顺序排进来…";
+  color:var(--ink-soft); font-size:.85rem; font-weight:600; }
+.order-slots.wrong{ animation:tk-shake .4s; border-color:var(--do); }
+.order-pool{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.order-pool:empty{ display:none; }
+.tok{
+  font-family:var(--font-display); font-weight:800; font-size:1rem; color:var(--ink);
+  background:var(--who-bg); border:2.5px solid var(--who); border-radius:12px;
+  padding:8px 15px; cursor:pointer; box-shadow:2px 2px 0 var(--who-sh);
+  -webkit-tap-highlight-color:transparent;
+}
+.tok:active{ transform:scale(.96); }
+.order-slots .tok{ background:var(--paper-card); border-color:var(--ink-soft); box-shadow:none; }
+.task.solved .order-slots .tok{ background:var(--what-bg); border-color:var(--what); }
+
+/* —— 造句打卡 —— */
+.pledge-btn{
+  font-family:var(--font-display); font-weight:800; font-size:1rem; color:#fff;
+  background:var(--do); border:none; border-radius:999px; padding:11px 22px;
+  cursor:pointer; box-shadow:0 6px 14px -5px var(--do-sh); -webkit-tap-highlight-color:transparent;
+}
+.pledge-btn:active{ transform:scale(.97); }
+.task.solved .pledge-btn{ background:var(--what); box-shadow:0 6px 14px -5px var(--what-sh); }
+.task .hint{ margin:8px 0 0; }
+.task .hint summary{ cursor:pointer; font-family:var(--font-display); font-weight:700;
+  font-size:.82rem; color:var(--ink-soft); list-style:none; }
+.task .hint summary::-webkit-details-marker{ display:none; }
+.task .hint .a{ margin-top:6px; color:var(--ink); font-size:.92rem; }
+/* 直接展示的示例（低调，不折叠）*/
+.task .eg{ margin:8px 0 10px; color:var(--ink-soft); font-size:.9rem; line-height:1.6; }
+.task .eg .en{ color:var(--ink); font-weight:700; }
+
+/* —— 可锁定区（练习区：前置题做完才解锁）—— */
+.lockable{ position:relative; }
+.lockable.locked > *:not(.zone-lock){ filter:blur(2.5px) saturate(.55); opacity:.5;
+  pointer-events:none; user-select:none; }
+.zone-lock{ display:none; }
+.lockable.locked .zone-lock{
+  display:grid; place-items:center; position:absolute; inset:0; z-index:5;
+  border-radius:var(--radius); background:rgba(251,246,235,.35);
+}
+.zone-lock .box{
+  text-align:center; font-family:var(--font-display); font-weight:800; color:var(--ink);
+  background:var(--paper-card); border:2.5px solid var(--rule); border-radius:18px;
+  padding:16px 22px; box-shadow:0 14px 30px -14px rgba(74,63,54,.55); max-width:80%;
+}
+.zone-lock .box .lk{ font-size:1.9rem; display:block; margin-bottom:4px; }
+.zone-lock .box .sub{ font-size:.84rem; color:var(--ink-soft); font-weight:600; margin-top:5px; }
+
+/* —— 右下角福袋 —— */
+.lucky-bag{
+  position:fixed; right:16px; bottom:16px; z-index:60;
+  display:flex; flex-direction:column; align-items:center; gap:1px;
+  width:62px; padding:8px 4px 6px; cursor:pointer; font-family:var(--font-display);
+  background:var(--rule-bg); border:2.5px solid var(--rule); border-radius:18px;
+  box-shadow:0 8px 20px -8px var(--rule-sh); -webkit-tap-highlight-color:transparent;
+  transition:transform .15s ease;
+}
+.lucky-bag:active{ transform:scale(.94); }
+.lucky-bag .ic{ font-size:1.75rem; line-height:1; filter:drop-shadow(0 2px 3px rgba(0,0,0,.15)); }
+.lucky-bag .bag-count{ font-weight:900; font-size:.78rem; color:var(--rule); }
+.lucky-bag.shake{ animation:bag-shake .5s; }
+@keyframes bag-shake{ 0%,100%{transform:none}
+  20%{transform:rotate(-9deg) scale(1.09)} 40%{transform:rotate(7deg) scale(1.1)}
+  60%{transform:rotate(-5deg)} 80%{transform:rotate(3deg)} }
+.lucky-bag.full{ background:var(--what-bg); border-color:var(--what); }
+.lucky-bag.full .bag-count{ color:var(--what); }
+
+/* —— 拼图弹层 —— */
+.puzzle-pop{
+  position:fixed; right:16px; bottom:90px; z-index:61; width:min(300px,86vw);
+  background:var(--paper-card); border:2.5px solid var(--rule); border-radius:20px;
+  padding:16px; box-shadow:0 22px 54px -18px rgba(74,63,54,.6); transform-origin:bottom right;
+}
+.puzzle-pop[hidden]{ display:none; }
+.puzzle-pop.in{ animation:pp-up .25s ease; }
+@keyframes pp-up{ from{transform:scale(.7); opacity:0} to{transform:scale(1); opacity:1} }
+.puzzle-pop .ttl{ font-family:var(--font-display); font-weight:800; text-align:center; margin:0 0 2px; }
+.puzzle-pop .ttl .nm{ color:var(--do); }
+.puzzle-pop .pp-sub{ text-align:center; color:var(--ink-soft); font-size:.8rem; margin:0 0 12px; }
+.puzzle-pop .close{ position:absolute; top:6px; right:11px; border:none; background:none;
+  font-size:1.4rem; color:var(--ink-soft); cursor:pointer; line-height:1; }
+.puzzle-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:4px;
+  aspect-ratio:1/1; background:var(--rule); padding:4px; border-radius:12px; transition:background .3s; }
+.pcell{ position:relative; border-radius:6px; overflow:hidden; background-color:#F4ECDD;
+  background-size:300% 300%; background-repeat:no-repeat; } /* background-image 由 app.js 设 inline */
+.pcell .lock{ position:absolute; inset:0; display:grid; place-items:center;
+  background:repeating-linear-gradient(45deg,#EFE6D2 0 8px,#E7DCC2 8px 16px);
+  color:var(--ink-soft); font-family:var(--font-display); font-weight:900; font-size:1.3rem; }
+.pcell.lit{ animation:cell-pop .5s ease; }
+.pcell.lit .lock{ animation:cell-reveal .5s ease forwards; }
+@keyframes cell-pop{ 0%{transform:scale(.85)} 55%{transform:scale(1.1)} 100%{transform:scale(1)} }
+@keyframes cell-reveal{ to{ opacity:0; transform:scale(1.4); visibility:hidden } }
+.puzzle-pop.done{ border-color:var(--what); }
+.puzzle-pop.done .puzzle-grid{ background:var(--what); }
+.puzzle-pop .pz-reset{
+  display:block; margin:12px auto 0; cursor:pointer;
+  font-family:var(--font-display); font-weight:700; font-size:.82rem; color:var(--ink-soft);
+  background:var(--paper); border:1.5px solid var(--line); border-radius:999px; padding:6px 16px;
+  -webkit-tap-highlight-color:transparent; transition:transform .1s ease;
+}
+.puzzle-pop .pz-reset:active{ transform:scale(.96); }
+
+/* —— 飞入碎片 / bingo 浮字 / 撒花 —— */
+.fly-bit{ position:fixed; z-index:80; font-size:1.6rem; pointer-events:none;
+  transition:transform .8s cubic-bezier(.5,-0.35,.35,1), opacity .8s ease; }
+.bingo-float{ position:absolute; left:50%; top:0; z-index:10; pointer-events:none; white-space:nowrap;
+  font-family:var(--font-display); font-weight:900; color:var(--what);
+  background:var(--paper-card); border:2px solid var(--what); border-radius:999px;
+  padding:4px 14px; box-shadow:0 6px 16px -6px var(--what-sh); animation:bingo .95s ease forwards; }
+@keyframes bingo{ 0%{transform:translate(-50%,-30%) scale(.5); opacity:0}
+  25%{transform:translate(-50%,-95%) scale(1.1); opacity:1}
+  100%{transform:translate(-50%,-170%) scale(1); opacity:0} }
+.confetti{ position:fixed; inset:0; z-index:79; pointer-events:none; overflow:hidden; }
+.confetti i{ position:absolute; top:-12px; font-size:1.1rem; animation:fall linear forwards; }
+@keyframes fall{ to{ transform:translateY(104vh) rotate(540deg); opacity:.25 } }
+
+@media (prefers-reduced-motion: reduce){
+  .opt.wrong, .order-slots.wrong, .lucky-bag.shake, .pcell.lit, .pcell.lit .lock,
+  .task.solved::after, .bingo-float, .puzzle-pop.in, .confetti i, .brick.ask{ animation:none; }
+  .fly-bit{ transition:opacity .3s ease; }
+}
+
+/* ====================================================================
+   隐藏款挑战：10 秒内全对 → 超级福袋 + 隐藏款金色蛋小黄
+   ==================================================================== */
+/* 福袋弹层里的「隐藏款挑战」入口（通关后才显示）*/
+.pz-challenge{ display:none; width:100%; margin:10px 0 0; cursor:pointer;
+  font-family:var(--font-display); font-weight:800; font-size:.92rem; color:#7A3E00;
+  background:linear-gradient(145deg,#FFE08A,#F5B731); border:2px solid #E89A12; border-radius:14px;
+  padding:11px; box-shadow:0 6px 16px -6px rgba(232,154,18,.6); -webkit-tap-highlight-color:transparent; }
+.puzzle-pop.can-challenge .pz-challenge{ display:block; animation:super-glow 1.6s ease-in-out infinite; }
+.pz-challenge:active{ transform:scale(.97); }
+
+/* 超级福袋 */
+.lucky-bag.super{ background:linear-gradient(145deg,#FFE08A,#F5B731); border-color:#E89A12;
+  animation:super-glow 1.4s ease-in-out infinite; }
+.lucky-bag.super .bag-count{ color:#8A4E00; }
+@keyframes super-glow{ 0%,100%{ box-shadow:0 0 0 3px rgba(245,183,49,.35), 0 8px 22px -6px rgba(232,154,18,.6) }
+  50%{ box-shadow:0 0 0 8px rgba(245,183,49,.16), 0 10px 30px -6px rgba(232,154,18,.85) } }
+
+/* 倒计时 */
+.timer{ position:fixed; top:56px; left:50%; transform:translateX(-50%); z-index:62;
+  display:flex; align-items:center; gap:6px; font-family:var(--font-display); font-weight:900; font-size:1.15rem;
+  color:#8A4E00; background:linear-gradient(145deg,#FFE7A0,#F7C23E); border:2.5px solid #E89A12;
+  border-radius:999px; padding:8px 20px; box-shadow:0 8px 22px -6px rgba(232,154,18,.6); }
+.timer.hurry{ color:#C0392B; border-color:#E74C3C; background:linear-gradient(145deg,#FFD2C2,#F79B7E);
+  animation:timer-pulse .5s ease-in-out infinite; }
+@keyframes timer-pulse{ 0%,100%{transform:translateX(-50%) scale(1)} 50%{transform:translateX(-50%) scale(1.09)} }
+
+/* 隐藏款金光 */
+.puzzle-grid.secret{ background:linear-gradient(145deg,#F7C23E,#E89A12); }
+.pcell.secret{ animation:secret-shine 1.7s ease-in-out infinite; }
+@keyframes secret-shine{ 0%,100%{ filter:brightness(1) saturate(1.05) }
+  50%{ filter:brightness(1.13) saturate(1.3) drop-shadow(0 0 5px rgba(255,200,40,.9)) } }
+
+/* 挑战失败弹窗 */
+.challenge-end{ position:fixed; inset:0; z-index:90; display:grid; place-items:center; background:rgba(74,63,54,.45); }
+.challenge-end .box{ background:var(--paper-card); border:2.5px solid var(--rule); border-radius:20px;
+  padding:22px 24px; max-width:82%; text-align:center; box-shadow:0 24px 60px -16px rgba(0,0,0,.5); }
+.challenge-end h3{ font-family:var(--font-display); font-size:1.3rem; margin:0 0 4px; }
+.challenge-end p{ color:var(--ink-soft); margin:4px 0 16px; }
+.challenge-end .btns{ display:flex; gap:10px; justify-content:center; }
+.challenge-end button{ font-family:var(--font-display); font-weight:800; border-radius:999px;
+  padding:10px 18px; cursor:pointer; border:2px solid var(--line); background:var(--paper); color:var(--ink); }
+.challenge-end button.primary{ background:var(--do); border-color:var(--do); color:#fff; }
+
+@media (prefers-reduced-motion: reduce){
+  .pz-challenge, .lucky-bag.super, .timer.hurry, .pcell.secret{ animation:none; }
+}

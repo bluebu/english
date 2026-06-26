@@ -9,7 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✏️</text></svg>" />
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
-<body>
+<body data-puzzle="./static/puzzles/lesson-01.jpg" data-puzzle-secret="./static/puzzles/lesson-01-secret.jpg" data-puzzle-name="蛋小黄" data-puzzle-total="9">
 
   <div class="topbar">
     <a class="home" href="./index.html"><span class="dot">✏️</span> 语法小手册</a>
@@ -64,6 +64,22 @@
         <span class="ic">🔵</span>
         <div class="body">每个句子,都要先找到这个<b>蓝色的"谁"</b>。
           找不到"谁",这句话就站不住。</div>
+      </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:带 <b>?</b> 的蓝色这块,是什么?</p>
+        <p class="ask-cap"><b class="hl-who">Birds</b> —— 句子在说的主角</p>
+        <div class="sentence">
+          <span class="brick who ask"><span class="role">?</span><span class="word">Birds</span></span>
+          <span class="glue">+</span>
+          <span class="brick do"><span class="role">谓语</span><span class="word">fly</span></span>
+          <span class="end-dot">.</span>
+        </div>
+        <div class="opts">
+          <button class="opt" data-correct>主语</button>
+          <button class="opt">谓语</button>
+        </div>
+        <p class="feedback"></p>
       </div>
     </section>
 
@@ -120,6 +136,22 @@
           这些小零件<b>后面几关</b>再拆,这关先认准
           <b style="color:var(--who)">谁</b> + <b style="color:var(--do)">谓语</b> 两大块!</div>
       </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:带 <b>?</b> 的橙色这块,是什么?</p>
+        <p class="ask-cap"><b class="hl-do">fly</b> —— 说鸟儿"怎么样"</p>
+        <div class="sentence">
+          <span class="brick who"><span class="role">主语</span><span class="word">Birds</span></span>
+          <span class="glue">+</span>
+          <span class="brick do ask"><span class="role">?</span><span class="word">fly</span></span>
+          <span class="end-dot">.</span>
+        </div>
+        <div class="opts">
+          <button class="opt">主语</button>
+          <button class="opt" data-correct>谓语</button>
+        </div>
+        <p class="feedback"></p>
+      </div>
     </section>
 
     <!-- ============ 规则角:标点 + 大小写 ============ -->
@@ -140,10 +172,14 @@
         <div class="no"><span class="tag">✗ 错</span><s>I like books</s></div>
       </div>
 
-      <div class="mini-h"><span class="pin">③</span> "我" = <b>I</b>,永远<b>大写</b>,在哪都大写</div>
-      <div class="judge">
-        <div class="ok"><span class="tag">✓ 对</span>Mom and I run.</div>
-        <div class="no"><span class="tag">✗ 错</span><s>Mom and i run.</s></div>
+      <div class="mini-h"><span class="pin">③</span> "我" = <b>I</b>,永远<b>大写</b></div>
+      <div class="task" data-task="choice">
+        <p class="q">🧩 哪句<b>写对了</b>?("我" 要大写)</p>
+        <div class="opts">
+          <button class="opt"><span class="en">Mom and i run.</span></button>
+          <button class="opt" data-correct><span class="en">Mom and I run.</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
     </section>
 
@@ -164,10 +200,14 @@
           <div class="zh">妈妈煎鸡蛋。</div>
           <div class="mini"><span class="b who">Mom 主语</span><span class="b do">cooks eggs 谓语</span></div>
         </div>
-        <div class="node who">
-          <div class="en">The milk is warm.</div>
-          <div class="zh">牛奶是温的。</div>
-          <div class="mini"><span class="b who">The milk 主语</span><span class="b do">is warm 谓语</span></div>
+        <div class="task" data-task="choice">
+          <p class="q">🧩 <span class="en">The milk is warm.</span><br>这句的 <b>主语</b>(谁)是哪一块?</p>
+          <div class="opts">
+            <button class="opt"><span class="en">milk</span></button>
+            <button class="opt" data-correct><span class="en">The milk</span></button>
+            <button class="opt"><span class="en">is warm</span></button>
+          </div>
+          <p class="feedback"></p>
         </div>
         <div class="node do">
           <div class="en">I am hungry.</div>
@@ -177,49 +217,61 @@
       </div>
     </section>
 
-    <!-- ============ 练习 ============ -->
-    <section class="quiz reveal">
+    <!-- ============ 练习(主测试区,需先过前 4 题解锁)============ -->
+    <section class="quiz lockable reveal">
       <h3>🎯 我会分句子了</h3>
-      <p class="muted">做完点开"看答案"对一对。</p>
+      <p class="muted">前面 4 个小测验过了,这里就解锁。每答对一题,福袋里点亮一块拼图!</p>
 
-      <div class="qitem">
-        <p class="q"><span class="num">1</span>分两块:这句话里,<b>谁</b>?<b>谓语</b>?<br>
-          <span class="en" style="font-size:1.15rem">Tom eats an apple.</span></p>
-        <details class="answer"><summary>看答案</summary>
-          <p class="a">谁 = <b style="color:var(--who)">Tom</b>,谓语 = <b style="color:var(--do)">eats an apple</b>。</p>
-        </details>
+      <!-- 1 找主语 -->
+      <div class="task" data-task="choice">
+        <p class="q"><span class="num">1</span>分一分:<span class="en">Tom eats an apple.</span><br>哪一块是<b>主语</b>(谁)?</p>
+        <div class="opts">
+          <button class="opt" data-correct><span class="en">Tom</span></button>
+          <button class="opt"><span class="en">eats an apple</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
 
-      <div class="qitem">
-        <p class="q"><span class="num">2</span>排一排:把打乱的词排成一句话。<br>
-          <span class="en" style="font-size:1.05rem">[ a book ] &nbsp; [ She ] &nbsp; [ reads ]</span></p>
-        <details class="answer"><summary>看答案</summary>
-          <p class="a"><span class="en"><b>She reads a book.</b></span>（谁 → 谓语,别忘了句号!）</p>
-        </details>
+      <!-- 2 排序 -->
+      <div class="task" data-task="order">
+        <p class="q"><span class="num">2</span>排一排:点词,把它们排成一句完整的话。</p>
+        <div class="order-slots"></div>
+        <div class="order-pool">
+          <button class="tok" data-pos="2"><span class="en">a book</span></button>
+          <button class="tok" data-pos="0"><span class="en">She</span></button>
+          <button class="tok" data-pos="1"><span class="en">reads</span></button>
+        </div>
+        <details class="hint"><summary>提示</summary><p class="a">先"谁",再"谓语":She → reads → a book。</p></details>
+        <p class="feedback"></p>
       </div>
 
-      <div class="qitem">
-        <p class="q"><span class="num">3</span>哪句完整?(要同时有<b>谁</b>和<b>谓语</b>)<br>
-          A. <span class="en">Dogs run.</span> &nbsp; B. <span class="en">the big dog</span> &nbsp; C. <span class="en">is happy</span></p>
-        <details class="answer"><summary>看答案</summary>
-          <p class="a">只有 <b>A</b> 完整。B 只有"谁"没谓语;C 只有"谓语"没"谁"——都缺一大块。</p>
-        </details>
+      <!-- 3 选完整句 -->
+      <div class="task" data-task="choice">
+        <p class="q"><span class="num">3</span>哪句<b>完整</b>?(要同时有<b>谁</b>和<b>谓语</b>)</p>
+        <div class="opts">
+          <button class="opt" data-correct><span class="en">Dogs run.</span></button>
+          <button class="opt"><span class="en">the big dog</span></button>
+          <button class="opt"><span class="en">is happy</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
 
-      <div class="qitem">
-        <p class="q"><span class="num">4</span>改一改:把这句改对(开头大写 + 句号)。<br>
-          <span class="en" style="font-size:1.05rem">she is my friend</span></p>
-        <details class="answer"><summary>看答案</summary>
-          <p class="a"><span class="en"><b>She is my friend.</b></span></p>
-        </details>
+      <!-- 4 改错(选写对的)-->
+      <div class="task" data-task="choice">
+        <p class="q"><span class="num">4</span>哪句<b>写对了</b>?(开头大写 + 句号)</p>
+        <div class="opts">
+          <button class="opt"><span class="en">she is my friend</span></button>
+          <button class="opt" data-correct><span class="en">She is my friend.</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
 
-      <div class="qitem">
-        <p class="q"><span class="num">5</span>说一句:用"谁 + 谓语",说一句关于<b>你自己</b>的话。</p>
-        <details class="answer"><summary>看示例</summary>
-          <p class="a">例如:<span class="en">I jump.</span>(我跳)/ <span class="en">I am happy.</span>(我很开心)——
-            只要有"谁"和"谓语",就对啦!</p>
-        </details>
+      <!-- 5 造句打卡 -->
+      <div class="task" data-task="pledge">
+        <p class="q"><span class="num">5</span>照着例子,用"谁 + 谓语"说一句关于<b>你自己</b>的<b>英文</b>句子,大声读出来!</p>
+        <p class="eg">💡 例如:<span class="en">I jump.</span>(我跳) &nbsp;·&nbsp; <span class="en">I am happy.</span>(我很开心)</p>
+        <button class="pledge-btn">我说出来啦 ✅</button>
+        <p class="feedback"></p>
       </div>
     </section>
 
