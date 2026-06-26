@@ -584,6 +584,21 @@ body.challenge-mode .wrap > *:not(.challenge-stage){ display:none; }
 .challenge-stage .cs-tip{ text-align:center; font-family:var(--font-display); font-weight:800;
   color:var(--do); font-size:1.05rem; margin:10px 0 6px; }
 
+/* 代词变身对(主格 → 宾格,点击读「X 变成 Y」)*/
+.pron-list{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:4px 0; }
+.pron-pair{ display:inline-flex; align-items:center; gap:6px; cursor:pointer;
+  background:var(--paper-card); border:2px solid var(--line); border-radius:999px;
+  padding:6px 14px; font-family:var(--font-display); -webkit-tap-highlight-color:transparent;
+  transition:transform .12s ease, box-shadow .12s ease; }
+.pron-pair:hover{ transform:translateY(-2px); }
+.pron-pair:active{ transform:scale(.95); }
+.pron-pair b{ font-weight:800; font-size:1.05rem; }
+.pron-pair .who{ color:var(--who); }
+.pron-pair .what{ color:var(--what); }
+.pron-pair .arr{ color:var(--ink-soft); font-weight:800; }
+.pron-pair.same .what{ color:var(--who); }            /* you/it 不变:宾格也蓝 */
+.pron-pair.speaking{ box-shadow:0 0 0 3px var(--who); animation:brickpop .4s ease; }
+
 @media (prefers-reduced-motion: reduce){
-  .pz-challenge, .lucky-bag.super, .timer.hurry, .pcell.secret{ animation:none; }
+  .pz-challenge, .lucky-bag.super, .timer.hurry, .pcell.secret, .pron-pair.speaking{ animation:none; }
 }

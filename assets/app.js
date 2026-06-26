@@ -60,7 +60,7 @@
     speechSynthesis.speak(u);
   }
 
-  var blocks = document.querySelectorAll('.brick, .mini .b');
+  var blocks = document.querySelectorAll('.brick, .mini .b, .pron-pair');
   blocks.forEach(function (el) {
     if (el.closest && el.closest('.task')) return; // 题目里的示例积木只做展示，不朗读
     var term = termOf(el);
