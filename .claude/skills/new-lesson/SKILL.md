@@ -59,8 +59,8 @@ description: 创建或修改"儿童英语语法小手册"的某一关(关卡)。
 
 **1. 开关:`<body>` 上声明拼图**
 ```html
-<body data-puzzle="./static/puzzles/lesson-NN.jpg"
-      data-puzzle-secret="./static/puzzles/lesson-NN-secret.jpg"
+<body data-puzzle="./assets/puzzles/lesson-NN.jpg"
+      data-puzzle-secret="./assets/puzzles/lesson-NN-secret.jpg"
       data-puzzle-name="形象名" data-puzzle-total="9">
 ```
 `total` = 拼图块数(3×3 = 9),本关题数 ≤ 9。**第 i 题固定点亮第 i 块**;题数 < 9 时尾部空块默认显示。
@@ -79,7 +79,7 @@ description: 创建或修改"儿童英语语法小手册"的某一关(关卡)。
 
 **4. 隐藏款挑战**(有 `data-puzzle-secret` 即自动启用):集齐后福袋弹层出现「⚡ 隐藏款挑战」,**15 秒内全对** → 换隐藏款金图 + 超级福袋;挑战开始会**把题目移进挑战舞台、藏掉所有讲解、自动滚到顶**,超时弹「再来一次」。
 
-**5. 拼图图**:`static/puzzles/lesson-NN.jpg`(普通)+ `lesson-NN-secret.jpg`(隐藏款),统一 **800² JPG**(普通 ~35K / 隐藏款 ~160K)。用 PIL 裁正方(透明 PNG 先裁掉透明边、再 pad 米底 `#F4ECDD`),`quality 88–92`。**角色要填满画面**,否则切块发空。
+**5. 拼图图**:`assets/puzzles/lesson-NN.jpg`(普通)+ `lesson-NN-secret.jpg`(隐藏款),统一 **800² JPG**(普通 ~35K / 隐藏款 ~160K)。用 PIL 裁正方(透明 PNG 先裁掉透明边、再 pad 米底 `#F4ECDD`),`quality 88–92`。**角色要填满画面**,否则切块发空。
 
 **6. 注意**
 - 题里的示例积木(`.task` 内的 `.brick`)**不朗读**、纯展示(`app.js` 已自动跳过)。
