@@ -9,7 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✏️</text></svg>" />
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
-<body>
+<body data-puzzle="./assets/puzzles/lesson-04.jpg" data-puzzle-secret="./assets/puzzles/lesson-04-secret.jpg" data-puzzle-name="蛋小紫" data-puzzle-total="9">
 
   <div class="topbar">
     <a class="home" href="./index.html"><span class="dot">✏️</span> 语法小手册</a>
@@ -57,6 +57,22 @@
           <p class="trans"><b>鸟</b> 会 <b>飞</b>。 &nbsp;<span class="muted">Birds fly.</span></p>
         </div>
       </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:带 <b>?</b> 的橙色这块,是哪类动词?</p>
+        <p class="ask-cap"><b class="hl-do">fly</b> —— 鸟在"做"的动作</p>
+        <div class="sentence">
+          <span class="brick who"><span class="role">名词</span><span class="word">Birds</span></span>
+          <span class="glue">+</span>
+          <span class="brick do ask"><span class="role">?</span><span class="word">fly</span></span>
+          <span class="end-dot">.</span>
+        </div>
+        <div class="opts">
+          <button class="opt" data-correct>动作动词</button>
+          <button class="opt">系动词</button>
+        </div>
+        <p class="feedback"></p>
+      </div>
     </section>
 
     <!-- Step 2:系动词 + 表语 -->
@@ -92,6 +108,40 @@
         <div class="body">这就是 <b>主系表</b>:主语 + 系动词 + 表语。
           <br>口诀:<b>I</b> 用 <span class="en">am</span>,<b>he/she/it</b> 用 <span class="en">is</span>,<b>you/we/they</b> 用 <span class="en">are</span>。</div>
       </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:带 <b>?</b> 的紫色这块,是什么?</p>
+        <p class="ask-cap"><b style="color:var(--be)">is</b> —— "是"(不做动作)</p>
+        <div class="sentence">
+          <span class="brick who"><span class="role">代词</span><span class="word">She</span></span>
+          <span class="glue">+</span>
+          <span class="brick be ask"><span class="role">?</span><span class="word">is</span></span>
+          <span class="glue">+</span>
+          <span class="brick comp"><span class="role">表语</span><span class="word">a teacher</span></span>
+        </div>
+        <div class="opts">
+          <button class="opt" data-correct>系动词</button>
+          <button class="opt">动作动词</button>
+        </div>
+        <p class="feedback"></p>
+      </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 再试:带 <b>?</b> 的玫红这块,是什么?</p>
+        <p class="ask-cap"><b style="color:var(--comp)">a teacher</b> —— 说明 She 是什么</p>
+        <div class="sentence">
+          <span class="brick who"><span class="role">代词</span><span class="word">She</span></span>
+          <span class="glue">+</span>
+          <span class="brick be"><span class="role">系动词</span><span class="word">is</span></span>
+          <span class="glue">+</span>
+          <span class="brick comp ask"><span class="role">?</span><span class="word">a teacher</span></span>
+        </div>
+        <div class="opts">
+          <button class="opt" data-correct>表语</button>
+          <button class="opt">宾语</button>
+        </div>
+        <p class="feedback"></p>
+      </div>
     </section>
 
     <!-- 规则角 -->
@@ -107,6 +157,16 @@
         <div class="ok"><span class="tag">✓ 对</span>I am · She is · We are</div>
         <div class="no"><span class="tag">✗ 错</span><s>I is · We is</s></div>
       </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:<span class="en">She ___ happy</span> 填哪个?</p>
+        <div class="opts">
+          <button class="opt"><span class="en">am</span></button>
+          <button class="opt" data-correct><span class="en">is</span></button>
+          <button class="opt"><span class="en">are</span></button>
+        </div>
+        <p class="feedback"></p>
+      </div>
     </section>
 
     <!-- 见物能聊 -->
@@ -120,33 +180,63 @@
           <div class="zh">小狗在跑。</div>
           <div class="mini"><span class="b who" data-say="名词作主语">The dog 名词</span><span class="b do" data-say="动词作谓语">runs 动词</span></div>
         </div>
-        <div class="node be">
-          <div class="en">The dog is happy.</div>
-          <div class="zh">小狗很开心。</div>
-          <div class="mini"><span class="b who" data-say="名词作主语">The dog 名词</span><span class="b be" data-say="系动词">is 系动词</span><span class="b comp" data-say="表语">happy 表语</span></div>
+        <div class="task" data-task="choice">
+          <p class="q">🧩 <span class="en">The dog is happy.</span><br>哪块是<b>表语</b>(说小狗怎么样)?</p>
+          <div class="opts">
+            <button class="opt"><span class="en">The dog</span></button>
+            <button class="opt"><span class="en">is</span></button>
+            <button class="opt" data-correct><span class="en">happy</span></button>
+          </div>
+          <p class="feedback"></p>
         </div>
       </div>
     </section>
 
-    <!-- 练习 -->
-    <section class="quiz reveal">
+    <!-- 练习(主测试区,需先过前 5 题解锁)-->
+    <section class="quiz lockable reveal">
       <h3>🎯 我会用动词了</h3>
-      <p class="muted">做完点开"看答案"对一对。</p>
-      <div class="qitem">
-        <p class="q"><span class="num">1</span>是动作动词还是系动词?<span class="en">jump · is · eat · are</span></p>
-        <details class="answer"><summary>看答案</summary><p class="a">动作动词:<b>jump · eat</b>;系动词:<b>is · are</b>。</p></details>
+      <p class="muted">前面 5 个小测验过了,这里就解锁。每答对一题,福袋里点亮一块拼图!</p>
+
+      <!-- 1 找系动词 -->
+      <div class="task" data-task="choice">
+        <p class="q"><span class="num">1</span>哪个是<b>系动词</b>?</p>
+        <div class="opts">
+          <button class="opt"><span class="en">jump</span></button>
+          <button class="opt" data-correct><span class="en">is</span></button>
+          <button class="opt"><span class="en">eat</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
-      <div class="qitem">
-        <p class="q"><span class="num">2</span>填 am/is/are:<span class="en">I ___ · She ___ · They ___</span></p>
-        <details class="answer"><summary>看答案</summary><p class="a">I <b>am</b> · She <b>is</b> · They <b>are</b>。</p></details>
+
+      <!-- 2 主系表排序 -->
+      <div class="task" data-task="order">
+        <p class="q"><span class="num">2</span>排一排:点词,把它们排成一句完整的话。</p>
+        <div class="order-slots"></div>
+        <div class="order-pool">
+          <button class="tok" data-pos="2"><span class="en">tall</span></button>
+          <button class="tok" data-pos="0"><span class="en">Tom</span></button>
+          <button class="tok" data-pos="1"><span class="en">is</span></button>
+        </div>
+        <details class="hint"><summary>提示</summary><p class="a">主语 → 系动词 → 表语:Tom → is → tall。</p></details>
+        <p class="feedback"></p>
       </div>
-      <div class="qitem">
-        <p class="q"><span class="num">3</span>找主系表的三块:<span class="en">Tom is tall.</span></p>
-        <details class="answer"><summary>看答案</summary><p class="a">主语 <b>Tom</b> + 系动词 <b>is</b> + 表语 <b>tall</b>。</p></details>
+
+      <!-- 3 主谓一致 -->
+      <div class="task" data-task="choice">
+        <p class="q"><span class="num">3</span><span class="en">He ___ fast.</span>(他跑得快)填哪个?</p>
+        <div class="opts">
+          <button class="opt"><span class="en">run</span></button>
+          <button class="opt" data-correct><span class="en">runs</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
-      <div class="qitem">
-        <p class="q"><span class="num">4</span>改对:<span class="en">He run fast.</span></p>
-        <details class="answer"><summary>看答案</summary><p class="a"><span class="en"><b>He runs fast.</b></span>(他/单个,动词加 -s)</p></details>
+
+      <!-- 4 造句打卡 -->
+      <div class="task" data-task="pledge">
+        <p class="q"><span class="num">4</span>照着例子,用"主语 + 系动词 + 表语"说一句英文话,大声读出来!</p>
+        <p class="eg">💡 例如:<span class="en">I am happy.</span>(我很开心) &nbsp;·&nbsp; <span class="en">The sky is blue.</span>(天是蓝的)</p>
+        <button class="pledge-btn">我说出来啦 ✅</button>
+        <p class="feedback"></p>
       </div>
     </section>
 
