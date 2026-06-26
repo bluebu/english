@@ -131,7 +131,7 @@
       '<button class="close" aria-label="关闭">×</button>' +
       '<p class="ttl">福袋拼图 · <span class="nm">' + puzzleName + '</span></p>' +
       '<p class="pp-sub"></p><div class="puzzle-grid"></div>' +
-      '<button class="pz-challenge" type="button">⚡ 隐藏款挑战 · 10 秒内全对</button>' +
+      '<button class="pz-challenge" type="button">⚡ 隐藏款挑战 · 15 秒内全对</button>' +
       '<button class="pz-reset" type="button">↺ 重新答题</button>';
     body.appendChild(pop);
     grid = pop.querySelector('.puzzle-grid');
