@@ -9,7 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✏️</text></svg>" />
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
-<body>
+<body data-puzzle="./assets/puzzles/lesson-03.jpg" data-puzzle-secret="./assets/puzzles/lesson-03-secret.jpg" data-puzzle-name="蛋小蓝" data-puzzle-total="9">
 
   <div class="topbar">
     <a class="home" href="./index.html"><span class="dot">✏️</span> 语法小手册</a>
@@ -67,6 +67,22 @@
           <p class="trans"><b>他</b> 在 <b>跑</b>。 &nbsp;<span class="muted">He runs.</span></p>
         </div>
       </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:带 <b>?</b> 的蓝色这块,在句子里当什么?</p>
+        <p class="ask-cap"><b class="hl-who">He</b> —— 句子的主角</p>
+        <div class="sentence">
+          <span class="brick who ask"><span class="role">?</span><span class="word">He</span></span>
+          <span class="glue">+</span>
+          <span class="brick do"><span class="role">谓语</span><span class="word">runs</span></span>
+          <span class="end-dot">.</span>
+        </div>
+        <div class="opts">
+          <button class="opt" data-correct>主语</button>
+          <button class="opt">宾语</button>
+        </div>
+        <p class="feedback"></p>
+      </div>
     </section>
 
     <!-- Step 2:宾语代词变身 -->
@@ -93,8 +109,16 @@
       </div>
       <div class="tip">
         <span class="ic">🔁</span>
-        <div class="body">当主语用 <span class="en">I / he / she</span>,当宾语换成 <span class="en">me / him / her</span>。
-          <br>颜色帮你看:蓝=主语,绿=宾语。</div>
+        <div class="body">当主语用 <span class="en">I / he / she</span>,当宾语换成 <span class="en">me / him / her</span>。</div>
+      </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:<span class="en">Mom loves ___</span>(妈妈爱我)填哪个?</p>
+        <div class="opts">
+          <button class="opt"><span class="en">I</span></button>
+          <button class="opt" data-correct><span class="en">me</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
     </section>
 
@@ -108,6 +132,16 @@
           <b>my</b> book &nbsp; <b>your</b> bag &nbsp; <b>his</b> pen &nbsp; <b>her</b> cat</p>
       </div>
       <p class="trans">我的书 · 你的包 · 他的笔 · 她的猫</p>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:<span class="en">This is ___ book</span>(这是我的书)填哪个?</p>
+        <div class="opts">
+          <button class="opt" data-correct><span class="en">my</span></button>
+          <button class="opt"><span class="en">I</span></button>
+          <button class="opt"><span class="en">me</span></button>
+        </div>
+        <p class="feedback"></p>
+      </div>
     </section>
 
     <!-- 规则角 -->
@@ -118,6 +152,15 @@
       <div class="judge">
         <div class="ok"><span class="tag">✓ 对</span>Mom and I play.</div>
         <div class="no"><span class="tag">✗ 错</span><s>Mom and i play.</s></div>
+      </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 哪句<b>写对了</b>?("我" 要大写)</p>
+        <div class="opts">
+          <button class="opt"><span class="en">Mom and i play.</span></button>
+          <button class="opt" data-correct><span class="en">Mom and I play.</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
     </section>
 
@@ -132,33 +175,63 @@
           <div class="zh">她帮我。</div>
           <div class="mini"><span class="b who" data-say="代词作主语">She 代词</span><span class="b do">helps 谓语</span><span class="b what" data-say="代词作宾语">me 代词</span></div>
         </div>
-        <div class="node who">
-          <div class="en">We love them.</div>
-          <div class="zh">我们爱他们。</div>
-          <div class="mini"><span class="b who" data-say="代词作主语">We 代词</span><span class="b do">love 谓语</span><span class="b what" data-say="代词作宾语">them 代词</span></div>
+        <div class="task" data-task="choice">
+          <p class="q">🧩 <span class="en">We love ___</span>(我们爱他们)填哪个?</p>
+          <div class="opts">
+            <button class="opt"><span class="en">they</span></button>
+            <button class="opt" data-correct><span class="en">them</span></button>
+          </div>
+          <p class="feedback"></p>
         </div>
       </div>
     </section>
 
-    <!-- 练习 -->
-    <section class="quiz reveal">
+    <!-- 练习(主测试区,需先过前 5 题解锁)-->
+    <section class="quiz lockable reveal">
       <h3>🎯 我会用代词了</h3>
-      <p class="muted">做完点开"看答案"对一对。</p>
-      <div class="qitem">
-        <p class="q"><span class="num">1</span>用代词替名字:<span class="en">Tom is tall.</span> → ___ is tall.</p>
-        <details class="answer"><summary>看答案</summary><p class="a"><b>He</b> is tall.(Tom 是男孩,用 he)</p></details>
+      <p class="muted">前面 5 个小测验过了,这里就解锁。每答对一题,福袋里点亮一块拼图!</p>
+
+      <!-- 1 替名词 -->
+      <div class="task" data-task="choice">
+        <p class="q"><span class="num">1</span>用代词替名字:<span class="en">Tom is tall.</span> → <span class="en">___ is tall.</span></p>
+        <div class="opts">
+          <button class="opt" data-correct><span class="en">He</span></button>
+          <button class="opt"><span class="en">Him</span></button>
+          <button class="opt"><span class="en">She</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
-      <div class="qitem">
-        <p class="q"><span class="num">2</span>主语还是宾语?选词:I / me<br><span class="en">She sees ___ .</span></p>
-        <details class="answer"><summary>看答案</summary><p class="a">She sees <b>me</b>.(在动词后面当宾语,变身成 me)</p></details>
+
+      <!-- 2 排序 -->
+      <div class="task" data-task="order">
+        <p class="q"><span class="num">2</span>排一排:点词,把它们排成一句完整的话。</p>
+        <div class="order-slots"></div>
+        <div class="order-pool">
+          <button class="tok" data-pos="2"><span class="en">me</span></button>
+          <button class="tok" data-pos="0"><span class="en">She</span></button>
+          <button class="tok" data-pos="1"><span class="en">helps</span></button>
+        </div>
+        <details class="hint"><summary>提示</summary><p class="a">谁 → 做什么 → 谁:She → helps → me。</p></details>
+        <p class="feedback"></p>
       </div>
-      <div class="qitem">
-        <p class="q"><span class="num">3</span>填"谁的":这是我的书。<span class="en">This is ___ book.</span></p>
-        <details class="answer"><summary>看答案</summary><p class="a">This is <b>my</b> book.</p></details>
+
+      <!-- 3 宾格变身 -->
+      <div class="task" data-task="choice">
+        <p class="q"><span class="num">3</span><span class="en">Dad helps ___</span>(爸爸帮我们)填哪个?</p>
+        <div class="opts">
+          <button class="opt"><span class="en">we</span></button>
+          <button class="opt" data-correct><span class="en">us</span></button>
+          <button class="opt"><span class="en">they</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
-      <div class="qitem">
-        <p class="q"><span class="num">4</span>改一改:<span class="en">mom and i run.</span></p>
-        <details class="answer"><summary>看答案</summary><p class="a"><span class="en"><b>Mom and I run.</b></span></p></details>
+
+      <!-- 4 造句打卡 -->
+      <div class="task" data-task="pledge">
+        <p class="q"><span class="num">4</span>照着例子,用一个<b>代词</b>说一句英文话,大声读出来!</p>
+        <p class="eg">💡 例如:<span class="en">I am happy.</span>(我很开心) &nbsp;·&nbsp; <span class="en">She helps me.</span>(她帮我)</p>
+        <button class="pledge-btn">我说出来啦 ✅</button>
+        <p class="feedback"></p>
       </div>
     </section>
 
