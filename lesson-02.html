@@ -9,7 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✏️</text></svg>" />
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
-<body>
+<body data-puzzle="./assets/puzzles/lesson-02.jpg" data-puzzle-secret="./assets/puzzles/lesson-02-secret.jpg" data-puzzle-name="蛋仔伙伴" data-puzzle-total="9">
 
   <div class="topbar">
     <a class="home" href="./index.html"><span class="dot">✏️</span> 语法小手册</a>
@@ -116,6 +116,22 @@
         <div class="body">点一下念「<b>名词作主语</b>」——它是<b>名词</b>(词类),正在当<b>主语</b>(角色,蓝色)。
           <br>看颜色 + 听声音,就知道它是什么词、在当什么。</div>
       </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:带 <b>?</b> 的蓝色这块,在句子里当什么?</p>
+        <p class="ask-cap"><b class="hl-who">The cat</b> —— 句子的主角</p>
+        <div class="sentence">
+          <span class="brick who ask"><span class="role">?</span><span class="word">The cat</span></span>
+          <span class="glue">+</span>
+          <span class="brick do"><span class="role">谓语</span><span class="word">sleeps</span></span>
+          <span class="end-dot">.</span>
+        </div>
+        <div class="opts">
+          <button class="opt" data-correct>主语</button>
+          <button class="opt">宾语</button>
+        </div>
+        <p class="feedback"></p>
+      </div>
     </section>
 
     <!-- ============ Step 3:名词当宾语(引入宾语)============ -->
@@ -151,6 +167,24 @@
         <span class="ic">🟢</span>
         <div class="body">绿色 = <b>宾语</b>——被动作"碰到"的东西,永远在动词后面。
           <br>第 1 关说"藏在谓语里、以后再拆"的那个,<b>就是它!</b></div>
+      </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:带 <b>?</b> 的绿色这块,在句子里当什么?</p>
+        <p class="ask-cap"><b class="hl-what">cats</b> —— 被"喜欢"碰到的东西</p>
+        <div class="sentence">
+          <span class="brick who"><span class="role">名词</span><span class="word">Tom</span></span>
+          <span class="glue">+</span>
+          <span class="brick do"><span class="role">谓语</span><span class="word">likes</span></span>
+          <span class="glue">+</span>
+          <span class="brick what ask"><span class="role">?</span><span class="word">cats</span></span>
+          <span class="end-dot">.</span>
+        </div>
+        <div class="opts">
+          <button class="opt">主语</button>
+          <button class="opt" data-correct>宾语</button>
+        </div>
+        <p class="feedback"></p>
       </div>
     </section>
 
@@ -215,6 +249,15 @@
         <div class="body">口诀:元音(<b>a e i o u</b>)开头用 <b>an</b>,其它用 <b>a</b>;
           特指那一个就用 <b>the</b>。</div>
       </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 试一试:<span class="en">___ apple</span> 前面填哪个?</p>
+        <div class="opts">
+          <button class="opt"><span class="en">a</span></button>
+          <button class="opt" data-correct><span class="en">an</span></button>
+        </div>
+        <p class="feedback"></p>
+      </div>
     </section>
 
     <!-- ============ 规则角:专有名词大写 ============ -->
@@ -240,6 +283,15 @@
         <div class="ok"><span class="tag">✓ 对</span>See you on Monday.</div>
         <div class="no"><span class="tag">✗ 错</span><s>see you on monday.</s></div>
       </div>
+
+      <div class="task" data-task="choice">
+        <p class="q">🧩 哪句<b>写对了</b>?(人名要大写)</p>
+        <div class="opts">
+          <button class="opt"><span class="en">i see tom.</span></button>
+          <button class="opt" data-correct><span class="en">I see Tom.</span></button>
+        </div>
+        <p class="feedback"></p>
+      </div>
     </section>
 
     <!-- ============ 见物能聊:我的书包 ============ -->
@@ -259,57 +311,63 @@
           <div class="zh">书包里有书。</div>
           <div class="mini"><span class="b who" data-say="名词作主语">The bag 名词</span><span class="b do">has 谓语</span><span class="b what" data-say="名词作宾语">books 名词</span></div>
         </div>
-        <div class="node who">
-          <div class="en">Tom needs a pen.</div>
-          <div class="zh">Tom 需要一支笔。</div>
-          <div class="mini"><span class="b who" data-say="名词作主语">Tom 名词</span><span class="b do">needs 谓语</span><span class="b what" data-say="名词作宾语">a pen 名词</span></div>
+        <div class="task" data-task="choice">
+          <p class="q">🧩 <span class="en">Tom needs a pen.</span><br>哪块是<b>宾语</b>(被需要的东西)?</p>
+          <div class="opts">
+            <button class="opt"><span class="en">Tom</span></button>
+            <button class="opt"><span class="en">needs</span></button>
+            <button class="opt" data-correct><span class="en">a pen</span></button>
+          </div>
+          <p class="feedback"></p>
         </div>
       </div>
     </section>
 
-    <!-- ============ 练习 ============ -->
-    <section class="quiz reveal">
+    <!-- ============ 练习(主测试区,需先过前 5 题解锁)============ -->
+    <section class="quiz lockable reveal">
       <h3>🎯 我会用名词了</h3>
-      <p class="muted">做完点开"看答案"对一对。</p>
+      <p class="muted">前面 5 个小测验过了,这里就解锁。每答对一题,福袋里点亮一块拼图!</p>
 
-      <div class="qitem">
-        <p class="q"><span class="num">1</span>找名词:这句里哪些是名词?<br>
-          <span class="en" style="font-size:1.15rem">Tom likes apples.</span></p>
-        <details class="answer"><summary>看答案</summary>
-          <p class="a"><b style="color:var(--who)">Tom</b> 和 <b style="color:var(--what)">apples</b> 都是名词(likes 是谓语)。</p>
-        </details>
+      <!-- 1 单复数 -->
+      <div class="task" data-task="choice">
+        <p class="q"><span class="num">1</span>变复数(不止一个):<span class="en">box</span> 的复数是?</p>
+        <div class="opts">
+          <button class="opt"><span class="en">boxs</span></button>
+          <button class="opt" data-correct><span class="en">boxes</span></button>
+          <button class="opt"><span class="en">box</span></button>
+        </div>
+        <p class="feedback"></p>
       </div>
 
-      <div class="qitem">
-        <p class="q"><span class="num">2</span>填 <b>a</b> 还是 <b>an</b>?<br>
-          ___ apple &nbsp;·&nbsp; ___ dog &nbsp;·&nbsp; ___ egg</p>
-        <details class="answer"><summary>看答案</summary>
-          <p class="a"><b>an</b> apple &nbsp;·&nbsp; <b>a</b> dog &nbsp;·&nbsp; <b>an</b> egg(元音开头用 an)。</p>
-        </details>
+      <!-- 2 排序 -->
+      <div class="task" data-task="order">
+        <p class="q"><span class="num">2</span>排一排:点词,把它们排成一句完整的话。</p>
+        <div class="order-slots"></div>
+        <div class="order-pool">
+          <button class="tok" data-pos="2"><span class="en">seeds</span></button>
+          <button class="tok" data-pos="0"><span class="en">Birds</span></button>
+          <button class="tok" data-pos="1"><span class="en">eat</span></button>
+        </div>
+        <details class="hint"><summary>提示</summary><p class="a">谁 → 做什么 → 什么:Birds → eat → seeds。</p></details>
+        <p class="feedback"></p>
       </div>
 
-      <div class="qitem">
-        <p class="q"><span class="num">3</span>变复数(不止一个):<br>
-          cat → ___ &nbsp;·&nbsp; box → ___ &nbsp;·&nbsp; child → ___</p>
-        <details class="answer"><summary>看答案</summary>
-          <p class="a">cat → <b>cats</b> &nbsp;·&nbsp; box → <b>boxes</b> &nbsp;·&nbsp; child → <b>children</b>(不讲理的那个)。</p>
-        </details>
+      <!-- 3 主语 vs 宾语 -->
+      <div class="task" data-task="choice">
+        <p class="q"><span class="num">3</span><span class="en">The dog eats meat.</span><br><span class="en">meat</span> 是主语还是宾语?</p>
+        <div class="opts">
+          <button class="opt">主语</button>
+          <button class="opt" data-correct>宾语</button>
+        </div>
+        <p class="feedback"></p>
       </div>
 
-      <div class="qitem">
-        <p class="q"><span class="num">4</span>主语还是宾语?<br>
-          <span class="en">The dog eats meat.</span> &nbsp;—— dog 是?meat 是?</p>
-        <details class="answer"><summary>看答案</summary>
-          <p class="a"><b style="color:var(--who)">dog</b> 是主语(它在做动作),<b style="color:var(--what)">meat</b> 是宾语(被吃的东西)。两个都是名词。</p>
-        </details>
-      </div>
-
-      <div class="qitem">
-        <p class="q"><span class="num">5</span>改一改(名字大写):<br>
-          <span class="en" style="font-size:1.05rem">i play with anna.</span></p>
-        <details class="answer"><summary>看答案</summary>
-          <p class="a"><span class="en"><b>I play with Anna.</b></span>(I 和人名 Anna 都要大写)</p>
-        </details>
+      <!-- 4 造句打卡 -->
+      <div class="task" data-task="pledge">
+        <p class="q"><span class="num">4</span>照着例子,用一个<b>名词</b>说一句英文话(名词当主语或宾语),大声读出来!</p>
+        <p class="eg">💡 例如:<span class="en">I like apples.</span>(我喜欢苹果) &nbsp;·&nbsp; <span class="en">The cat sleeps.</span>(猫在睡)</p>
+        <button class="pledge-btn">我说出来啦 ✅</button>
+        <p class="feedback"></p>
       </div>
     </section>
 
@@ -340,7 +398,7 @@
     <!-- ============ 翻页 ============ -->
     <nav class="pager reveal">
       <a href="./lesson-01.html">← 第 1 关</a>
-      <a class="next disabled" aria-disabled="true">第 3 关 · 敬请期待</a>
+      <a class="next" href="./lesson-03.html">第 3 关 · 代词 →</a>
     </nav>
 
     <p class="foot reveal">第 2 关 · 名词 + 冠词(a / an / the)</p>
