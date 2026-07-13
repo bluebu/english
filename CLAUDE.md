@@ -28,6 +28,7 @@
 - 每关一个 `grammar/lesson-NN.html`,共享 `grammar/assets/style.css` + `grammar/assets/app.js`,**全部相对路径**(目录内互相引用)。
 - `grammar/index.html` = 封面 + 11 关目录(未完成的标 `soon`);根 `index.html` = 栏目导航,新栏目上线时在这里加卡片。
 - `ket/` = KET 核心词汇 A4 默写卷(词表 CSV → 生成脚本 → HTML/PDF,目录页 `ket/index.html`;工作流 → `/ket` skill)。
+- **分享卡片**:每页配 og 标签,**og:title / og:description 逐字照抄本页 `<title>` / `<meta description>`**,不另写文案;描述用自然口语、无广告腔。微信缩略图 = `<body>` 首部隐藏的 share 图(0 尺寸 overflow:hidden 包裹,忌 `display:none`;og:image 用绝对地址)。
 - 分支 **master**;自定义域名 `english.hi-ruby.com`(根目录 `CNAME`)。本地预览 `make up`。
 - **重大改动 / 体系取舍先和用户讨论**;改完用 playwright 截图自检(手机 + iPad 视口);确认后 **commit + push 到 master**(用户已授权直接 push;commit 末尾加 Co-Authored-By 行)。
 
