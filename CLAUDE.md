@@ -24,9 +24,10 @@
 - (关卡布局、组件、机制细节、注意事项 → 见 `/grammar` skill。)
 
 ## 工程与发布
-- 语法手册**整体隔离在 `grammar/` 目录**;根目录只放站点级文件(跳转页 `index.html`、`404.html`、`CNAME` 等)与将来的其他栏目,栏目之间不互相引用。
+- **每个栏目整体隔离在自己的目录**(语法手册 `grammar/`、KET 词汇默写 `ket/`);根目录只放站点级文件(栏目导航页 `index.html`、`404.html`、`CNAME` 等),栏目之间不互相引用。
 - 每关一个 `grammar/lesson-NN.html`,共享 `grammar/assets/style.css` + `grammar/assets/app.js`,**全部相对路径**(目录内互相引用)。
-- `grammar/index.html` = 封面 + 11 关目录(未完成的标 `soon`);根 `index.html` 暂时跳转到 `grammar/`,新栏目上线后改成栏目导航。
+- `grammar/index.html` = 封面 + 11 关目录(未完成的标 `soon`);根 `index.html` = 栏目导航,新栏目上线时在这里加卡片。
+- `ket/` = KET 核心词汇 A4 默写卷(词表 CSV → 生成脚本 → HTML/PDF,目录页 `ket/index.html`;工作流 → `/ket` skill)。
 - 分支 **master**;自定义域名 `english.hi-ruby.com`(根目录 `CNAME`)。本地预览 `make up`。
 - **重大改动 / 体系取舍先和用户讨论**;改完用 playwright 截图自检(手机 + iPad 视口);确认后 **commit + push 到 master**(用户已授权直接 push;commit 末尾加 Co-Authored-By 行)。
 

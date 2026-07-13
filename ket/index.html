@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>KET 词汇默写</title>
+  <meta name="description" content="剑桥 KET 核心词汇 A4 默写卷：看中文写英文，四线三格，打印即用。" />
+  <meta name="theme-color" content="#FBF6EB" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>" />
+  <style>
+    :root{
+      --paper:#FBF6EB; --card:#FFFDF8; --ink:#4A3F36; --ink-soft:#9A8C7C;
+      --line:rgba(120,104,84,.16); --grid:rgba(120,104,84,.05);
+      --who:#3E9BD6; --who-bg:#DCEFFB;
+      --do:#EE7D5B;  --do-bg:#FBE0D5;
+      --what:#45B988; --what-bg:#D8F2E6;
+      --rule:#E2A413; --rule-bg:#FBEFC9;
+      --font-display: ui-rounded,"SF Pro Rounded","Hiragino Maru Gothic ProN",
+                      "Varela Round","Quicksand","PingFang SC",system-ui,sans-serif;
+      --font-cn:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+      --radius:20px;
+    }
+    *{ box-sizing:border-box; }
+    html{ -webkit-text-size-adjust:100%; }
+    body{
+      margin:0; font-family:var(--font-cn); color:var(--ink); line-height:1.7;
+      background-color:var(--paper);
+      background-image:
+        radial-gradient(60% 50% at 88% -5%, rgba(238,125,91,.10), transparent 70%),
+        radial-gradient(55% 45% at -8% 8%,  rgba(62,155,214,.10), transparent 70%),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size:100% 100%,100% 100%,26px 26px,26px 26px;
+      background-attachment:fixed,fixed,scroll,scroll;
+    }
+    .wrap{ max-width:760px; margin:0 auto; padding:0 20px 80px; }
+
+    .hero{ text-align:center; padding:44px 0 8px; }
+    .eyebrow{
+      display:inline-block; font-family:var(--font-display); font-size:.78rem;
+      letter-spacing:.18em; color:var(--ink-soft);
+      border:1.5px solid var(--line); border-radius:999px; padding:4px 14px;
+      background:var(--card);
+    }
+    h1{ font-family:var(--font-display); font-size:clamp(1.9rem,7vw,2.6rem);
+        margin:14px 0 6px; line-height:1.25; }
+    .sub{ color:var(--ink-soft); margin:0; }
+
+    .note{
+      background:var(--card); border:1.5px solid var(--line); border-radius:var(--radius);
+      padding:16px 20px; margin:26px 0 30px;
+      box-shadow:0 2px 0 var(--line);
+      font-size:.95rem;
+    }
+    .note b{ color:var(--do); }
+    .note .tip{ color:var(--ink-soft); font-size:.88rem; margin:6px 0 0; }
+
+    .mini-h{
+      font-family:var(--font-display); font-size:1.05rem; margin:30px 4px 12px;
+      display:flex; align-items:center; gap:8px;
+    }
+
+    .list{ display:flex; flex-direction:column; gap:12px; }
+    .row{
+      display:flex; align-items:center; gap:12px;
+      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+      padding:12px 14px; box-shadow:0 2px 0 var(--line);
+    }
+    .row .n{
+      flex:0 0 auto; width:34px; height:34px; border-radius:12px;
+      display:grid; place-items:center;
+      font-family:var(--font-display); font-weight:800; font-size:.92rem;
+      background:var(--who-bg); color:var(--who);
+    }
+    .row:nth-child(4n+2) .n{ background:var(--do-bg);   color:var(--do); }
+    .row:nth-child(4n+3) .n{ background:var(--what-bg); color:var(--what); }
+    .row:nth-child(4n)   .n{ background:var(--rule-bg); color:var(--rule); }
+    .row .tt{ flex:1 1 auto; min-width:0; line-height:1.35; }
+    .row .zh{ display:block; font-weight:600; }
+    .row .en{ display:block; font-family:var(--font-display); font-size:.8rem;
+              color:var(--ink-soft); overflow-wrap:break-word; }
+    .row .links{ flex:0 0 auto; display:flex; gap:8px; }
+    .row .links a{
+      font-family:var(--font-display); font-weight:700; font-size:.82rem;
+      text-decoration:none; border-radius:999px; padding:6px 12px;
+      border:1.5px solid var(--line); color:var(--ink);
+      background:var(--paper); white-space:nowrap;
+    }
+    .row .links a.pdf{ background:var(--do-bg); border-color:transparent; color:var(--do); }
+    .row .links a:active{ transform:translateY(1px); }
+
+    .row.star{ border-color:rgba(226,164,19,.55); background:#FFFBEE; }
+    .row.star .n{ background:var(--rule-bg); color:var(--rule); }
+
+    .back{
+      display:inline-block; margin-top:34px; font-family:var(--font-display);
+      font-weight:700; text-decoration:none; color:var(--ink-soft);
+    }
+    .foot{ text-align:center; color:var(--ink-soft); font-size:.85rem; margin-top:40px; }
+
+    @media (max-width:480px){
+      .row{ flex-wrap:wrap; }
+      .row .tt{ flex-basis:calc(100% - 46px); }
+      .row .links{ margin-left:46px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="wrap">
+
+    <header class="hero">
+      <span class="eyebrow">KET VOCABULARY · 默写卷</span>
+      <h1>KET 词汇<span style="color:var(--do)">默写</span></h1>
+      <p class="sub">剑桥 KET 核心词汇 · 12 个主题 · 共 477 词</p>
+    </header>
+
+    <section class="note">
+      <p style="margin:0">
+        每份都是 <b>A4 默写卷</b>：看中文写英文，配四线三格书写区。<br>
+        手机上点「预览」可以直接看；要打印就下载 <b>PDF</b>。
+      </p>
+      <p class="tip">💡 合集把 12 个主题连排成一份，适合整体过一遍；答案对照版给家长核对用。</p>
+    </section>
+
+    <h2 class="mini-h"><span>⭐️</span> 合集</h2>
+    <nav class="list">
+      <div class="row star">
+        <span class="n">全</span>
+        <span class="tt"><span class="zh">核心词汇 01–12 · 默写合集</span>
+          <span class="en">All topics · 477 words</span></span>
+        <span class="links">
+          <a href="./worksheets/words_1.html">预览</a>
+          <a class="pdf" href="./worksheets/words_1.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row star">
+        <span class="n">答</span>
+        <span class="tt"><span class="zh">核心词汇 01–12 · 答案对照</span>
+          <span class="en">Answer key · 家长核对用</span></span>
+        <span class="links">
+          <a href="./worksheets/words_1_answers.html">预览</a>
+          <a class="pdf" href="./worksheets/words_1_answers.pdf">PDF</a>
+        </span>
+      </div>
+    </nav>
+
+    <h2 class="mini-h"><span>🗂</span> 分主题</h2>
+    <nav class="list">
+      <div class="row">
+        <span class="n">1</span>
+        <span class="tt"><span class="zh">家电 · 26 词</span><span class="en">Appliances</span></span>
+        <span class="links">
+          <a href="./worksheets/01_appliances.html">预览</a>
+          <a class="pdf" href="./worksheets/01_appliances.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">2</span>
+        <span class="tt"><span class="zh">服装与饰品 · 51 词</span><span class="en">Clothes and Accessories</span></span>
+        <span class="links">
+          <a href="./worksheets/02_clothes_and_accessories.html">预览</a>
+          <a class="pdf" href="./worksheets/02_clothes_and_accessories.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">3</span>
+        <span class="tt"><span class="zh">颜色 · 16 词</span><span class="en">Colours</span></span>
+        <span class="links">
+          <a href="./worksheets/03_colours.html">预览</a>
+          <a class="pdf" href="./worksheets/03_colours.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">4</span>
+        <span class="tt"><span class="zh">通信与技术 · 29 词</span><span class="en">Communication and Technology</span></span>
+        <span class="links">
+          <a href="./worksheets/04_communication_and_technology.html">预览</a>
+          <a class="pdf" href="./worksheets/04_communication_and_technology.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">5</span>
+        <span class="tt"><span class="zh">文件和文本 · 12 词</span><span class="en">Documents and Texts</span></span>
+        <span class="links">
+          <a href="./worksheets/05_documents_and_texts.html">预览</a>
+          <a class="pdf" href="./worksheets/05_documents_and_texts.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">6</span>
+        <span class="tt"><span class="zh">教育 · 51 词</span><span class="en">Education</span></span>
+        <span class="links">
+          <a href="./worksheets/06_education.html">预览</a>
+          <a class="pdf" href="./worksheets/06_education.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">7</span>
+        <span class="tt"><span class="zh">娱乐和媒体 · 39 词</span><span class="en">Entertainment and Media</span></span>
+        <span class="links">
+          <a href="./worksheets/07_entertainment_and_media.html">预览</a>
+          <a class="pdf" href="./worksheets/07_entertainment_and_media.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">8</span>
+        <span class="tt"><span class="zh">家人和朋友 · 40 词</span><span class="en">Family and Friends</span></span>
+        <span class="links">
+          <a href="./worksheets/08_family_and_friends.html">预览</a>
+          <a class="pdf" href="./worksheets/08_family_and_friends.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">9</span>
+        <span class="tt"><span class="zh">食物和饮料 · 96 词</span><span class="en">Food and Drink</span></span>
+        <span class="links">
+          <a href="./worksheets/09_food_and_drink.html">预览</a>
+          <a class="pdf" href="./worksheets/09_food_and_drink.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">10</span>
+        <span class="tt"><span class="zh">健康、医药和锻炼 · 50 词</span><span class="en">Health, Medicine and Exercise</span></span>
+        <span class="links">
+          <a href="./worksheets/10_health_medicine_and_exercise.html">预览</a>
+          <a class="pdf" href="./worksheets/10_health_medicine_and_exercise.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">11</span>
+        <span class="tt"><span class="zh">爱好和休闲 · 19 词</span><span class="en">Hobbies and Leisure</span></span>
+        <span class="links">
+          <a href="./worksheets/11_hobbies_and_leisure.html">预览</a>
+          <a class="pdf" href="./worksheets/11_hobbies_and_leisure.pdf">PDF</a>
+        </span>
+      </div>
+      <div class="row">
+        <span class="n">12</span>
+        <span class="tt"><span class="zh">房子和家 · 48 词</span><span class="en">House and Home</span></span>
+        <span class="links">
+          <a href="./worksheets/12_house_and_home.html">预览</a>
+          <a class="pdf" href="./worksheets/12_house_and_home.pdf">PDF</a>
+        </span>
+      </div>
+    </nav>
+
+    <a class="back" href="../">← 返回栏目页</a>
+
+    <p class="foot">KET 词汇默写 · 词表持续更新中 ✍️</p>
+
+  </main>
+
+</body>
+</html>

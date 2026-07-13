@@ -2,15 +2,116 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>我的英语小手册</title>
-  <!-- 根页暂时直达语法小手册;以后新增栏目时,把本页改成栏目导航 -->
-  <meta http-equiv="refresh" content="0; url=./grammar/" />
-  <link rel="canonical" href="./grammar/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>我的英语小屋</title>
+  <meta name="description" content="英语学习小站：语法小手册 + KET 词汇默写卷。" />
+  <meta name="theme-color" content="#FBF6EB" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>" />
+  <!-- 站点级栏目导航页；各栏目自包含在自己的目录里，互不引用 -->
+  <style>
+    :root{
+      --paper:#FBF6EB; --card:#FFFDF8; --ink:#4A3F36; --ink-soft:#9A8C7C;
+      --line:rgba(120,104,84,.16); --grid:rgba(120,104,84,.05);
+      --who:#3E9BD6; --who-bg:#DCEFFB;
+      --do:#EE7D5B;  --do-bg:#FBE0D5;
+      --font-display: ui-rounded,"SF Pro Rounded","Hiragino Maru Gothic ProN",
+                      "Varela Round","Quicksand","PingFang SC",system-ui,sans-serif;
+      --font-cn:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+    }
+    *{ box-sizing:border-box; }
+    html{ -webkit-text-size-adjust:100%; }
+    body{
+      margin:0; font-family:var(--font-cn); color:var(--ink); line-height:1.7;
+      min-height:100svh; display:flex; flex-direction:column;
+      background-color:var(--paper);
+      background-image:
+        radial-gradient(60% 50% at 88% -5%, rgba(238,125,91,.10), transparent 70%),
+        radial-gradient(55% 45% at -8% 8%,  rgba(62,155,214,.10), transparent 70%),
+        radial-gradient(50% 40% at 50% 110%, rgba(69,185,136,.08), transparent 70%),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size:100% 100%,100% 100%,100% 100%,26px 26px,26px 26px;
+      background-attachment:fixed,fixed,fixed,scroll,scroll;
+    }
+    .wrap{ width:100%; max-width:640px; margin:auto; padding:48px 20px 64px; }
+
+    .hero{ text-align:center; margin-bottom:34px; }
+    .eyebrow{
+      display:inline-block; font-family:var(--font-display); font-size:.78rem;
+      letter-spacing:.18em; color:var(--ink-soft);
+      border:1.5px solid var(--line); border-radius:999px; padding:4px 14px;
+      background:var(--card);
+    }
+    h1{ font-family:var(--font-display); font-size:clamp(2rem,8vw,2.7rem);
+        margin:14px 0 6px; line-height:1.25; }
+    .sub{ color:var(--ink-soft); margin:0; }
+
+    .cards{ display:flex; flex-direction:column; gap:18px; }
+    .card{
+      display:flex; align-items:center; gap:16px;
+      background:var(--card); border:2px solid var(--line); border-radius:22px;
+      padding:20px 22px; text-decoration:none; color:var(--ink);
+      box-shadow:0 3px 0 var(--line);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .card:hover{ transform:translateY(-2px); box-shadow:0 5px 0 var(--line); }
+    .card:active{ transform:translateY(1px); box-shadow:0 1px 0 var(--line); }
+    .card .icon{
+      flex:0 0 auto; width:60px; height:60px; border-radius:18px;
+      display:grid; place-items:center; font-size:1.9rem;
+    }
+    .card.grammar .icon{ background:var(--who-bg); }
+    .card.ket .icon{ background:var(--do-bg); }
+    .card .tt{ flex:1 1 auto; min-width:0; }
+    .card h2{
+      font-family:var(--font-display); font-size:1.25rem; margin:0; line-height:1.3;
+    }
+    .card.grammar h2 b{ color:var(--who); }
+    .card.ket h2 b{ color:var(--do); }
+    .card p{ margin:2px 0 0; font-size:.9rem; color:var(--ink-soft); }
+    .card .go{
+      flex:0 0 auto; font-family:var(--font-display); font-weight:800;
+      font-size:1.2rem; color:var(--ink-soft);
+    }
+
+    .foot{ text-align:center; color:var(--ink-soft); font-size:.85rem; margin-top:40px; }
+  </style>
 </head>
 <body>
-  <p style="font-family: system-ui; padding: 2em; text-align: center;">
-    正在打开…&nbsp;<a href="./grammar/">进入语法小手册 →</a>
-  </p>
+
+  <main class="wrap">
+
+    <header class="hero">
+      <span class="eyebrow">MY ENGLISH · 小站</span>
+      <h1>我的英语小屋</h1>
+      <p class="sub">想去哪个房间？点一下就到 👇</p>
+    </header>
+
+    <nav class="cards">
+
+      <a class="card grammar" href="./grammar/">
+        <span class="icon">✏️</span>
+        <span class="tt">
+          <h2>语法<b>小手册</b></h2>
+          <p>用颜色和图画，把英语一次讲清楚 · 全 11 关</p>
+        </span>
+        <span class="go">→</span>
+      </a>
+
+      <a class="card ket" href="./ket/">
+        <span class="icon">📝</span>
+        <span class="tt">
+          <h2>KET 词汇<b>默写</b></h2>
+          <p>剑桥核心词汇 A4 默写卷 · 打印即用</p>
+        </span>
+        <span class="go">→</span>
+      </a>
+
+    </nav>
+
+    <p class="foot">english.hi-ruby.com</p>
+
+  </main>
+
 </body>
 </html>
