@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>我的英语小手册</title>
+  <script>
+    // 旧书签兜底:根目录时代的 /lesson-NN.html 已搬到 /grammar/ 下
+    (function () {
+      var m = location.pathname.match(/^\/(lesson-\d{2}\.html)$/);
+      if (m) location.replace('/grammar/' + m[1]);
+    })();
+  </script>
+</head>
+<body>
+  <p style="font-family: system-ui; padding: 2em; text-align: center;">
+    这一页搬家啦～&nbsp;<a href="/grammar/">回到语法小手册 →</a>
+  </p>
+</body>
+</html>

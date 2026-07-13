@@ -17,14 +17,17 @@
 ## 文件结构
 
 ```
-index.html        首页：封面 + 11 关目录
-lesson-01.html    第 1 关：一句完整的话 = 谁 + 做什么
-assets/style.css  共享样式（设计系统）
-assets/app.js     入场动画
-.nojekyll         让 GitHub Pages 原样服务静态文件
+index.html                站点入口：暂时跳转到 grammar/（以后放栏目导航）
+404.html                  旧链接兜底：/lesson-NN.html → /grammar/lesson-NN.html
+grammar/                  栏目一：语法小手册（自包含，和其他栏目隔离）
+  index.html              封面 + 11 关目录
+  lesson-01.html          第 1 关：一句完整的话 = 谁 + 做什么
+  assets/style.css        共享样式（设计系统）
+  assets/app.js           入场动画 + 点击朗读
+.nojekyll                 让 GitHub Pages 原样服务静态文件
 ```
 
-新增章节：复制 `lesson-01.html`，改文件名（如 `lesson-02.html`）和内容，再到 `index.html` 把对应目录项从 `soon` 改成 `ready` 并加上链接即可。
+新增章节：复制 `grammar/lesson-01.html`，改文件名（如 `lesson-02.html`）和内容，再到 `grammar/index.html` 把对应目录项从 `soon` 改成 `ready` 并加上链接即可。新栏目另建独立目录，不和 `grammar/` 互相引用。
 
 ## 本地启动预览
 
