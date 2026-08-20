@@ -9,6 +9,7 @@ KET 词汇默写栏目（仓库 `ket/` 目录）的两段式工作流。**脚本
 
 - `words/<NN>_<主题>.csv` — 单词数据（NN 是两位主题编号，主题名用英文小写下划线，如 `01_appliances.csv`）
 - `worksheets/<NN>_<主题>.html` / `.pdf` — 生成的默写卷
+- `selections/<名字>.txt` — 抽选卷的选词 spec（跨主题挑词，如 `20260820.txt`）
 - `generate_worksheet.py` — 生成脚本
 - `index.html` — 栏目目录页，列出合集 + 各主题的预览/PDF 链接和词数；**新增主题或词数变动后要同步更新**
 
@@ -40,9 +41,20 @@ python3 generate_worksheet.py words/<NN>_<主题>.csv          # 只生成 HTML
 python3 generate_worksheet.py words/<NN>_<主题>.csv --pdf    # HTML + PDF 一起出
 python3 generate_worksheet.py --merge words_1 --pdf                  # 合集（默写版）
 python3 generate_worksheet.py --merge-answers words_1_answers --pdf  # 合集（答案对照版）
+python3 generate_worksheet.py --select selections/20260820.txt --pdf # 抽选卷（跨主题挑词）
 ```
 
 合集模式：words/ 全部主题连排，章节之间不分页；章节标题占一整行（2 词位），起点不在行首时补空位，且不让标题落在页面最后一行；各章题号沿用各自 CSV 的编号。默写版每页 30 词位（15 行 × 2 栏），样式与分集完全一致；答案对照版紧凑无线格（每页 70 词位），每行"序号 中文 词性 → 英文（加粗靠右）音标"，页眉无姓名/日期/得分栏。两个合集独立共存，CSV 有更新后两个都要重新生成。
+
+抽选卷模式（`--select`）：用户点名"第 N 章的第 x,y,z 个词"时用。先写 spec 文件 `selections/<名字>.txt`：
+
+```
+# 20260820 词汇          ← 首个 # 行是卷名，页眉显示为"20260820 词汇 默写"
+10:1,2,6,9,13,16,46,47   ← 主题号:题号列表，支持 3-7 区间写法，顺序照写
+11:10-19
+```
+
+输出 `worksheets/<spec 名>.html`/`.pdf`；**章节标题和题号一律沿用原主题词表**（不重新编号），排版复用合集那套（章节标题占一整行、不分页）。加 `--answers` 出答案对照版。生成后在 `index.html` 的「抽选卷」分区加一条。用户给的题号有歧义（如漏逗号的 `1316`）要先问清。
 
 - 输出到 `worksheets/`。格式未定/有改动时先只出 HTML，`open` 给用户在浏览器预览确认，再加 `--pdf`。
 - 自查排版用无头 Chrome 截图或导 PDF 后 Read 查看，不要凭 HTML 源码想象。
