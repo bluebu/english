@@ -4,7 +4,9 @@
 用法:
   python3 generate_worksheet.py words/01_appliances.csv [--pdf]   # 单主题
   python3 generate_worksheet.py --merge words_1 [--pdf]           # 合集（words/ 下全部 CSV 连排）
-输出: worksheets/<csv同名或合集名>.html，加 --pdf 时同时导出同名 .pdf
+  python3 generate_worksheet.py --select selections/20260820.txt [--pdf] [--answers]
+                                                                  # 抽选卷（按 spec 从各主题挑词，章节与题号沿用原主题）
+输出: worksheets/<csv同名 / 合集名 / spec 名>.html，加 --pdf 时同时导出同名 .pdf
 """
 import csv
 import html
@@ -217,21 +219,20 @@ def main(csv_path: str, pdf: bool = False) -> None:
     write_doc(src.stem, title, pages, pdf)
 
 
-def merge(out_stem: str = "words_1", pdf: bool = False,
-          answers: bool = False) -> None:
-    """全部主题连排成一份合集：章节之间不分页，章节标题占一整行（2 个词位）；
-    标题起点不在行首时补空位，避免落在页面最后一行。
+def build_doc(sections: list, out_stem: str, title: str,
+              pdf: bool = False, answers: bool = False) -> None:
+    """把若干 (章节标题, rows) 连排成一份卷子：章节之间不分页，
+    章节标题占一整行（2 个词位）；标题起点不在行首时补空位，
+    且不让标题落在页面最后一行。题号沿用各章 CSV 里的 no。
     answers=True 生成答案对照版（紧凑、无线格，显示英文和音标）。"""
     per_page = ANS_PER_PAGE if answers else PER_PAGE
     section_tpl = ANS_SECTION_TEMPLATE if answers else SECTION_TEMPLATE
     pad_tpl = ANS_PAD_TEMPLATE if answers else PAD_TEMPLATE
     render_item = ans_item_html if answers else item_html
 
-    paths = sorted(Path("words").glob("[0-9]*_*.csv"))
     cells = []  # (占用词位数, html)
     total = 0
-    for src in paths:
-        rows = read_rows(src)
+    for sec_title, rows in sections:
         total += len(rows)
         used = sum(s for s, _ in cells)
         if used % 2 == 1:  # 补齐到行首
@@ -240,8 +241,7 @@ def merge(out_stem: str = "words_1", pdf: bool = False,
         if used % per_page == per_page - 2:  # 标题不落在页面最后一行
             cells.append((1, pad_tpl))
             cells.append((1, pad_tpl))
-        cells.append((2, section_tpl.format(
-            title=html.escape(topic_title(src.stem)))))
+        cells.append((2, section_tpl.format(title=html.escape(sec_title))))
         for i, row in enumerate(rows, 1):
             cells.append((1, render_item(row, i)))
 
@@ -256,7 +256,6 @@ def merge(out_stem: str = "words_1", pdf: bool = False,
     if page_items:
         pages_items.append(page_items)
 
-    title = "KET 核心词汇 01–12 " + ("答案对照" if answers else "默写")
     pages = [render_page(title, items, total, p + 1, len(pages_items),
                          items_class=" compact" if answers else "",
                          info="" if answers else INFO_HTML)
@@ -264,13 +263,79 @@ def merge(out_stem: str = "words_1", pdf: bool = False,
     write_doc(out_stem, title, pages, pdf)
 
 
+def merge(out_stem: str = "words_1", pdf: bool = False,
+          answers: bool = False) -> None:
+    """words/ 下全部主题连排成一份合集。"""
+    paths = sorted(Path("words").glob("[0-9]*_*.csv"))
+    sections = [(topic_title(src.stem), read_rows(src)) for src in paths]
+    title = "KET 核心词汇 01–12 " + ("答案对照" if answers else "默写")
+    build_doc(sections, out_stem, title, pdf, answers)
+
+
+def parse_nos(spec: str) -> list:
+    """'1,2,6,13-16' -> [1, 2, 6, 13, 14, 15, 16]（保持书写顺序）"""
+    nos = []
+    for part in spec.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        if "-" in part:
+            a, b = part.split("-", 1)
+            nos.extend(range(int(a), int(b) + 1))
+        else:
+            nos.append(int(part))
+    return nos
+
+
+def read_selection(spec_path: Path) -> tuple:
+    """选词卷 spec 文件：首个 '# xxx' 行是卷名，其余每行 '<主题号>:<题号列表>'。"""
+    name, picks = None, []
+    for line in spec_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith("#"):
+            if name is None:
+                name = line.lstrip("#").strip()
+            continue
+        topic, _, nos = line.partition(":")
+        picks.append((topic.strip(), parse_nos(nos)))
+    return name, picks
+
+
+def select(spec_path: str, pdf: bool = False, answers: bool = False) -> None:
+    """按 spec 从若干主题里抽词，拼成一份卷子（章节标题和题号都沿用原主题）。"""
+    spec = Path(spec_path)
+    name, picks = read_selection(spec)
+    sections = []
+    for topic, nos in picks:
+        matches = sorted(Path("words").glob(f"{int(topic):02d}_*.csv"))
+        if not matches:
+            sys.exit(f"找不到主题 {topic} 的词表")
+        src = matches[0]
+        by_no = {r["no"].strip(): r for r in read_rows(src)}
+        rows = []
+        for n in nos:
+            row = by_no.get(str(n))
+            if row is None:
+                sys.exit(f"{src.name} 里没有第 {n} 号词")
+            rows.append(row)
+        sections.append((topic_title(src.stem), rows))
+    title = (name or spec.stem) + (" 答案对照" if answers else " 默写")
+    build_doc(sections, spec.stem + ("_answers" if answers else ""),
+              title, pdf, answers)
+
+
 if __name__ == "__main__":
     pdf = "--pdf" in sys.argv
-    argv = [a for a in sys.argv[1:] if a != "--pdf"]
+    answers = "--answers" in sys.argv
+    argv = [a for a in sys.argv[1:] if a not in ("--pdf", "--answers")]
     if argv and argv[0] == "--merge":
         merge(argv[1] if len(argv) > 1 else "words_1", pdf=pdf)
     elif argv and argv[0] == "--merge-answers":
         merge(argv[1] if len(argv) > 1 else "words_1_answers", pdf=pdf,
               answers=True)
+    elif argv and argv[0] == "--select":
+        select(argv[1], pdf=pdf, answers=answers)
     else:
         main(argv[0] if argv else "words/09_food_and_drink.csv", pdf=pdf)
