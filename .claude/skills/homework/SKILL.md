@@ -19,7 +19,9 @@ argument-hint: [日期，如 0821；不给就用今天]
 2. 生成：`python3 generate_checklist.py specs/<YYYYMMDD>.txt --pdf`
 3. **自检**：Read 生成的 PDF 看排版（别凭 HTML 源码想象）。目标是**干净地放满一页**：
    底部剩太多空白就加大 `memo:` 行数，快溢出到第二页就减少备注行 / 精简说明行。
-4. `open sheets/<YYYYMMDD>.pdf` 给用户看，确认后 commit（用户要求才 push）。
+4. `open sheets/<YYYYMMDD>.pdf` 给用户看，确认后 commit + push。
+   目录页 `index.html` 的列表由脚本自动刷新（`LIST:BEGIN/END` 之间），不用手改；
+   根 `index.html` 的「每日打卡」卡片已经有了，也不用动。
 
 ## 整理规则
 

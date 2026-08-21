@@ -5,7 +5,8 @@
   python3 generate_checklist.py specs/20260820.txt [--pdf]
   python3 generate_checklist.py [--pdf]        # 不给 spec 就用 specs/ 里最新改动的那份
 
-输出: sheets/<spec 同名>.html，加 --pdf 时同时导出同名 .pdf
+输出: sheets/<spec 同名>.html，加 --pdf 时同时导出同名 .pdf；
+      并刷新 index.html 的打卡单列表（LIST:BEGIN/END 之间由脚本生成）
 
 spec 写法见 README.md（顶部 key: value，任务行 [标签] 标题 | 小标签，缩进行是子内容）。
 """
@@ -19,6 +20,11 @@ from pathlib import Path
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 SPEC_DIR = Path("specs")
 OUT_DIR = Path("sheets")
+INDEX = Path("index.html")
+MARK_BEGIN = "<!-- LIST:BEGIN 由 generate_checklist.py 自动生成，别手改 -->"
+MARK_END = "<!-- LIST:END -->"
+MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 # 类别关键字 → 色条颜色；标签里含哪个关键字就用哪个色
 CATEGORY_COLORS = [
@@ -307,6 +313,49 @@ def build(meta: dict, tasks: list) -> str:
     )
 
 
+# ── 目录页 ───────────────────────────────────────────
+def update_index() -> None:
+    """按 sheets/ 里现有的单子刷新 index.html 列表区，日期新的排在上面。"""
+    if not INDEX.exists():
+        return
+    page = INDEX.read_text(encoding="utf-8")
+    if MARK_BEGIN not in page or MARK_END not in page:
+        print("index.html 里找不到 LIST 标记，列表没更新")
+        return
+
+    rows = []
+    for sheet in sorted(OUT_DIR.glob("*.html"), reverse=True):
+        stem = sheet.stem
+        label, count = stem, 0
+        spec = SPEC_DIR / f"{stem}.txt"
+        if spec.exists():
+            meta, tasks = parse_spec(spec)
+            label, count = meta.get("date") or stem, len(tasks)
+        ymd = re.fullmatch(r"(\d{4})(\d{2})(\d{2})", stem)
+        day = str(int(ymd.group(3))) if ymd else "·"
+        en = (f"{MONTHS_EN[int(ymd.group(2)) - 1]} {day} · Daily checklist"
+              if ymd else "Daily checklist")
+        links = [f'<a href="./{OUT_DIR}/{stem}.html">预览</a>']
+        if (OUT_DIR / f"{stem}.pdf").exists():
+            links.append(f'<a class="pdf" href="./{OUT_DIR}/{stem}.pdf">PDF</a>')
+        rows.append(
+            '      <div class="row">\n'
+            f'        <span class="n">{day}</span>\n'
+            f'        <span class="tt"><span class="zh">'
+            f'{html.escape(label)}{f" · {count} 项" if count else ""}</span>\n'
+            f'          <span class="en">{en}</span></span>\n'
+            '        <span class="links">\n          '
+            + "\n          ".join(links)
+            + '\n        </span>\n'
+            '      </div>')
+
+    head, _, rest = page.partition(MARK_BEGIN)
+    _, _, tail = rest.partition(MARK_END)
+    INDEX.write_text(f"{head}{MARK_BEGIN}\n" + "\n".join(rows) + f"\n{MARK_END}{tail}",
+                     encoding="utf-8")
+    print(f"{INDEX}（{len(rows)} 份）")
+
+
 def main(argv: list) -> None:
     pdf = "--pdf" in argv
     rest = [a for a in argv if not a.startswith("--")]
@@ -335,6 +384,8 @@ def main(argv: list) -> None:
                         f"--print-to-pdf={pdf_path}", f"file://{out.resolve()}"],
                        check=True, capture_output=True)
         print(pdf_path)
+
+    update_index()
 
 
 if __name__ == "__main__":

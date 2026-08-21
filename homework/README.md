@@ -21,6 +21,9 @@ python3 generate_checklist.py --pdf                      # 不给 spec 就用 sp
 
 PDF 由无头 Chrome 导出，直接打印即可（A4 竖版，通常一页；任务多了会自动续页，卡片不会被切断）。
 
+生成后脚本会**自动刷新 `index.html` 的打卡单列表**（`LIST:BEGIN` / `LIST:END` 之间那段由脚本生成，别手改）：
+按日期倒序，日期和项数从对应 spec 读，PDF 存在才给 PDF 链接。
+
 ## spec 写法
 
 ```

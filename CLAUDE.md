@@ -28,7 +28,7 @@
 - 每关一个 `grammar/lesson-NN.html`,共享 `grammar/assets/style.css` + `grammar/assets/app.js`,**全部相对路径**(目录内互相引用)。
 - `grammar/index.html` = 封面 + 11 关目录(未完成的标 `soon`);根 `index.html` = 栏目导航,新栏目上线时在这里加卡片。
 - `ket/` = KET 核心词汇 A4 默写卷(词表 CSV → 生成脚本 → HTML/PDF,目录页 `ket/index.html`;工作流 → `/ket` skill)。
-- `homework/` = 每日打卡作业单(群公告 → spec → A4 打印单;不上线、无目录页;工作流 → `/homework` skill)。
+- `homework/` = 每日打卡作业单(群公告 → spec → A4 打印单,目录页 `homework/index.html` 的列表由生成脚本自动刷新;工作流 → `/homework` skill)。
 - **分享卡片**:每页配 og 标签,**og:title / og:description 逐字照抄本页 `<title>` / `<meta description>`**,不另写文案;描述用自然口语、无广告腔。微信缩略图 = `<body>` 首部隐藏的 share 图(0 尺寸 overflow:hidden 包裹,忌 `display:none`;og:image 用绝对地址)。
 - **备案号**:集中在根 `beian.js`(常量,换号只改这一处);每页页脚后一行 `<script src="…/beian.js">` 注入,新页面照加(404 页须用绝对路径 `/beian.js`)。
 - 分支 **master**;自定义域名 `english.hi-ruby.com`(根目录 `CNAME`)。本地预览 `make up`。
