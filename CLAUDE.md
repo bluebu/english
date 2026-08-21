@@ -28,6 +28,7 @@
 - 每关一个 `grammar/lesson-NN.html`,共享 `grammar/assets/style.css` + `grammar/assets/app.js`,**全部相对路径**(目录内互相引用)。
 - `grammar/index.html` = 封面 + 11 关目录(未完成的标 `soon`);根 `index.html` = 栏目导航,新栏目上线时在这里加卡片。
 - `ket/` = KET 核心词汇 A4 默写卷(词表 CSV → 生成脚本 → HTML/PDF,目录页 `ket/index.html`;工作流 → `/ket` skill)。
+- `homework/` = 每日打卡作业单(群公告 → spec → A4 打印单;不上线、无目录页;工作流 → `/homework` skill)。
 - **分享卡片**:每页配 og 标签,**og:title / og:description 逐字照抄本页 `<title>` / `<meta description>`**,不另写文案;描述用自然口语、无广告腔。微信缩略图 = `<body>` 首部隐藏的 share 图(0 尺寸 overflow:hidden 包裹,忌 `display:none`;og:image 用绝对地址)。
 - **备案号**:集中在根 `beian.js`(常量,换号只改这一处);每页页脚后一行 `<script src="…/beian.js">` 注入,新页面照加(404 页须用绝对路径 `/beian.js`)。
 - 分支 **master**;自定义域名 `english.hi-ruby.com`(根目录 `CNAME`)。本地预览 `make up`。
@@ -37,4 +38,4 @@
 1 句子(主语+谓语) · 2 名词+冠词(a/an/the,→引入宾语) · 3 代词 · 4 动词(动作/系动词,→引入系动词+表语/主系表) · 5 时态 · 6 形容词 · 7 副词 · 8 比较级 · 9 介词 · 10 连词 · 11 句子四类+标点。
 (成分细分就近下沉:宾语并入名词关、系动词+表语并入动词关;颜色随成分出现**渐进**加。词性关里点击色块念词性,成分仍用既定颜色。)
 
-> 新增或修改某一关 → `/grammar new N`;发布前权威对标审稿 → `/grammar review N`。
+> 新增或修改某一关 → `/grammar new N`;发布前权威对标审稿 → `/grammar review N`;群公告作业做成打卡单 → `/homework`。
