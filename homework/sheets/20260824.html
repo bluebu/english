@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>8月24日 每日打卡作业</title>
+<style>
+  @page { size: A4; margin: 10mm 12mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Helvetica Neue", "Hiragino Sans GB", "Songti SC", sans-serif;
+    color: #22201d;
+    font-size: 13px;
+    line-height: 1.5;
+    /* 打印时保留背景色，否则色条、勾选框底色都印不出来 */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @media screen {
+    body { background: #8b8b8b; padding: 20px 0; }
+    .page {
+      width: 210mm; min-height: 297mm; margin: 0 auto;
+      background: #fffdf8; box-shadow: 0 2px 10px rgba(0,0,0,.4);
+      padding: 10mm 12mm;
+    }
+  }
+  .page { background: #fffdf8; }
+
+  /* ── 页头 ───────────────────────────── */
+  .head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    border-bottom: 3px solid #f0a830; padding-bottom: 8px; margin-bottom: 4px;
+  }
+  .head .t { display: flex; align-items: baseline; gap: 10px; }
+  .head .date {
+    background: #f0a830; color: #fff; font-size: 17px; font-weight: 700;
+    padding: 3px 11px; border-radius: 8px; letter-spacing: .5px;
+  }
+  .head h1 { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+  .head .en { font-size: 10px; color: #a8a096; letter-spacing: 1.5px; text-transform: uppercase; }
+  .head .who { font-size: 11.5px; color: #6b6459; white-space: nowrap; }
+  .head .who span { margin-left: 14px; }
+  .u { display: inline-block; border-bottom: 1px solid #b9b1a5; width: 62px; }
+
+  .tip {
+    margin: 9px 0 12px; font-size: 11px; color: #9a9186;
+    display: flex; justify-content: space-between;
+  }
+
+  /* ── 任务卡 ─────────────────────────── */
+  .task {
+    display: flex; align-items: stretch; gap: 9px;
+    border: 1.5px solid #ece4d6; border-left: 5px solid var(--c);
+    border-radius: 9px; background: #fff;
+    padding: 11px 12px; margin-bottom: 10px;
+    break-inside: avoid;
+  }
+  .task .no {
+    flex: 0 0 22px; height: 22px; border-radius: 50%;
+    background: var(--c); color: #fff; font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .task .body { flex: 1; min-width: 0; }
+  .task .title { font-size: 15px; font-weight: 700; letter-spacing: .3px; }
+  .task .title .tag {
+    font-size: 10.5px; font-weight: 600; color: var(--c);
+    border: 1px solid var(--c); border-radius: 4px;
+    padding: 0 4px; margin-left: 6px; vertical-align: 1.5px;
+  }
+  .task .sub { font-size: 12.5px; color: #6b6459; margin-top: 3px; }
+  .task .sub li { list-style: none; margin-top: 2px; padding-left: 12px; position: relative; }
+  .task .sub li::before {
+    content: ""; position: absolute; left: 2px; top: 6px;
+    width: 4px; height: 4px; border-radius: 50%; background: var(--c); opacity: .55;
+  }
+  .fill { border-bottom: 1px solid #cfc7b9; display: inline-block; width: 40px; }
+
+  /* 勾选框 */
+  .box {
+    flex: 0 0 auto; width: 22px; height: 22px;
+    border: 1.8px solid #c9c0b1; border-radius: 5px; background: #fffdf8;
+  }
+  .task > .box { align-self: center; width: 28px; height: 28px; border-width: 2px; }
+  .mini { display: inline-flex; gap: 4px; vertical-align: -3px; margin-left: 4px; }
+  .mini i { width: 13px; height: 13px; border: 1.4px solid #c9c0b1; border-radius: 3px; display: inline-block; }
+
+  /* ── 单词表 ─────────────────────────── */
+  .words { display: grid; grid-auto-flow: column;
+           column-gap: 18px; row-gap: 7px; margin-top: 8px; }
+  .w { display: flex; align-items: center; gap: 7px; font-size: 12.5px; }
+  .w .box { width: 16px; height: 16px; border-radius: 4px; }
+  .w b { font-weight: 700; font-size: 13px; min-width: 68px; }
+  .w s { text-decoration: none; color: #857d71; }
+
+  /* ── 页脚 ───────────────────────────── */
+  .memo {
+    margin-top: 12px; border: 1.5px dashed #e2d9c8; border-radius: 9px;
+    background: #fffaf0; padding: 8px 12px 10px;
+  }
+  .memo .lb { font-size: 11.5px; color: #b08a3e; font-weight: 700; letter-spacing: .5px; }
+  .memo .ln { border-bottom: 1px solid #eadfc9; height: 19px; }
+  .foot {
+    margin-top: 14px; border-top: 2px dashed #e2d9c8; padding-top: 8px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .foot .sign { font-size: 12.5px; color: #6b6459; }
+  .foot .sign span { margin-right: 16px; }
+  .foot .cheer {
+    font-size: 12.5px; color: #b8860b; font-weight: 600;
+    background: #fdf4dd; border-radius: 20px; padding: 4px 12px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="head">
+    <div class="t">
+      <div class="date">8月24日</div>
+      <div>
+        <h1>每日打卡作业</h1>
+        <div class="en">Daily Checklist</div>
+      </div>
+    </div>
+    <div class="who">姓名 <i class="u"></i><span>家长签字 <i class="u"></i></span></div>
+  </div>
+
+  <div class="tip">
+    <span>做完一项，就在右边的方框里打一个 ✓</span>
+    <span>全部完成后，按模板在群里打卡</span>
+  </div>
+
+  <div class="task" style="--c:#4a90d9">
+    <div class="no">1</div>
+    <div class="body">
+      <div class="title">听外教音频 <span class="tag">120 分钟</span></div>
+      <div class="sub">今天实际听了 <i class="fill" style="width:40px"></i> 分钟</div>
+    </div>
+    <div class="box"></div>
+  </div>
+  <div class="task" style="--c:#4a90d9">
+    <div class="no">2</div>
+    <div class="body">
+      <div class="title">指听 · 指读 63–65 页 <span class="tag">2 遍</span></div>
+      <div class="sub">读之前先指读；每读完一遍勾一个小格 <span class="mini"><i></i><i></i></span> ｜ 指读视频已提交</div>
+    </div>
+    <div class="box"></div>
+  </div>
+  <div class="task" style="--c:#e08b3c">
+    <div class="no">3</div>
+    <div class="body">
+      <div class="title">点读 · 超8 Lesson 3</div>
+      <ul class="sub"><li>第 61–62 页 Words and Expressions 的单词部分</li><li>第 63–64 页 划线部分</li></ul>
+    </div>
+    <div class="box"></div>
+  </div>
+  <div class="task" style="--c:#e08b3c">
+    <div class="no">4</div>
+    <div class="body">
+      <div class="title">Wonders 3 · Chapter 1</div>
+    </div>
+    <div class="box"></div>
+  </div>
+  <div class="task" style="--c:#5ba97e">
+    <div class="no">5</div>
+    <div class="body">
+      <div class="title">百词斩 · KET 词汇 <span class="tag">15 个</span></div>
+    </div>
+    <div class="box"></div>
+  </div>
+  <div class="task" style="--c:#5ba97e">
+    <div class="no">6</div>
+    <div class="body">
+      <div class="title">词汇练习手册 Lesson 3 <span class="tag">抄 4 个 · 每个 2 遍</span></div>
+      <div class="sub">抄写的单词：<i class="fill" style="width:88px"></i> <i class="fill" style="width:88px"></i> <i class="fill" style="width:88px"></i> <i class="fill" style="width:88px"></i></div>
+    </div>
+    <div class="box"></div>
+  </div>
+  <div class="task" style="--c:#a97ec4">
+    <div class="no">7</div>
+    <div class="body">
+      <div class="title">单词抄写 <span class="tag">每天 2 个</span></div>
+      <div class="words" style="grid-template-rows: repeat(5, auto)"><div class="w"><div class="box"></div><b>close to</b><s>几乎，接近</s></div><div class="w"><div class="box"></div><b>closed</b><s>关闭的</s></div><div class="w"><div class="box"></div><b>closet</b><s>壁橱</s></div><div class="w"><div class="box"></div><b>clothes</b><s>衣服</s></div><div class="w"><div class="box"></div><b>cloud</b><s>云</s></div><div class="w"><div class="box"></div><b>cloudy</b><s>多云的</s></div><div class="w"><div class="box"></div><b>clown</b><s>小丑</s></div><div class="w"><div class="box"></div><b>club</b><s>俱乐部</s></div><div class="w"><div class="box"></div><b>coach</b><s>教练</s></div><div class="w"><div class="box"></div><b>coat</b><s>外套</s></div></div>
+    </div>
+    <div class="box"></div>
+  </div>
+  <div class="task" style="--c:#a97ec4">
+    <div class="no">8</div>
+    <div class="body">
+      <div class="title">AI · Day 1</div>
+    </div>
+    <div class="box"></div>
+  </div>
+
+
+  <div class="memo">
+    <div class="lb">今日备注 · 想记下来的话</div>
+    <div class="ln"></div>
+    <div class="ln"></div>
+  </div>
+
+  <div class="foot">
+    <div class="sign">
+      <span>完成时间 <i class="u"></i></span>
+      <span>今日自评 ☆☆☆☆☆</span>
+    </div>
+    <div class="cheer">加油，每天一小步 👣 成就未来一大步</div>
+  </div>
+
+</div>
+</body>
+</html>
