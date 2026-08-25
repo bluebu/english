@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>8月25日点读小结</title>
+  <meta name="description" content="8月25日的朗读打卡：5 份报告合在一起看，读了 501 个词、7 分 49 秒，整体准确率 92.8%。" />
+  <meta name="theme-color" content="#FBF6EB" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+  <!-- 分享卡片：og 文案照抄本页 <title>/<meta description>，改描述时两处同步；微信读 <title>+页面首图，QQ/iMessage 等读 og（og:image 必须绝对地址） -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="我的英语小屋" />
+  <meta property="og:title" content="8月25日点读小结" />
+  <meta property="og:description" content="8月25日的朗读打卡：5 份报告合在一起看，读了 501 个词、7 分 49 秒，整体准确率 92.8%。" />
+  <meta property="og:url" content="https://english.hi-ruby.com/reading/daily/2026-08-25.html" />
+  <meta property="og:image" content="https://english.hi-ruby.com/share.png" />
+  <meta name="twitter:card" content="summary" />
+  <style>
+    :root{
+      --paper:#FBF6EB; --card:#FFFDF8; --ink:#4A3F36; --ink-soft:#9A8C7C;
+      --line:rgba(120,104,84,.16); --grid:rgba(120,104,84,.05);
+      --who:#3E9BD6; --who-bg:#DCEFFB;
+      --do:#EE7D5B;  --do-bg:#FBE0D5;
+      --what:#45B988; --what-bg:#D8F2E6;
+      --read:#E2A413; --read-bg:#FBEFC9;
+      --sc-hard:#F6DCD1; --sc-inst:#FBEFC9; --sc-indep:#D8F2E6;
+      --sc-band1:#EAE0D0; --sc-band2:#CFE3F3; --sc-mid:#3E9BD6;
+      --tl-speech:#CDEBDD; --tl-end:#6FB6E2; --tl-long:#EE7D5B; --tl-mid:#CBBCA9;
+      --font-display: ui-rounded,"SF Pro Rounded","Hiragino Maru Gothic ProN",
+                      "Varela Round","Quicksand","PingFang SC",system-ui,sans-serif;
+      --font-cn:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+      --radius:20px;
+    }
+    *{ box-sizing:border-box; }
+    html{ -webkit-text-size-adjust:100%; }
+    body{
+      margin:0; font-family:var(--font-cn); color:var(--ink); line-height:1.7;
+      background-color:var(--paper);
+      background-image:
+        radial-gradient(60% 50% at 88% -5%, rgba(226,164,19,.12), transparent 70%),
+        radial-gradient(55% 45% at -8% 8%,  rgba(62,155,214,.10), transparent 70%),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size:100% 100%,100% 100%,26px 26px,26px 26px;
+      background-attachment:fixed,fixed,scroll,scroll;
+    }
+    .wrap{ max-width:760px; margin:0 auto; padding:0 20px 80px; }
+
+    .hero{ text-align:center; padding:40px 0 6px; }
+    .eyebrow{
+      display:inline-block; font-family:var(--font-display); font-size:.78rem;
+      letter-spacing:.18em; color:var(--ink-soft);
+      border:1.5px solid var(--line); border-radius:999px; padding:4px 14px;
+      background:var(--card);
+    }
+    h1{ font-family:var(--font-display); font-size:clamp(1.7rem,6.4vw,2.4rem);
+        margin:14px 0 6px; line-height:1.25; }
+    h1 b{ color:var(--read); }
+    .sub{ color:var(--ink-soft); margin:0; font-size:.95rem; }
+
+    .box{
+      background:var(--card); border:1.5px solid var(--line); border-radius:var(--radius);
+      padding:18px 20px; box-shadow:0 2px 0 var(--line); margin:0 0 18px;
+    }
+    .mini-h{
+      font-family:var(--font-display); font-size:1.05rem; margin:32px 4px 12px;
+      display:flex; align-items:center; gap:8px;
+    }
+
+    /* 总分 */
+    .score{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:26px; }
+    .score .num{
+      flex:0 0 auto; width:112px; height:112px; border-radius:28px;
+      background:var(--read-bg); display:grid; place-items:center; line-height:1;
+    }
+    .score .num b{ font-family:var(--font-display); font-size:2.9rem; color:var(--read); }
+    .score .num span{ font-size:.78rem; color:var(--ink-soft); margin-top:4px; }
+    .score .say{ flex:1 1 220px; min-width:0; }
+    .score .say p{ margin:0; }
+    .score .say .lead{ font-weight:600; font-size:1.05rem; }
+    .score .say .tip{ color:var(--ink-soft); font-size:.9rem; margin-top:6px; }
+
+    .bars{ margin-top:18px; display:flex; flex-direction:column; gap:10px; }
+    .bar{ display:flex; align-items:center; gap:10px; font-size:.9rem; }
+    .bar .nm{ flex:0 0 5.2em; color:var(--ink-soft); }
+    .bar .track{
+      flex:1 1 auto; height:12px; border-radius:999px; background:rgba(120,104,84,.10);
+      overflow:hidden;
+    }
+    .bar .fill{ display:block; height:100%; border-radius:999px; background:var(--read); }
+    .bar .val{ flex:0 0 3.4em; text-align:right; font-family:var(--font-display); font-weight:700; }
+
+    /* 关键数字 */
+    .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .stat{
+      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+      box-shadow:0 2px 0 var(--line); padding:14px 8px; text-align:center;
+    }
+    .stat b{ display:block; font-family:var(--font-display); font-size:1.35rem; line-height:1.2; }
+    .stat span{ display:block; font-size:.76rem; color:var(--ink-soft); margin-top:4px; }
+    .stat.s1 b{ color:var(--what); } .stat.s2 b{ color:var(--do); }
+    .stat.s3 b{ color:var(--who); }  .stat.s4 b{ color:var(--read); }
+
+    /* 三把尺子 */
+    /* viewBox 宽 1000：手机上缩到约 0.31，iPad 上封顶 0.56，字号才两头都读得清 */
+    .scales svg{ display:block; width:100%; max-width:560px; height:auto;
+                 overflow:visible; margin:10px auto 0; }
+    .sc-h{ font-family:var(--font-display); font-weight:700; font-size:.95rem; margin:0 0 2px; }
+    .sc-h.sc-sep{ margin-top:30px; padding-top:22px; border-top:1.5px dashed var(--line); }
+    .sc-note{ font-size:.88rem; color:var(--ink-soft); margin:14px 0 0; }
+    .sc-note b{ color:var(--ink); }
+    .naep{ display:flex; flex-direction:column; gap:6px; margin-top:12px; }
+    .nv{ display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:12px;
+         background:rgba(120,104,84,.05); font-size:.9rem; color:var(--ink-soft); }
+    .nv .lv{ flex:0 0 auto; width:24px; height:24px; border-radius:8px; display:grid; place-items:center;
+             font-family:var(--font-display); font-weight:800; font-size:.82rem;
+             background:var(--card); border:1.5px solid var(--line); }
+    .nv .ds{ flex:1 1 auto; }
+    .nv .you{ flex:0 0 auto; font-size:.76rem; font-weight:700; color:var(--read); white-space:nowrap; }
+    .nv.now{ background:var(--read-bg); color:var(--ink); font-weight:600; }
+    .nv.now .lv{ background:var(--read); color:#FFFDF8; border-color:transparent; }
+    /* 和上一页比 */
+    .cmp{ display:flex; flex-direction:column; gap:10px; }
+    .cmp .r{ display:flex; align-items:center; gap:10px; font-size:.92rem; }
+    .cmp .r .k{ flex:0 0 5.6em; color:var(--ink-soft); }
+    .cmp .r .v{ flex:1 1 auto; font-family:var(--font-display); min-width:0; }
+    .cmp .r .v s{ color:var(--ink-soft); text-decoration:none; opacity:.65; }
+    .cmp .r .d{ flex:0 0 auto; font-family:var(--font-display); font-weight:700; font-size:.82rem;
+                border-radius:999px; padding:3px 10px; white-space:nowrap; }
+    .cmp .r .d.up{ background:var(--what-bg); color:#1F7A55; }
+    .cmp .r .d.down{ background:var(--do-bg); color:#B4442A; }
+
+    /* 横向对比条 */
+    .hz{ display:flex; flex-direction:column; gap:10px; margin:12px 0 0; }
+    .h1{ display:flex; align-items:center; gap:10px; font-size:.9rem; }
+    .h1 .k{ flex:0 0 5.4em; color:var(--ink-soft); }
+    .h1 .t{ flex:1 1 auto; height:16px; border-radius:999px;
+            background:rgba(120,104,84,.10); overflow:hidden; }
+    .h1 .t i{ display:block; height:100%; border-radius:999px; background:var(--read); }
+    .h1 .v{ flex:0 0 4.2em; text-align:right; font-family:var(--font-display); font-weight:700; }
+
+    /* 当日小结 */
+    .hwl{ margin:0; padding-left:1.25em; }
+    .hwl li{ margin:4px 0; }
+    .hwl b{ color:var(--read); }
+    .hwl ul{ margin:4px 0 0; padding-left:1.1em; color:var(--ink-soft); font-size:.9rem; }
+    .tbl{ display:flex; flex-direction:column; gap:10px; }
+    .tbl .r{
+      display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink);
+      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+      box-shadow:0 2px 0 var(--line); padding:12px 14px;
+    }
+    .tbl .r:active{ transform:translateY(1px); box-shadow:0 1px 0 var(--line); }
+    .tbl .n{
+      flex:0 0 auto; width:42px; height:42px; border-radius:14px; line-height:1;
+      display:grid; place-items:center; background:var(--read-bg); color:var(--read);
+      font-family:var(--font-display); font-weight:800; font-size:1.05rem;
+    }
+    .tbl .tt{ flex:1 1 auto; min-width:0; line-height:1.35; }
+    .tbl .zh{ display:block; font-weight:600; font-size:.95rem; }
+    .tbl .en{ display:block; font-family:var(--font-display); font-size:.76rem; color:var(--ink-soft);
+              overflow-wrap:break-word; }
+    .tbl .m{ flex:0 0 auto; text-align:right; min-width:3.6em; }
+    .tbl .m b{ display:block; font-family:var(--font-display); font-size:.95rem; }
+    .tbl .m i{ display:block; font-style:normal; font-size:.68rem; color:var(--ink-soft); }
+
+    @media (max-width:430px){
+      .tbl .r{ flex-wrap:wrap; }
+      .tbl .tt{ flex-basis:calc(100% - 52px); }
+      .tbl .m{ margin-left:52px; text-align:left; }
+      .tbl .m + .m{ margin-left:18px; }
+    }
+
+    /* 停顿地图 */
+    .tl svg{ display:block; width:100%; height:auto; overflow:visible; }
+    .legend{ display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; font-size:.82rem; color:var(--ink-soft); }
+    .legend i{ display:inline-block; width:14px; height:14px; border-radius:4px;
+               vertical-align:-2px; margin-right:5px; border:1px solid var(--line); }
+
+    /* 逐字比对 */
+    .diff{ display:flex; flex-direction:column; gap:12px; }
+    .d{
+      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+      box-shadow:0 2px 0 var(--line); padding:14px 16px;
+      display:grid; grid-template-columns:34px 1fr; gap:4px 12px; align-items:start;
+    }
+    .d .n{
+      grid-row:1 / span 3; width:34px; height:34px; border-radius:12px;
+      display:grid; place-items:center; background:var(--do-bg); color:var(--do);
+      font-family:var(--font-display); font-weight:800; font-size:.92rem;
+    }
+    .d .en{ font-family:var(--font-display); font-size:.98rem; overflow-wrap:break-word; }
+    .d .en .lbl{ color:var(--ink-soft); font-size:.76rem; margin-right:6px; font-family:var(--font-cn); }
+    .d .why{ font-size:.85rem; color:var(--ink-soft); }
+    ins{ background:var(--do-bg); color:#B4442A; text-decoration:none;
+         border-radius:5px; padding:0 3px; font-weight:700; }
+    del{ color:var(--ink-soft); text-decoration-thickness:1.5px; }
+    mark{ background:var(--what-bg); color:#1F7A55; border-radius:5px; padding:0 3px; }
+
+    /* 原文 / 意群 */
+    .text{ font-family:var(--font-display); font-size:1.02rem; line-height:2.1; }
+    .text .sl{ color:var(--who); font-weight:800; padding:0 3px; }
+
+    .todo{ display:flex; flex-direction:column; gap:12px; }
+    .todo .t{
+      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+      box-shadow:0 2px 0 var(--line); padding:14px 16px;
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .todo .t .ic{
+      flex:0 0 auto; width:34px; height:34px; border-radius:12px; display:grid; place-items:center;
+      background:var(--who-bg); font-size:1.05rem;
+    }
+    .todo .t p{ margin:0; }
+    .todo .t .h{ font-weight:600; }
+    .todo .t .d2{ font-size:.88rem; color:var(--ink-soft); margin-top:2px; }
+
+    .how{ font-size:.86rem; color:var(--ink-soft); }
+    .how p{ margin:0 0 8px; }
+    .how b{ color:var(--ink); }
+
+    .back{
+      display:inline-block; margin-top:34px; font-family:var(--font-display);
+      font-weight:700; text-decoration:none; color:var(--ink-soft);
+    }
+    .foot{ text-align:center; color:var(--ink-soft); font-size:.85rem; margin-top:40px; }
+
+    @media (max-width:520px){
+      .stats{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media print{
+      body{ background:#fff; }
+      .box,.stat,.d,.todo .t{ box-shadow:none; }
+      .back{ display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 微信分享缩略图：抓页面首张 ≥300px 的图；容器不能 display:none，否则会被跳过 -->
+  <div style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <img src="../../share.png" width="512" height="512" alt="" />
+  </div>
+
+  <main class="wrap">
+
+    <header class="hero">
+      <span class="eyebrow">READ ALOUD · 当日小结</span>
+      <h1>8月25日<b>点读小结</b></h1>
+      <p class="sub">超8 Lesson 3 · 单词表 + 第 65–67 页 ／ Wonders G3 · Chapter 2</p>
+    </header>
+
+    <section class="box score">
+      <span class="num"><b>92.8<small>%</small></b><span>整体准确率</span></span>
+      <span class="say">
+        <p class="lead">两本书，差了整整一个台阶。</p>
+        <p class="tip">同一个下午、同一个孩子：超8 的三页稳在 95% 以上，Wonders 掉到 89%。不是状态问题，是两本书本来就不在一个难度上——今天的收获是<b>知道了各自该怎么用</b>。</p>
+      </span>
+    </section>
+
+    <h2 class="mini-h"><span>📊</span> 今天一共读了</h2>
+    <div class="stats">
+      <div class="stat s1"><b>501</b><span>个词（不含单词表）</span></div>
+      <div class="stat s2"><b>64</b><span>每分钟正确词数</span></div>
+      <div class="stat s3"><b>7 分 49 秒</b><span>录音总时长</span></div>
+      <div class="stat s4"><b>5</b><span>份报告</span></div>
+    </div>
+
+    <h2 class="mini-h"><span>📋</span> 今天打卡单上的朗读部分</h2>
+    <section class="box hw">
+      <ul class="hwl"><li><b>[点读]</b> 点读 · 超8 Lesson 3<ul><li>第 61–62 页 Words and Expressions 的单词部分</li><li>第 65–67 页 划线部分</li></ul></li><li><b>[读]</b> Wonders 3 · Chapter 2</li></ul>
+      <p class="sc-note">上面每一项都录了音、出了报告，全部完成 ✓</p>
+    </section>
+
+    <h2 class="mini-h"><span>📄</span> 5 份报告</h2>
+    <div class="tbl">
+        <a class="r" href="../reports/chao8-lesson3-words.html">
+          <span class="n">68</span>
+          <span class="tt"><span class="zh">超8 · Lesson 3 · 单词表</span>
+            <span class="en">Words &amp; Expressions · 20 words</span></span>
+          <span class="m"><b>68.4%</b><i>准确率</i></span>
+          <span class="m"><b>—</b><i>词/分</i></span>
+        </a>
+        <a class="r" href="../reports/chao8-lesson3-p65.html">
+          <span class="n">58</span>
+          <span class="tt"><span class="zh">超8 · Lesson 3 · 第 65 页</span>
+            <span class="en">Prince Darling · 105 words</span></span>
+          <span class="m"><b>95.2%</b><i>准确率</i></span>
+          <span class="m"><b>72</b><i>词/分</i></span>
+        </a>
+        <a class="r" href="../reports/chao8-lesson3-p66.html">
+          <span class="n">61</span>
+          <span class="tt"><span class="zh">超8 · Lesson 3 · 第 66 页</span>
+            <span class="en">Prince Darling · 110 words</span></span>
+          <span class="m"><b>96.4%</b><i>准确率</i></span>
+          <span class="m"><b>74</b><i>词/分</i></span>
+        </a>
+        <a class="r" href="../reports/chao8-lesson3-p67.html">
+          <span class="n">61</span>
+          <span class="tt"><span class="zh">超8 · Lesson 3 · 第 67 页</span>
+            <span class="en">Prince Darling · 76 words</span></span>
+          <span class="m"><b>94.7%</b><i>准确率</i></span>
+          <span class="m"><b>78</b><i>词/分</i></span>
+        </a>
+        <a class="r" href="../reports/wonders-g3-great-wall.html">
+          <span class="n">43</span>
+          <span class="tt"><span class="zh">Wonders G3 · The Great Wall of LA</span>
+            <span class="en">Chapter 2 · p.8–11 · 210 words</span></span>
+          <span class="m"><b>89.0%</b><i>准确率</i></span>
+          <span class="m"><b>52</b><i>词/分</i></span>
+        </a>
+    </div>
+
+    <h2 class="mini-h"><span>🪜</span> 两本书，差一个台阶</h2>
+    <section class="box">
+      <div class="hz">
+        <div class="h1"><span class="k">超8 L3</span><span class="t"><i style="width:96.4%"></i></span><span class="v">96.4%</span></div>
+        <div class="h1"><span class="k">Wonders</span><span class="t"><i style="width:89%"></i></span><span class="v">89.0%</span></div>
+      </div>
+      <p class="sc-note">
+        Fountas &amp; Pinnell 的线画在 <b>95%</b>：往上是「带一带就能读」，往下是「偏难」。
+        超8 稳稳在线上，Wonders 在线下。所以这两本书今天该用两种读法——
+        <b>超8 练朗读，Wonders 先听着指读</b>。
+        速度也是一样的分野：超8 每分钟 72–78 个正确词，Wonders 只有 52。
+      </p>
+    </section>
+    <h2 class="mini-h"><span>🧵</span> 只有把五份放在一起才看得见的三件事</h2>
+    <div class="todo">
+      <div class="t">
+        <span class="ic">🔤</span>
+        <span><p class="h">词尾的 -s / -ed，今天丢了 6 次</p>
+          <p class="d2">第 65 页：faults → fault、these words → this word。
+            Wonders：murals · events · parts · images 四个复数一个不剩。
+            单词表里 wicked 的 -ed 也像是没出来（那处待复核）。
+            <b>这是今天最集中、也最好抠的一个问题</b>——五份报告里出现在三份。</p></span>
+      </div>
+      <div class="t">
+        <span class="ic">🔁</span>
+        <span><p class="h">他自己刹车改口，今天有 5 次</p>
+          <p class="d2">“was very angry → was angry”、“will be a → will be king”、
+            “since he was a little → he was a child”、“The mirror → The mural”。
+            四份报告里都出现了。<b>这是好信号</b>：眼睛在往前跑，耳朵同时在听自己。</p></span>
+      </div>
+      <div class="t">
+        <span class="ic">🎯</span>
+        <span><p class="h">hunting 一个词，两页读岔两次</p>
+          <p class="d2">第 65 页读成 honking，第 66 页读成 haunting。同一个词连着栽两次，
+            单拎出来五分钟就能解决。</p></span>
+      </div>
+    </div>
+
+    <h2 class="mini-h"><span>✏️</span> 明天试试这三件事</h2>
+    <div class="todo">
+      <div class="t"><span class="ic">🔤</span>
+        <span><p class="h">抠词尾：-s 和 -ed</p><p class="d2">今天丢了 6 次，是最集中的一个问题。读的时候让最后那个「丝」音留久一点：murals · events · parts · images · faults。</p></span></div>
+      <div class="t"><span class="ic">🎧</span>
+        <span><p class="h">Wonders 换成听读，超8 继续练朗读</p><p class="d2">89% 硬练朗读收效有限，先跟着音频指读；超8 那本 96% 才是练流利度的台阶。</p></span></div>
+      <div class="t"><span class="ic">✂️</span>
+        <span><p class="h">Wonders 的 3 分半拆成两次</p><p class="d2">准确率从 94.5% 一路掉到 83%，掉在后半段。第 8 页读一次，第 10–11 页读一次。</p></span></div>
+    </div>
+
+    <a class="back" href="../">← 返回点读评价</a>
+
+    <p class="foot">点读评价 · 一天的朗读，一页看完 🎤</p>
+    <script src="../../beian.js"></script>
+    <script src="../../busuanzi.js"></script>
+
+  </main>
+
+</body>
+</html>

@@ -75,6 +75,10 @@
     .day b{ font-family:var(--font-display); font-size:1rem; }
     .day span{ font-size:.78rem; color:var(--ink-soft); }
     .day hr{ flex:1 1 auto; border:none; border-top:1.5px dashed var(--line); margin:0; }
+    .day a{ flex:0 0 auto; font-family:var(--font-display); font-weight:700; font-size:.8rem;
+            text-decoration:none; color:var(--read); background:var(--read-bg);
+            border-radius:999px; padding:4px 11px; white-space:nowrap; }
+    .day a:active{ transform:translateY(1px); }
 
     .list{ display:flex; flex-direction:column; gap:12px; }
     .row{
@@ -143,7 +147,7 @@
     <h2 class="mini-h"><span>📄</span> 报告</h2>
     <nav class="list">
 <!-- LIST:BEGIN 由 tools/build_index.py 自动生成，别手改 -->
-      <div class="day first"><b>8月25日</b><span>5 份</span><hr></div>
+      <div class="day first"><b>8月25日</b><span>5 份</span><hr><a href="./daily/2026-08-25.html">当日小结 →</a></div>
       <div class="row">
         <span class="n">68</span>
         <span class="tt"><span class="zh">超8 · Lesson 3 · 单词表</span>

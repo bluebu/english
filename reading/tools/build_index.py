@@ -16,6 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 REPORTS = ROOT / "reports"
+DAILY = ROOT / "daily"
 INDEX = ROOT / "index.html"
 
 FIELDS = ("date", "order", "score", "title", "sub")
@@ -47,8 +48,11 @@ def render(reports):
     for i, date in enumerate(sorted(days, reverse=True)):          # 新的一天在最前
         items = sorted(days[date], key=lambda r: int(r["order"]))  # 一天之内按课本顺序
         cls = "day first" if i == 0 else "day"
+        # 当天有小结页就在日期行右边挂个入口，没有就不挂
+        link = (f'<a href="./daily/{date}.html">当日小结 →</a>'
+                if (DAILY / f"{date}.html").exists() else "")
         out.append(f'      <div class="{cls}"><b>{zh_date(date)}</b>'
-                   f'<span>{len(items)} 份</span><hr></div>')
+                   f'<span>{len(items)} 份</span><hr>{link}</div>')
         for r in items:
             out.append(f'''      <div class="row">
         <span class="n">{r["score"]}</span>

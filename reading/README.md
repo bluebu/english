@@ -13,6 +13,10 @@ reading/
   tools/analyze.py                  停顿与语速分析
   tools/figures.py                  停顿地图 + 「三把尺子上的位置」三张图
   tools/build_index.py              刷新目录页列表：按日期倒序分组
+  tools/build_daily.py              生成当日小结页
+  tools/daily_template.html         当日小结的页面模板（$name 占位）
+  daily/YYYY-MM-DD.json             当日小结的文字部分，手写
+  daily/YYYY-MM-DD.html             生成结果
 ```
 
 ## 做一份报告
@@ -29,6 +33,10 @@ python3 tools/analyze.py 录音.m4a > data/超8-lesson3-p65.json
 
 # 4) 刷新目录页
 python3 tools/build_index.py
+
+# 5) 当天的报告都做完后，写 daily/<日期>.json，再生成当日小结
+python3 tools/build_daily.py 2026-08-25
+python3 tools/build_index.py        # 小结页存在时，日期行右边会自动挂上入口
 ```
 
 新报告的 `<head>` 里必须带这五行，`build_index.py` 只认这个：
@@ -39,6 +47,10 @@ python3 tools/build_index.py
 <meta name="report-score" content="61" />
 <meta name="report-title" content="超8 · Lesson 3 · 第 66 页" />
 <meta name="report-sub"   content="Prince Darling · 110 words" />
+<meta name="report-words" content="110" />          <!-- 下面四行给当日小结汇总用 -->
+<meta name="report-secs"  content="86.0" />
+<meta name="report-acc"   content="96.4" />
+<meta name="report-wcpm"  content="74" />           <!-- 单词表没有 WCPM，填 "-" -->
 ```
 
 少任何一行，这份报告会被整个跳过（宁可不进目录，也不进半拉子的）。
@@ -89,3 +101,20 @@ Wonders 是美国本土教材，年级对得上，H&T 常模在那儿是**同类
 
 对齐时注意：识别给的词边界在单词表里不可靠（会把两个词并进一段、或把一个长词拆成三段）。
 正确做法是先从停顿切出**发声段**，再人工把发声段对到课本词条上（见 per-word.json 的生成过程）。
+
+## 当日小结（daily/）
+
+把一天的几份报告合成一页：合计词数 / 时长 / 整体准确率、报告一览表、
+**跨报告才看得出来的规律**（例：词尾 -s 今天丢了 6 次、自我纠正 5 次、hunting 两页读岔两次），
+再给明天三件事。表格和合计由 `build_daily.py` 从各报告的 meta 自动算，
+判断和建议写在 `daily/<日期>.json` 里——那部分机器给不了。
+
+### 和「每日打卡」的关系
+
+打卡单里的 `[点读]` 和 `[读]` 两项，正好对应这里的报告。
+`build_daily.py` 会在**生成时**去读 `../homework/specs/<yyyymmdd>.txt`，
+把那两项的原文抄进小结页，让人看见「作业是什么 → 做得怎么样」。
+
+⚠️ **这只是生成时的一次读取**：产出的 HTML 不引用 homework/ 的任何文件，
+两个栏目在站点上依旧互不引用（见根 CLAUDE.md）。拿不到 spec 就跳过这一块，不报错。
+打卡单是给人打印在纸上的，也不适合往上面加链接。
