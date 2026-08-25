@@ -32,7 +32,7 @@ def _palette():
     读不到就退回内置值——脚本不能因为少个 CSS 文件就跑不了。
     """
     fallback = {"listen": "#4A90D9", "read": "#E08B3C", "word": "#5BA97E",
-                "gram": "#D97070", "drill": "#A97EC4"}
+                "gram": "#2E9A96", "drill": "#A97EC4"}   # 没有红：红留给分数
     f = Path(__file__).resolve().parent.parent / "palette.css"
     if not f.exists():
         return fallback

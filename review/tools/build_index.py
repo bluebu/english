@@ -42,7 +42,7 @@ CAT_COLOR = {
     "单词": ("word", "#5BA97E", "#E2F1E9"),
     "超8":  ("read", "#E08B3C", "#FBEBD9"),
     "G3":   ("listen", "#4A90D9", "#DFECFA"),
-    "语法": ("gram", "#D97070", "#FAE4E4"),
+    "语法": ("gram", "#2E9A96", "#DCEFEE"),
 }
 
 

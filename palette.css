@@ -9,13 +9,17 @@
  *   听 · 指读        蓝   →   G3（Wonders）
  *   读 · 点读        橙   →   超8
  *   词 · 抄写        绿   →   单词
- *   语法             红   →   语法
+ *   语法             青   →   语法
  *   练 · AI          紫   →   （备用，新分类先用这个）
+ *
+ * ⚠️ 这里**没有红**：红专门留给「分数越差越红」(色标在 review/tools/figures.py 的
+ *    SCORE_STOPS)。分类色说「这是哪一类」，分数色说「做得怎么样」，两套不能撞——
+ *    所以语法从红换成了青。
  */
 :root{
   --c-listen:#4A90D9;  --c-listen-bg:#DFECFA;
   --c-read:#E08B3C;    --c-read-bg:#FBEBD9;
   --c-word:#5BA97E;    --c-word-bg:#E2F1E9;
-  --c-gram:#D97070;    --c-gram-bg:#FAE4E4;
+  --c-gram:#2E9A96;    --c-gram-bg:#DCEFEE;
   --c-drill:#A97EC4;   --c-drill-bg:#F0E7F7;
 }
