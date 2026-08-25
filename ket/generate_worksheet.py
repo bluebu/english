@@ -130,6 +130,12 @@ ANS_PAD_TEMPLATE = '    <div class="ans pad"></div>'
 PER_PAGE = 30      # 默写卷：两列 × 15 行，行距和四线格加大后一页放 30 个舒适
 ANS_PER_PAGE = 70  # 答案对照版：紧凑行高，两列 × 35 行
 
+# 合集分册：out_stem -> 收录的主题编号范围（上册定稿不再变动，新主题进下册）
+VOLUMES = {
+    "words_1": (1, 12),
+    "words_2": (13, 99),
+}
+
 TITLES = {
     "appliances": "Appliances 家电",
     "clothes_and_accessories": "Clothes and Accessories 服装与饰品",
@@ -143,6 +149,19 @@ TITLES = {
     "health_medicine_and_exercise": "Health, Medicine and Exercise 健康、医药和锻炼",
     "hobbies_and_leisure": "Hobbies and Leisure 爱好和休闲",
     "house_and_home": "House and Home 房子和家",
+    "measurements": "Measurements 计量",
+    "personal_feelings_opinions_and_experiences": "Personal Feelings 个人感受、观点和经历",
+    "places_buildings": "Places: Buildings 地点：建筑",
+    "places_countryside": "Places: Countryside 地点：乡村",
+    "places_town_and_city": "Places: Town and City 地点：城镇和城市",
+    "services": "Services 服务",
+    "shopping": "Shopping 购物",
+    "sport": "Sport 体育运动",
+    "the_natural_world": "The Natural World 自然世界",
+    "time": "Time 时间",
+    "travel_and_transport": "Travel and Transport 旅游和运输",
+    "weather": "Weather 天气",
+    "work_and_jobs": "Work and Jobs 工作与职业",
 }
 
 
@@ -265,10 +284,17 @@ def build_doc(sections: list, out_stem: str, title: str,
 
 def merge(out_stem: str = "words_1", pdf: bool = False,
           answers: bool = False) -> None:
-    """words/ 下全部主题连排成一份合集。"""
-    paths = sorted(Path("words").glob("[0-9]*_*.csv"))
+    """按分册把 words/ 下的主题连排成一份合集（上册 01–12、下册 13 起）。"""
+    key = out_stem[:-len("_answers")] if out_stem.endswith("_answers") else out_stem
+    lo, hi = VOLUMES.get(key, (1, 99))
+    paths = [p for p in sorted(Path("words").glob("[0-9]*_*.csv"))
+             if lo <= int(p.stem.split("_")[0]) <= hi]
+    if not paths:
+        sys.exit(f"{key} 分册（主题 {lo}–{hi}）下没有词表")
     sections = [(topic_title(src.stem), read_rows(src)) for src in paths]
-    title = "KET 核心词汇 01–12 " + ("答案对照" if answers else "默写")
+    nos = [int(p.stem.split("_")[0]) for p in paths]
+    span = f"{min(nos):02d}–{max(nos):02d}"
+    title = f"KET 核心词汇 {span} " + ("答案对照" if answers else "默写")
     build_doc(sections, out_stem, title, pdf, answers)
 
 

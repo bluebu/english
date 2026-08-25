@@ -13,7 +13,7 @@ KET 词汇默写栏目（仓库 `ket/` 目录）的两段式工作流。**脚本
 - `generate_worksheet.py` — 生成脚本
 - `index.html` — 栏目目录页，列出合集 + 各主题的预览/PDF 链接和词数；**新增主题或词数变动后要同步更新**
 
-主题编号由用户指定（对应词汇书/海报的板块序号，不是字母序或录入序）。已分配 01–12（见 `words/` 目录）。新主题若用户没给编号要先问。
+主题编号由用户指定（对应词汇书/海报的板块序号，不是字母序或录入序）。已分配 01–25（见 `words/` 目录）。新主题若用户没给编号要先问。
 
 ## 工作流 1：图片 → CSV
 
@@ -39,12 +39,14 @@ KET 词汇默写栏目（仓库 `ket/` 目录）的两段式工作流。**脚本
 ```bash
 python3 generate_worksheet.py words/<NN>_<主题>.csv          # 只生成 HTML
 python3 generate_worksheet.py words/<NN>_<主题>.csv --pdf    # HTML + PDF 一起出
-python3 generate_worksheet.py --merge words_1 --pdf                  # 合集（默写版）
-python3 generate_worksheet.py --merge-answers words_1_answers --pdf  # 合集（答案对照版）
+python3 generate_worksheet.py --merge words_1 --pdf                  # 上册合集 01–12（默写版）
+python3 generate_worksheet.py --merge-answers words_1_answers --pdf  # 上册合集（答案对照版）
+python3 generate_worksheet.py --merge words_2 --pdf                  # 下册合集 13 起（默写版）
+python3 generate_worksheet.py --merge-answers words_2_answers --pdf  # 下册合集（答案对照版）
 python3 generate_worksheet.py --select selections/20260820.txt --pdf # 抽选卷（跨主题挑词）
 ```
 
-合集模式：words/ 全部主题连排，章节之间不分页；章节标题占一整行（2 词位），起点不在行首时补空位，且不让标题落在页面最后一行；各章题号沿用各自 CSV 的编号。默写版每页 30 词位（15 行 × 2 栏），样式与分集完全一致；答案对照版紧凑无线格（每页 70 词位），每行"序号 中文 词性 → 英文（加粗靠右）音标"，页眉无姓名/日期/得分栏。两个合集独立共存，CSV 有更新后两个都要重新生成。
+合集模式：**分上下册**——上册 `words_1` 固定收 01–12（已定稿，不再变动），下册 `words_2` 收 13 及以后，范围在脚本 `VOLUMES` 字典里；页眉范围（如「13–14」）按实际收录主题自动算。分册内各主题连排，章节之间不分页；章节标题占一整行（2 词位），起点不在行首时补空位，且不让标题落在页面最后一行；各章题号沿用各自 CSV 的编号。默写版每页 30 词位（15 行 × 2 栏），样式与分集完全一致；答案对照版紧凑无线格（每页 70 词位），每行"序号 中文 词性 → 英文（加粗靠右）音标"，页眉无姓名/日期/得分栏。同一分册的默写版和答案版独立共存，CSV 有更新后该分册两个版本都要重新生成。
 
 抽选卷模式（`--select`）：用户点名"第 N 章的第 x,y,z 个词"时用。先写 spec 文件 `selections/<名字>.txt`：
 
@@ -65,7 +67,7 @@ python3 generate_worksheet.py --select selections/20260820.txt --pdf # 抽选卷
 - 题型是"看中文写英文"：序号 + 中文释义 + 灰色小字词性提示 + 四线三格书写区。
 - 四线三格：绿色四线 + 红色第三线（基线），每格 14px、总高约 11mm，符合小学英语本习惯（用户孩子四年级，行距宁松勿密）。
 - `print-color-adjust: exact` 必须保留，否则 Cmd+P 和导出的 PDF 里看不到 CSS 背景画的四线格。
-- 页眉标题格式 "NN English 中文 默写"（如 "01 Appliances 家电 默写"）。新主题要在脚本 main() 的 titles 字典里加一条（key 是去掉编号前缀的主题名）。
+- 页眉标题格式 "NN English 中文 默写"（如 "01 Appliances 家电 默写"）。新主题要在脚本 TITLES 字典里加一条（key 是去掉编号前缀的主题名）；英文名太长会把页眉挤成两行，取个短名即可（如 Personal Feelings, Opinions and Experiences → "Personal Feelings 个人感受、观点和经历"）。
 
 ## 常见后续需求（用户提过但未定）
 
