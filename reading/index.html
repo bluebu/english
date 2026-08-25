@@ -70,6 +70,12 @@
       display:flex; align-items:center; gap:8px;
     }
 
+    .day{ display:flex; align-items:center; gap:10px; margin:26px 2px 12px; }
+    .day.first{ margin-top:4px; }
+    .day b{ font-family:var(--font-display); font-size:1rem; }
+    .day span{ font-size:.78rem; color:var(--ink-soft); }
+    .day hr{ flex:1 1 auto; border:none; border-top:1.5px dashed var(--line); margin:0; }
+
     .list{ display:flex; flex-direction:column; gap:12px; }
     .row{
       display:flex; align-items:center; gap:12px;
@@ -127,7 +133,7 @@
       <p style="margin:0">每份报告都看<b>四件事</b>：</p>
       <ol>
         <li>哪几个词读岔了 —— 和课本原文逐字对</li>
-        <li>停顿都断在哪儿 —— 83 秒里每一次歇气都画出来</li>
+        <li>停顿都断在哪儿 —— 每一次歇气都画在时间轴上</li>
         <li>速度和准确率各是多少 —— 有数字，能和上一次比</li>
         <li>下次试试哪三件小事</li>
       </ol>
@@ -136,11 +142,12 @@
 
     <h2 class="mini-h"><span>📄</span> 报告</h2>
     <nav class="list">
-<!-- LIST:BEGIN 按课本页码排 -->
+<!-- LIST:BEGIN 由 tools/build_index.py 自动生成，别手改 -->
+      <div class="day first"><b>8月25日</b><span>4 份</span><hr></div>
       <div class="row">
         <span class="n">68</span>
         <span class="tt"><span class="zh">超8 · Lesson 3 · 单词表</span>
-          <span class="en">Words &amp; Expressions · 20 words · Aug 25</span></span>
+          <span class="en">Words &amp; Expressions · 20 words</span></span>
         <span class="links">
           <a href="./reports/chao8-lesson3-words.html">看报告</a>
         </span>
@@ -148,7 +155,7 @@
       <div class="row">
         <span class="n">58</span>
         <span class="tt"><span class="zh">超8 · Lesson 3 · 第 65 页</span>
-          <span class="en">Prince Darling · 105 words · Aug 25</span></span>
+          <span class="en">Prince Darling · 105 words</span></span>
         <span class="links">
           <a href="./reports/chao8-lesson3-p65.html">看报告</a>
         </span>
@@ -156,7 +163,7 @@
       <div class="row">
         <span class="n">61</span>
         <span class="tt"><span class="zh">超8 · Lesson 3 · 第 66 页</span>
-          <span class="en">Prince Darling · 110 words · Aug 25</span></span>
+          <span class="en">Prince Darling · 110 words</span></span>
         <span class="links">
           <a href="./reports/chao8-lesson3-p66.html">看报告</a>
         </span>
@@ -164,7 +171,7 @@
       <div class="row">
         <span class="n">61</span>
         <span class="tt"><span class="zh">超8 · Lesson 3 · 第 67 页</span>
-          <span class="en">Prince Darling · 76 words · Aug 25</span></span>
+          <span class="en">Prince Darling · 76 words</span></span>
         <span class="links">
           <a href="./reports/chao8-lesson3-p67.html">看报告</a>
         </span>

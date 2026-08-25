@@ -4,7 +4,7 @@
 
 ```
 reading/
-  index.html                       目录页（报告列表写在 LIST:BEGIN/END 之间）
+  index.html                       目录页（列表由 build_index.py 刷新，别手改）
   reports/<书>-<课>-p<页>.html      每次一份报告
   data/<同名>.json                  声学分析结果（停顿、语速）
   data/<同名>.words.tsv             逐词时间戳（起 / 止 / 词）
@@ -12,6 +12,7 @@ reading/
   tools/words.swift                 转写 + 逐词时间戳
   tools/analyze.py                  停顿与语速分析
   tools/figures.py                  停顿地图 + 「三把尺子上的位置」三张图
+  tools/build_index.py              刷新目录页列表：按日期倒序分组
 ```
 
 ## 做一份报告
@@ -25,7 +26,22 @@ swiftc -O -parse-as-library tools/words.swift -o /tmp/words
 python3 tools/analyze.py 录音.m4a > data/超8-lesson3-p65.json
 
 # 3) 拿课本原文逐字比对，套 reports/ 里现成的一份改
+
+# 4) 刷新目录页
+python3 tools/build_index.py
 ```
+
+新报告的 `<head>` 里必须带这五行，`build_index.py` 只认这个：
+
+```html
+<meta name="report-date"  content="2026-08-25" />   <!-- 分组用，倒序排 -->
+<meta name="report-order" content="66" />           <!-- 同一天内的顺序，用页码 -->
+<meta name="report-score" content="61" />
+<meta name="report-title" content="超8 · Lesson 3 · 第 66 页" />
+<meta name="report-sub"   content="Prince Darling · 110 words" />
+```
+
+少任何一行，这份报告会被整个跳过（宁可不进目录，也不进半拉子的）。
 
 ## 口径（数值都在 tools/figures.py 顶部，改之前先回一手来源核）
 
