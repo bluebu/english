@@ -4,3 +4,4 @@
 # 朗读录音不进仓库（点读评价只提交分析结果）
 reading/audio/
 *.m4a
+__pycache__/
