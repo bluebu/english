@@ -155,7 +155,8 @@ def timeline_svg(data, bounds, stalls):
         out.append(f'<rect x="{x(p["start"])}" y="{TOP}" width="{w}" height="{H:.0f}" fill="var(--tl-{k})"/>')
     out.append(f'<rect x="0" y="{TOP}" width="{W:.0f}" height="{H:.0f}" rx="8" fill="none" '
                f'stroke="var(--line)" stroke-width="1.5"/>')
-    ticks = list(range(0, int(D) + 1, 10))
+    step = 10 if D <= 120 else 20 if D <= 300 else 60   # 长录音刻度放宽，否则末尾两个标签会叠在一起
+    ticks = list(range(0, int(D) + 1, step))
     for t in ticks:
         anchor = 'start' if t == ticks[0] else 'end' if t == ticks[-1] else 'middle'
         out.append(f'<line x1="{x(t)}" y1="{TOP+H}" x2="{x(t)}" y2="{TOP+H+5}" stroke="var(--ink-soft)" stroke-width="1.4"/>')

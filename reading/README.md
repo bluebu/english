@@ -35,13 +35,25 @@ python3 tools/build_index.py
 
 ```html
 <meta name="report-date"  content="2026-08-25" />   <!-- 分组用，倒序排 -->
-<meta name="report-order" content="66" />           <!-- 同一天内的顺序，用页码 -->
+<meta name="report-order" content="66" />           <!-- 同一天内的顺序：小的在前 -->
 <meta name="report-score" content="61" />
 <meta name="report-title" content="超8 · Lesson 3 · 第 66 页" />
 <meta name="report-sub"   content="Prince Darling · 110 words" />
 ```
 
 少任何一行，这份报告会被整个跳过（宁可不进目录，也不进半拉子的）。
+
+一天里读了不止一本书时，`report-order` 用「书序 × 100 + 页码」把同一本书排在一起：
+超8 = 61–67，Wonders = 208–211。
+
+## 换书就换了一把尺子
+
+分数是给「**这个孩子 + 这本书**」的，不是给孩子的。同一天：超8 96.4% / WCPM 74，
+Wonders G3 89.0% / WCPM 52 —— 跨本比只用来判断**书难不难**，要看进步得同一本书跨天比。
+报告里要把这句话写出来，别让人误读成孩子退步了。
+
+Wonders 是美国本土教材，年级对得上，H&T 常模在那儿是**同类相比**；
+超8 是中国出的分级读物，常模只能当参照系。两种情况报告里的措辞不一样。
 
 ## 口径（数值都在 tools/figures.py 顶部，改之前先回一手来源核）
 

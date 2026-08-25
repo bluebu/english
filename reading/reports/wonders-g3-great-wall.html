@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Wonders G3 · The Great Wall of LA 点读评价</title>
+  <meta name="description" content="美国本土三年级教材读三页：准确率 89.0%、每分钟 52 个正确词，比同一天读的超8 低了整整一档。" />
+  <meta name="theme-color" content="#FBF6EB" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+  <!-- 分享卡片：og 文案照抄本页 <title>/<meta description>，改描述时两处同步；微信读 <title>+页面首图，QQ/iMessage 等读 og（og:image 必须绝对地址） -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="我的英语小屋" />
+  <meta property="og:title" content="Wonders G3 · The Great Wall of LA 点读评价" />
+  <meta property="og:description" content="美国本土三年级教材读三页：准确率 89.0%、每分钟 52 个正确词，比同一天读的超8 低了整整一档。" />
+  <meta property="og:url" content="https://english.hi-ruby.com/reading/reports/wonders-g3-great-wall.html" />
+  <meta property="og:image" content="https://english.hi-ruby.com/share.png" />
+  <meta name="twitter:card" content="summary" />
+  <!-- 目录页用：reading/tools/build_index.py 读这几行，改了要重跑 -->
+  <meta name="report-date" content="2026-08-25" />
+  <meta name="report-order" content="208" />
+  <meta name="report-score" content="43" />
+  <meta name="report-title" content="Wonders G3 · The Great Wall of LA" />
+  <meta name="report-sub" content="Chapter 2 · p.8–11 · 210 words" />
+  <style>
+    :root{
+      --paper:#FBF6EB; --card:#FFFDF8; --ink:#4A3F36; --ink-soft:#9A8C7C;
+      --line:rgba(120,104,84,.16); --grid:rgba(120,104,84,.05);
+      --who:#3E9BD6; --who-bg:#DCEFFB;
+      --do:#EE7D5B;  --do-bg:#FBE0D5;
+      --what:#45B988; --what-bg:#D8F2E6;
+      --read:#E2A413; --read-bg:#FBEFC9;
+      --sc-hard:#F6DCD1; --sc-inst:#FBEFC9; --sc-indep:#D8F2E6;
+      --sc-band1:#EAE0D0; --sc-band2:#CFE3F3; --sc-mid:#3E9BD6;
+      --tl-speech:#CDEBDD; --tl-end:#6FB6E2; --tl-long:#EE7D5B; --tl-mid:#CBBCA9;
+      --font-display: ui-rounded,"SF Pro Rounded","Hiragino Maru Gothic ProN",
+                      "Varela Round","Quicksand","PingFang SC",system-ui,sans-serif;
+      --font-cn:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+      --radius:20px;
+    }
+    *{ box-sizing:border-box; }
+    html{ -webkit-text-size-adjust:100%; }
+    body{
+      margin:0; font-family:var(--font-cn); color:var(--ink); line-height:1.7;
+      background-color:var(--paper);
+      background-image:
+        radial-gradient(60% 50% at 88% -5%, rgba(226,164,19,.12), transparent 70%),
+        radial-gradient(55% 45% at -8% 8%,  rgba(62,155,214,.10), transparent 70%),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size:100% 100%,100% 100%,26px 26px,26px 26px;
+      background-attachment:fixed,fixed,scroll,scroll;
+    }
+    .wrap{ max-width:760px; margin:0 auto; padding:0 20px 80px; }
+
+    .hero{ text-align:center; padding:40px 0 6px; }
+    .eyebrow{
+      display:inline-block; font-family:var(--font-display); font-size:.78rem;
+      letter-spacing:.18em; color:var(--ink-soft);
+      border:1.5px solid var(--line); border-radius:999px; padding:4px 14px;
+      background:var(--card);
+    }
+    h1{ font-family:var(--font-display); font-size:clamp(1.7rem,6.4vw,2.4rem);
+        margin:14px 0 6px; line-height:1.25; }
+    h1 b{ color:var(--read); }
+    .sub{ color:var(--ink-soft); margin:0; font-size:.95rem; }
+
+    .box{
+      background:var(--card); border:1.5px solid var(--line); border-radius:var(--radius);
+      padding:18px 20px; box-shadow:0 2px 0 var(--line); margin:0 0 18px;
+    }
+    .mini-h{
+      font-family:var(--font-display); font-size:1.05rem; margin:32px 4px 12px;
+      display:flex; align-items:center; gap:8px;
+    }
+
+    /* 总分 */
+    .score{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:26px; }
+    .score .num{
+      flex:0 0 auto; width:112px; height:112px; border-radius:28px;
+      background:var(--read-bg); display:grid; place-items:center; line-height:1;
+    }
+    .score .num b{ font-family:var(--font-display); font-size:2.9rem; color:var(--read); }
+    .score .num span{ font-size:.78rem; color:var(--ink-soft); margin-top:4px; }
+    .score .say{ flex:1 1 220px; min-width:0; }
+    .score .say p{ margin:0; }
+    .score .say .lead{ font-weight:600; font-size:1.05rem; }
+    .score .say .tip{ color:var(--ink-soft); font-size:.9rem; margin-top:6px; }
+
+    .bars{ margin-top:18px; display:flex; flex-direction:column; gap:10px; }
+    .bar{ display:flex; align-items:center; gap:10px; font-size:.9rem; }
+    .bar .nm{ flex:0 0 5.2em; color:var(--ink-soft); }
+    .bar .track{
+      flex:1 1 auto; height:12px; border-radius:999px; background:rgba(120,104,84,.10);
+      overflow:hidden;
+    }
+    .bar .fill{ display:block; height:100%; border-radius:999px; background:var(--read); }
+    .bar .val{ flex:0 0 3.4em; text-align:right; font-family:var(--font-display); font-weight:700; }
+
+    /* 关键数字 */
+    .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .stat{
+      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+      box-shadow:0 2px 0 var(--line); padding:14px 8px; text-align:center;
+    }
+    .stat b{ display:block; font-family:var(--font-display); font-size:1.35rem; line-height:1.2; }
+    .stat span{ display:block; font-size:.76rem; color:var(--ink-soft); margin-top:4px; }
+    .stat.s1 b{ color:var(--what); } .stat.s2 b{ color:var(--do); }
+    .stat.s3 b{ color:var(--who); }  .stat.s4 b{ color:var(--read); }
+
+    /* 三把尺子 */
+    /* viewBox 宽 1000：手机上缩到约 0.31，iPad 上封顶 0.56，字号才两头都读得清 */
+    .scales svg{ display:block; width:100%; max-width:560px; height:auto;
+                 overflow:visible; margin:10px auto 0; }
+    .sc-h{ font-family:var(--font-display); font-weight:700; font-size:.95rem; margin:0 0 2px; }
+    .sc-h.sc-sep{ margin-top:30px; padding-top:22px; border-top:1.5px dashed var(--line); }
+    .sc-note{ font-size:.88rem; color:var(--ink-soft); margin:14px 0 0; }
+    .sc-note b{ color:var(--ink); }
+    .naep{ display:flex; flex-direction:column; gap:6px; margin-top:12px; }
+    .nv{ display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:12px;
+         background:rgba(120,104,84,.05); font-size:.9rem; color:var(--ink-soft); }
+    .nv .lv{ flex:0 0 auto; width:24px; height:24px; border-radius:8px; display:grid; place-items:center;
+             font-family:var(--font-display); font-weight:800; font-size:.82rem;
+             background:var(--card); border:1.5px solid var(--line); }
+    .nv .ds{ flex:1 1 auto; }
+    .nv .you{ flex:0 0 auto; font-size:.76rem; font-weight:700; color:var(--read); white-space:nowrap; }
+    .nv.now{ background:var(--read-bg); color:var(--ink); font-weight:600; }
+    .nv.now .lv{ background:var(--read); color:#FFFDF8; border-color:transparent; }
+    /* 和上一页比 */
+    .cmp{ display:flex; flex-direction:column; gap:10px; }
+    .cmp .r{ display:flex; align-items:center; gap:10px; font-size:.92rem; }
+    .cmp .r .k{ flex:0 0 5.6em; color:var(--ink-soft); }
+    .cmp .r .v{ flex:1 1 auto; font-family:var(--font-display); min-width:0; }
+    .cmp .r .v s{ color:var(--ink-soft); text-decoration:none; opacity:.65; }
+    .cmp .r .d{ flex:0 0 auto; font-family:var(--font-display); font-weight:700; font-size:.82rem;
+                border-radius:999px; padding:3px 10px; white-space:nowrap; }
+    .cmp .r .d.up{ background:var(--what-bg); color:#1F7A55; }
+    .cmp .r .d.down{ background:var(--do-bg); color:#B4442A; }
+
+    /* 词墙 */
+    .grp{ font-family:var(--font-display); font-weight:700; font-size:.9rem;
+          color:var(--ink-soft); margin:22px 4px 10px; }
+    .wall{ display:grid; grid-template-columns:repeat(auto-fill,minmax(152px,1fr)); gap:10px; }
+    .w{ background:var(--card); border:1.5px solid var(--line); border-radius:14px;
+        box-shadow:0 2px 0 var(--line); padding:11px 12px; border-left-width:5px; }
+    .w b{ display:block; font-family:var(--font-display); font-size:1.02rem; line-height:1.25;
+          overflow-wrap:break-word; }
+    .w span{ display:block; font-size:.74rem; color:var(--ink-soft); margin-top:1px; }
+    .w i{ display:block; font-size:.72rem; color:var(--ink-soft); font-style:normal;
+          opacity:.75; margin-top:5px; line-height:1.35; }
+    .w.ok{ border-left-color:var(--what); }
+    .w.q{ border-left-color:var(--do); background:#FFF9F5; }
+    .w.q b{ color:#B4442A; }
+    .w.na{ border-left-color:var(--line); opacity:.55; }
+    .key{ display:inline-block; margin-right:12px; white-space:nowrap; }
+    .key i{ display:inline-block; width:10px; height:14px; border-radius:3px;
+            vertical-align:-2px; margin-right:4px; }
+    .key i.ok{ background:var(--what); } .key i.q{ background:var(--do); }
+    .key i.na{ background:var(--line); }
+
+    /* 犹豫条 */
+    .hz{ display:flex; flex-direction:column; gap:10px; margin:12px 0 0; }
+    .h1{ display:flex; align-items:center; gap:10px; font-size:.9rem; }
+    .h1 .k{ flex:0 0 4.6em; color:var(--ink-soft); }
+    .h1 .t{ flex:1 1 auto; height:16px; border-radius:999px; background:rgba(120,104,84,.10); overflow:hidden; }
+    .h1 .t i{ display:block; height:100%; border-radius:999px; background:var(--read); }
+    .h1 .v{ flex:0 0 4.2em; text-align:right; font-family:var(--font-display); font-weight:700; }
+
+    /* 停顿地图 */
+    .tl svg{ display:block; width:100%; height:auto; overflow:visible; }
+    .legend{ display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; font-size:.82rem; color:var(--ink-soft); }
+    .legend i{ display:inline-block; width:14px; height:14px; border-radius:4px;
+               vertical-align:-2px; margin-right:5px; border:1px solid var(--line); }
+
+    /* 逐字比对 */
+    .diff{ display:flex; flex-direction:column; gap:12px; }
+    .d{
+      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+      box-shadow:0 2px 0 var(--line); padding:14px 16px;
+      display:grid; grid-template-columns:34px 1fr; gap:4px 12px; align-items:start;
+    }
+    .d .n{
+      grid-row:1 / span 3; width:34px; height:34px; border-radius:12px;
+      display:grid; place-items:center; background:var(--do-bg); color:var(--do);
+      font-family:var(--font-display); font-weight:800; font-size:.92rem;
+    }
+    .d .en{ font-family:var(--font-display); font-size:.98rem; overflow-wrap:break-word; }
+    .d .en .lbl{ color:var(--ink-soft); font-size:.76rem; margin-right:6px; font-family:var(--font-cn); }
+    .d .why{ font-size:.85rem; color:var(--ink-soft); }
+    ins{ background:var(--do-bg); color:#B4442A; text-decoration:none;
+         border-radius:5px; padding:0 3px; font-weight:700; }
+    del{ color:var(--ink-soft); text-decoration-thickness:1.5px; }
+    mark{ background:var(--what-bg); color:#1F7A55; border-radius:5px; padding:0 3px; }
+
+    /* 原文 / 意群 */
+    .text{ font-family:var(--font-display); font-size:1.02rem; line-height:2.1; }
+    .text .sl{ color:var(--who); font-weight:800; padding:0 3px; }
+
+    .todo{ display:flex; flex-direction:column; gap:12px; }
+    .todo .t{
+      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+      box-shadow:0 2px 0 var(--line); padding:14px 16px;
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .todo .t .ic{
+      flex:0 0 auto; width:34px; height:34px; border-radius:12px; display:grid; place-items:center;
+      background:var(--who-bg); font-size:1.05rem;
+    }
+    .todo .t p{ margin:0; }
+    .todo .t .h{ font-weight:600; }
+    .todo .t .d2{ font-size:.88rem; color:var(--ink-soft); margin-top:2px; }
+
+    .how{ font-size:.86rem; color:var(--ink-soft); }
+    .how p{ margin:0 0 8px; }
+    .how b{ color:var(--ink); }
+
+    .back{
+      display:inline-block; margin-top:34px; font-family:var(--font-display);
+      font-weight:700; text-decoration:none; color:var(--ink-soft);
+    }
+    .foot{ text-align:center; color:var(--ink-soft); font-size:.85rem; margin-top:40px; }
+
+    @media (max-width:520px){
+      .stats{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media print{
+      body{ background:#fff; }
+      .box,.stat,.d,.todo .t{ box-shadow:none; }
+      .back{ display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 微信分享缩略图：抓页面首张 ≥300px 的图；容器不能 display:none，否则会被跳过 -->
+  <div style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <img src="../../share.png" width="512" height="512" alt="" />
+  </div>
+
+  <main class="wrap">
+
+    <header class="hero">
+      <span class="eyebrow">READ ALOUD · 点读评价</span>
+      <h1>Wonders <b>G3</b></h1>
+      <p class="sub">The Great Wall of Los Angeles · Chapter 2 · 第 8–11 页 · 210 词 · 2026 年 8 月 25 日</p>
+    </header>
+
+    <section class="box score">
+      <span class="num"><b>43</b><span>／100</span></span>
+      <span class="say">
+        <p class="lead">这本书现在偏难半档到一档。</p>
+        <p class="tip">同一天、同一个孩子：读超8 是 96.4%，读这本是 89.0%。
+          低于 95% 意味着力气大多花在<b>猜词</b>上，顾不上读顺——不是他退步了，是书的台阶高了一级。</p>
+      </span>
+      <div class="bars" style="flex-basis:100%">
+        <div class="bar"><span class="nm">准确度</span><span class="track"><i class="fill" style="width:50%"></i></span><span class="val">15/30</span></div>
+        <div class="bar"><span class="nm">流利度</span><span class="track"><i class="fill" style="width:36.7%"></i></span><span class="val">11/30</span></div>
+        <div class="bar"><span class="nm">断句语调</span><span class="track"><i class="fill" style="width:40%"></i></span><span class="val">10/25</span></div>
+        <div class="bar"><span class="nm">发音</span><span class="track"><i class="fill" style="width:46.7%"></i></span><span class="val">7/15</span></div>
+      </div>
+    </section>
+
+    <h2 class="mini-h"><span>📊</span> 四个数字</h2>
+    <div class="stats">
+      <div class="stat s2"><b>89.0%</b><span>读对 187/210 词</span></div>
+      <div class="stat s2"><b>52</b><span>每分钟正确词数</span></div>
+      <div class="stat s3"><b>3<small>分35</small></b><span>读完三页</span></div>
+      <div class="stat s4"><b>107</b><span>次停顿</span></div>
+    </div>
+
+    <h2 class="mini-h"><span>⚖️</span> 同一天，两本书</h2>
+    <section class="box cmp">
+      <div class="r"><span class="k">准确率</span><span class="v">超8 <s>96.4%</s> ／ Wonders 89.0%</span><span class="d down">低 7.4</span></div>
+      <div class="r"><span class="k">正确词/分</span><span class="v">超8 <s>74</s> ／ Wonders 52</span><span class="d down">慢 30%</span></div>
+      <div class="r"><span class="k">几个词一停</span><span class="v">超8 <s>2.8 词</s> ／ Wonders 2.0 词</span><span class="d down">退回一个词一蹦</span></div>
+      <p class="sc-note" style="margin-top:4px">
+        <b>分数是给「这个孩子 + 这本书」的，不是给孩子的。</b>换一本书数字就会变。
+        跨本比只用来判断<b>书难不难</b>；要看进步，得同一本书跨天比。
+      </p>
+    </section>
+
+    <h2 class="mini-h"><span>📉</span> 越往后错得越多</h2>
+    <section class="box">
+      <div class="hz">
+        <div class="h1"><span class="k">8 页上</span><span class="t"><i style="width:94.5%"></i></span><span class="v">94.5%</span></div>
+        <div class="h1"><span class="k">8 页下</span><span class="t"><i style="width:92.5%"></i></span><span class="v">92.5%</span></div>
+        <div class="h1"><span class="k">10 页</span><span class="t"><i style="width:87.1%"></i></span><span class="v">87.1%</span></div>
+        <div class="h1"><span class="k">11 页</span><span class="t"><i style="width:83%"></i></span><span class="v">83.0%</span></div>
+      </div>
+      <p class="sc-note">
+        四段的准确率一路往下：<b>94.5 → 92.5 → 87.1 → 83.0</b>。
+        但速度基本没变（每分钟 46–53 个词）——也就是说，读到后面吃力了，他<b>没有放慢，而是硬读过去</b>。
+        第一段最快（63），后面稳住不动，错却越攒越多。
+        <b>3 分半一口气读完，对现在的他有点长。</b>
+      </p>
+    </section>
+
+    <h2 class="mini-h"><span>⏱</span> 这 3 分 35 秒长什么样</h2>
+    <section class="box tl">
+      <svg viewBox="0 -4 1000 94" role="img" aria-label="214 秒朗读的停顿分布：绿色是发声，蓝色是句末停顿，橙色和灰色是句中停顿">
+        <rect x="0" y="26.0" width="1000" height="40" rx="8" fill="var(--tl-speech)"/>
+        <rect x="2.47" y="26.0" width="1.7200000000000002" height="40" fill="var(--tl-mid)"/>
+        <rect x="35.51" y="26.0" width="1.4400000000000048" height="40" fill="var(--tl-mid)"/>
+        <rect x="44.69" y="26.0" width="3.5900000000000034" height="40" fill="var(--tl-mid)"/>
+        <rect x="66.31" y="26.0" width="1.6799999999999926" height="40" fill="var(--tl-mid)"/>
+        <rect x="72.23" y="26.0" width="2.280000000000001" height="40" fill="var(--tl-mid)"/>
+        <rect x="76.33" y="26.0" width="2.700000000000003" height="40" fill="var(--tl-mid)"/>
+        <rect x="81.97" y="26.0" width="2.980000000000004" height="40" fill="var(--tl-mid)"/>
+        <rect x="97.16" y="26.0" width="2.049999999999997" height="40" fill="var(--tl-mid)"/>
+        <rect x="106.1" y="26.0" width="2.1500000000000057" height="40" fill="var(--tl-mid)"/>
+        <rect x="124.51" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="125.86" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="139.98" y="26.0" width="1.7300000000000182" height="40" fill="var(--tl-mid)"/>
+        <rect x="143.85" y="26.0" width="2.280000000000001" height="40" fill="var(--tl-mid)"/>
+        <rect x="148.88" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="152.42" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="156.62" y="26.0" width="3.210000000000008" height="40" fill="var(--tl-mid)"/>
+        <rect x="162.58" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="164.4" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="181.97" y="26.0" width="1.8100000000000023" height="40" fill="var(--tl-mid)"/>
+        <rect x="198.56" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="211.18" y="26.0" width="4.849999999999994" height="40" fill="var(--tl-long)"/>
+        <rect x="216.87" y="26.0" width="3.1200000000000045" height="40" fill="var(--tl-mid)"/>
+        <rect x="223.63" y="26.0" width="1.670000000000016" height="40" fill="var(--tl-mid)"/>
+        <rect x="231.17" y="26.0" width="2.5200000000000102" height="40" fill="var(--tl-end)"/>
+        <rect x="233.88" y="26.0" width="2.930000000000007" height="40" fill="var(--tl-mid)"/>
+        <rect x="237.23" y="26.0" width="3.030000000000001" height="40" fill="var(--tl-mid)"/>
+        <rect x="244.5" y="26.0" width="3.6399999999999864" height="40" fill="var(--tl-mid)"/>
+        <rect x="255.41" y="26.0" width="4.140000000000015" height="40" fill="var(--tl-long)"/>
+        <rect x="269.62" y="26.0" width="3.8700000000000045" height="40" fill="var(--tl-end)"/>
+        <rect x="304.89" y="26.0" width="1.8199999999999932" height="40" fill="var(--tl-mid)"/>
+        <rect x="312.77" y="26.0" width="1.910000000000025" height="40" fill="var(--tl-mid)"/>
+        <rect x="321.44" y="26.0" width="6.009999999999991" height="40" fill="var(--tl-end)"/>
+        <rect x="354.29" y="26.0" width="3.9599999999999795" height="40" fill="var(--tl-end)"/>
+        <rect x="358.43" y="26.0" width="2.990000000000009" height="40" fill="var(--tl-mid)"/>
+        <rect x="363.14" y="26.0" width="2.4700000000000273" height="40" fill="var(--tl-mid)"/>
+        <rect x="373.9" y="26.0" width="2.240000000000009" height="40" fill="var(--tl-mid)"/>
+        <rect x="378.24" y="26.0" width="1.9599999999999795" height="40" fill="var(--tl-mid)"/>
+        <rect x="382.39" y="26.0" width="2.6100000000000136" height="40" fill="var(--tl-mid)"/>
+        <rect x="389.98" y="26.0" width="2.419999999999959" height="40" fill="var(--tl-mid)"/>
+        <rect x="398.74" y="26.0" width="1.8700000000000045" height="40" fill="var(--tl-mid)"/>
+        <rect x="406.76" y="26.0" width="7.78000000000003" height="40" fill="var(--tl-long)"/>
+        <rect x="420.32" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="429.68" y="26.0" width="4.759999999999991" height="40" fill="var(--tl-long)"/>
+        <rect x="452.19" y="26.0" width="2.0500000000000114" height="40" fill="var(--tl-end)"/>
+        <rect x="456.9" y="26.0" width="2.980000000000018" height="40" fill="var(--tl-end)"/>
+        <rect x="460.21" y="26.0" width="6.150000000000034" height="40" fill="var(--tl-long)"/>
+        <rect x="476.79" y="26.0" width="2.609999999999957" height="40" fill="var(--tl-mid)"/>
+        <rect x="484.11" y="26.0" width="1.7199999999999704" height="40" fill="var(--tl-mid)"/>
+        <rect x="490.73" y="26.0" width="3.349999999999966" height="40" fill="var(--tl-mid)"/>
+        <rect x="494.18" y="26.0" width="1.9499999999999886" height="40" fill="var(--tl-mid)"/>
+        <rect x="503.22" y="26.0" width="1.579999999999984" height="40" fill="var(--tl-mid)"/>
+        <rect x="505.31" y="26.0" width="4.149999999999977" height="40" fill="var(--tl-long)"/>
+        <rect x="510.67" y="26.0" width="1.589999999999975" height="40" fill="var(--tl-mid)"/>
+        <rect x="518.69" y="26.0" width="3.4899999999998954" height="40" fill="var(--tl-mid)"/>
+        <rect x="528.52" y="26.0" width="1.7699999999999818" height="40" fill="var(--tl-mid)"/>
+        <rect x="541.8" y="26.0" width="3.7700000000000955" height="40" fill="var(--tl-long)"/>
+        <rect x="547.2" y="26.0" width="2.3799999999999955" height="40" fill="var(--tl-mid)"/>
+        <rect x="551.72" y="26.0" width="4.240000000000009" height="40" fill="var(--tl-long)"/>
+        <rect x="565.66" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="572.37" y="26.0" width="1.9500000000000455" height="40" fill="var(--tl-mid)"/>
+        <rect x="577.12" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="580.75" y="26.0" width="1.5399999999999636" height="40" fill="var(--tl-mid)"/>
+        <rect x="587.14" y="26.0" width="3.6299999999999955" height="40" fill="var(--tl-mid)"/>
+        <rect x="596.92" y="26.0" width="4.060000000000059" height="40" fill="var(--tl-long)"/>
+        <rect x="607.55" y="26.0" width="3.6299999999999955" height="40" fill="var(--tl-mid)"/>
+        <rect x="620.64" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="636.63" y="26.0" width="3.3500000000000227" height="40" fill="var(--tl-mid)"/>
+        <rect x="642.87" y="26.0" width="2.5599999999999454" height="40" fill="var(--tl-mid)"/>
+        <rect x="645.48" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="651.16" y="26.0" width="2.1000000000000227" height="40" fill="var(--tl-mid)"/>
+        <rect x="666.68" y="26.0" width="3.080000000000041" height="40" fill="var(--tl-mid)"/>
+        <rect x="673.81" y="26.0" width="2.980000000000018" height="40" fill="var(--tl-mid)"/>
+        <rect x="688.12" y="26.0" width="1.8600000000000136" height="40" fill="var(--tl-mid)"/>
+        <rect x="695.25" y="26.0" width="1.580000000000041" height="40" fill="var(--tl-mid)"/>
+        <rect x="696.88" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="700.23" y="26.0" width="2.009999999999991" height="40" fill="var(--tl-mid)"/>
+        <rect x="708.48" y="26.0" width="1.67999999999995" height="40" fill="var(--tl-mid)"/>
+        <rect x="727.31" y="26.0" width="3.9600000000000364" height="40" fill="var(--tl-long)"/>
+        <rect x="738.63" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="741.89" y="26.0" width="1.7300000000000182" height="40" fill="var(--tl-mid)"/>
+        <rect x="754.01" y="26.0" width="2.509999999999991" height="40" fill="var(--tl-mid)"/>
+        <rect x="758.71" y="26.0" width="1.7300000000000182" height="40" fill="var(--tl-end)"/>
+        <rect x="763.84" y="26.0" width="9.409999999999968" height="40" fill="var(--tl-end)"/>
+        <rect x="785.09" y="26.0" width="1.7199999999999136" height="40" fill="var(--tl-mid)"/>
+        <rect x="799.25" y="26.0" width="7.830000000000041" height="40" fill="var(--tl-long)"/>
+        <rect x="808.2" y="26.0" width="1.5399999999999636" height="40" fill="var(--tl-mid)"/>
+        <rect x="818.08" y="26.0" width="2.189999999999941" height="40" fill="var(--tl-mid)"/>
+        <rect x="833.64" y="26.0" width="2.9400000000000546" height="40" fill="var(--tl-mid)"/>
+        <rect x="838.3" y="26.0" width="2.3799999999999955" height="40" fill="var(--tl-mid)"/>
+        <rect x="852.94" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="864.31" y="26.0" width="1.6700000000000728" height="40" fill="var(--tl-mid)"/>
+        <rect x="871.48" y="26.0" width="2.6100000000000136" height="40" fill="var(--tl-mid)"/>
+        <rect x="876.51" y="26.0" width="1.82000000000005" height="40" fill="var(--tl-mid)"/>
+        <rect x="878.7" y="26.0" width="5.269999999999982" height="40" fill="var(--tl-long)"/>
+        <rect x="887.74" y="26.0" width="4.42999999999995" height="40" fill="var(--tl-long)"/>
+        <rect x="904.57" y="26.0" width="7.829999999999927" height="40" fill="var(--tl-long)"/>
+        <rect x="921.67" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="926.33" y="26.0" width="1.4" height="40" fill="var(--tl-mid)"/>
+        <rect x="937.19" y="26.0" width="1.5799999999999272" height="40" fill="var(--tl-mid)"/>
+        <rect x="943.1" y="26.0" width="2.7099999999999227" height="40" fill="var(--tl-mid)"/>
+        <rect x="946.09" y="26.0" width="2.1399999999999864" height="40" fill="var(--tl-mid)"/>
+        <rect x="953.4" y="26.0" width="2.560000000000059" height="40" fill="var(--tl-mid)"/>
+        <rect x="958.2" y="26.0" width="2.3299999999999272" height="40" fill="var(--tl-mid)"/>
+        <rect x="964.91" y="26.0" width="1.490000000000009" height="40" fill="var(--tl-mid)"/>
+        <rect x="973.3" y="26.0" width="2.1900000000000546" height="40" fill="var(--tl-mid)"/>
+        <rect x="981.78" y="26.0" width="7.5" height="40" fill="var(--tl-long)"/>
+        <rect x="994.83" y="26.0" width="5.079999999999927" height="40" fill="var(--tl-end)"/>
+        <rect x="0" y="26.0" width="1000" height="40" rx="8" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+        <line x1="0.0" y1="66.0" x2="0.0" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="0.0" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="start">0s</text>
+        <line x1="93.2" y1="66.0" x2="93.2" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="93.2" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="middle">20s</text>
+        <line x1="186.39" y1="66.0" x2="186.39" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="186.39" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="middle">40s</text>
+        <line x1="279.59" y1="66.0" x2="279.59" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="279.59" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="middle">60s</text>
+        <line x1="372.79" y1="66.0" x2="372.79" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="372.79" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="middle">80s</text>
+        <line x1="465.98" y1="66.0" x2="465.98" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="465.98" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="middle">100s</text>
+        <line x1="559.18" y1="66.0" x2="559.18" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="559.18" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="middle">120s</text>
+        <line x1="652.38" y1="66.0" x2="652.38" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="652.38" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="middle">140s</text>
+        <line x1="745.57" y1="66.0" x2="745.57" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="745.57" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="middle">160s</text>
+        <line x1="838.77" y1="66.0" x2="838.77" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="838.77" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="middle">180s</text>
+        <line x1="931.97" y1="66.0" x2="931.97" y2="71.0" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="931.97" y="86.0" font-size="15" fill="var(--ink-soft)" text-anchor="end">200s</text>
+        <path d="M763.84 18.0 L763.84 12.0 L773.25 12.0 L773.25 18.0" fill="none" stroke="var(--tl-long)" stroke-width="2"/>
+        <text x="768.5450000000001" y="6.0" font-size="16" font-weight="700" fill="var(--tl-long)" text-anchor="middle">换页 2.0 秒</text>
+      </svg>
+      <div class="legend">
+        <span><i style="background:var(--tl-speech)"></i>在读</span>
+        <span><i style="background:var(--tl-end)"></i>句末停顿 · 9 次</span>
+        <span><i style="background:var(--tl-long)"></i>句中长停 ≥0.8 秒 · 15 次</span>
+        <span><i style="background:var(--tl-mid)"></i>句中短停 · 83 次</span>
+      </div>
+      <p style="font-size:.9rem;margin:14px 0 0">
+        107 次停顿，平均 <b>2.0 个词</b>就断一次——比读超8 时（2.8–3.0 词）退回去一截。
+        但几乎没有大卡壳：超过 2 秒的只有 1 次（换页）。<b>他一直在往前走，只是走得碎。</b>
+      </p>
+    </section>
+
+    <h2 class="mini-h"><span>🔍</span> 23 处错，分成四类看</h2>
+    <div class="diff">
+
+      <div class="d">
+        <span class="n">4</span>
+        <span class="en"><span class="lbl">词尾 -s</span><mark>murals</mark> · <mark>events</mark> · <mark>parts</mark> · <mark>images</mark></span>
+        <span class="en"><span class="lbl">实读</span><ins>mural</ins> · <ins>event</ins> · <ins>part</ins> · <ins>image</ins></span>
+        <span class="why"><b>第四份报告里第四次出现同一个问题了</b>。超8 那边是 faults、these words，
+          这里是四个复数一个不剩全丢了。这是他最稳定、也最好抠的一个毛病。</span>
+      </div>
+
+      <div class="d">
+        <span class="n">7</span>
+        <span class="en"><span class="lbl">生词</span><mark>Spanish</mark> · <mark>settled</mark> · <mark>immigrants</mark> · <mark>pollution</mark> · <mark>ordinary</mark> · <mark>sun</mark> · <mark>rain</mark></span>
+        <span class="en"><span class="lbl">实读</span><ins>foolish</ins> · <ins>startled</ins> · <ins>in me</ins> · <ins>pull</ins> · <ins>（跳过）</ins> · <ins>some</ins> · <ins>ring</ins></span>
+        <span class="why">全是撑起意思的实词。读成 foolish、in me 之后，那两句话的意思就散了——
+          这七个词是这份报告里最值得先解决的。</span>
+      </div>
+
+      <div class="d">
+        <span class="n">2</span>
+        <span class="en"><span class="lbl">数字</span><mark>40</mark> years old · the <mark>1960s</mark></span>
+        <span class="en"><span class="lbl">实读</span><ins>14</ins> years old · the <ins>196th</ins></span>
+        <span class="why">40 读成 14 是很常见的一对（forty / fourteen）。年代 1960s 还没见过读法。</span>
+      </div>
+
+      <div class="d">
+        <span class="n">10</span>
+        <span class="en"><span class="lbl">小词和词形</span>men · women · half · from · on · Los · getting · fixed · mural ×2</span>
+        <span class="en"><span class="lbl">实读</span>man · woman · have · for · （漏）· （漏）· guiding · fix · <ins>mirror</ins> ×2</span>
+        <span class="why">和第 67 页一模一样：读顺了以后眼睛往前跑，小词被带过去。
+          mural 全篇出现 9 次，读对 7 次、读成 mirror 2 次——高频词还没完全稳住。</span>
+      </div>
+
+    </div>
+
+    <h2 class="mini-h"><span>🌟</span> 读得好的地方</h2>
+    <section class="box">
+      <p style="margin:0">
+        <b>contributed</b> 和 <b>equal rights</b> 都读对了——这两个是他自己在书上标了中文的词，标了就记住了。<br>
+        “They came from many different cultures.” “The mural is not finished yet.” 整句一次读对。<br>
+        <span style="color:var(--ink-soft);font-size:.9rem">
+          开头把 mural 读成 mirror，自己马上刹住改了回来——这是他连着第三份报告出现自我纠正了。
+          还有：3 分半没停下来，210 个词一口气读完了。</span>
+      </p>
+    </section>
+
+    <h2 class="mini-h"><span>✏️</span> 下次试试这三件事</h2>
+    <div class="todo">
+      <div class="t">
+        <span class="ic">🎧</span>
+        <span><p class="h">这本先当「听读」，别当「朗读」</p>
+          <p class="d2">89% 属于偏难档，硬练朗读收效有限。先听着音频指读两遍，等熟了再自己读——
+            超8 那本 96% 才是适合他练朗读的台阶。</p></span>
+      </div>
+      <div class="t">
+        <span class="ic">✂️</span>
+        <span><p class="h">3 分半拆成两次读</p>
+          <p class="d2">准确率从 94.5% 掉到 83%，掉在后半段。第 8 页读一次，第 10–11 页读一次，中间歇一下。</p></span>
+      </div>
+      <div class="t">
+        <span class="ic">🐝</span>
+        <span><p class="h">先扫七个生词，再开口</p>
+          <p class="d2">Spanish · settled · immigrants · pollution · ordinary · sun · rain。
+            读之前先把这七个认一遍，这一段的意思就立住了。</p></span>
+      </div>
+    </div>
+
+    <h2 class="mini-h"><span>📍</span> 三把尺子上的位置</h2>
+    <section class="box scales">
+
+      <p class="sc-h">准确率 · Fountas &amp; Pinnell 分档</p>
+      <svg viewBox="0 -32 1000 240" role="img" aria-label="准确率 89.0% 落在 Fountas &amp; Pinnell 的哪一档">
+      <rect x="0.0" y="34" width="583.3" height="64" fill="var(--sc-hard)"/>
+      <text x="291.65" y="77.0" font-size="32" fill="var(--ink)" text-anchor="middle" opacity=".7">偏难</text>
+      <rect x="583.3" y="34" width="250.0" height="64" fill="var(--sc-inst)"/>
+      <text x="708.3" y="77.0" font-size="32" fill="var(--ink)" text-anchor="middle" opacity=".7">要带一带</text>
+      <rect x="833.3" y="34" width="166.70000000000005" height="64" fill="var(--sc-indep)"/>
+      <text x="916.65" y="77.0" font-size="32" fill="var(--ink)" text-anchor="middle" opacity=".7">能自己读</text>
+      <rect x="0" y="34" width="1000" height="64" rx="10" fill="none" stroke="var(--line)" stroke-width="2"/>
+      <line x1="583.3" y1="34" x2="583.3" y2="98" stroke="var(--card)" stroke-width="4"/>
+      <text x="583.3" y="132" font-size="28" fill="var(--ink-soft)" text-anchor="middle">95%</text>
+      <line x1="833.3" y1="34" x2="833.3" y2="98" stroke="var(--card)" stroke-width="4"/>
+      <text x="833.3" y="132" font-size="28" fill="var(--ink-soft)" text-anchor="middle">98%</text>
+      <path d="M83.3 30 l-13 -18 h26 z" fill="var(--read)"/>
+      <text x="83.3" y="0" font-size="36" font-weight="700" fill="var(--read)" text-anchor="middle">本页 89.0%</text>
+      </svg>
+      <p class="sc-note">89.0% —— <b>掉出「要带一带」这一档了</b>。按 Fountas &amp; Pinnell，低于 95% 就算「偏难」，意思是这本书现在拿来<b>朗读练习</b>收效有限：一多半力气花在猜词上，顾不上读顺。同一天读超8 是 96.4%，两本书差了整整一档。</p>
+
+      <p class="sc-h sc-sep">每分钟正确词数 · Hasbrouck &amp; Tindal 2017 秋季常模</p>
+      <svg viewBox="0 -32 1000 470" role="img" aria-label="每分钟正确词数 52 与美国母语学生各年级秋季常模的比较">
+      <text x="158.0" y="67.0" font-size="32" fill="var(--ink-soft)" text-anchor="end">二年级</text>
+      <rect x="275.7" y="45" width="381.7" height="22" rx="6" fill="var(--sc-band1)"/>
+      <rect x="332.1" y="34" width="208.19999999999993" height="44" rx="8" fill="var(--sc-band2)"/>
+      <line x1="392.8" y1="29" x2="392.8" y2="83" stroke="var(--sc-mid)" stroke-width="5"/>
+      <text x="158.0" y="127.0" font-size="32" fill="var(--ink-soft)" text-anchor="end">三年级</text>
+      <rect x="349.5" y="105" width="407.6" height="22" rx="6" fill="var(--sc-band1)"/>
+      <rect x="431.9" y="94" width="195.10000000000002" height="44" rx="8" fill="var(--sc-band2)"/>
+      <line x1="536.0" y1="89" x2="536.0" y2="143" stroke="var(--sc-mid)" stroke-width="5"/>
+      <text x="158.0" y="187.0" font-size="32" fill="var(--ink-soft)" text-anchor="end">四年级</text>
+      <rect x="436.2" y="165" width="403.3" height="22" rx="6" fill="var(--sc-band1)"/>
+      <rect x="501.3" y="154" width="216.8" height="44" rx="8" fill="var(--sc-band2)"/>
+      <line x1="583.7" y1="149" x2="583.7" y2="203" stroke="var(--sc-mid)" stroke-width="5"/>
+      <text x="158.0" y="247.0" font-size="32" fill="var(--ink-soft)" text-anchor="end">五年级</text>
+      <rect x="453.6" y="225" width="498.69999999999993" height="22" rx="6" fill="var(--sc-band1)"/>
+      <rect x="553.3" y="214" width="286.20000000000005" height="44" rx="8" fill="var(--sc-band2)"/>
+      <line x1="700.8" y1="209" x2="700.8" y2="263" stroke="var(--sc-mid)" stroke-width="5"/>
+      <line x1="401.5" y1="6" x2="401.5" y2="266" stroke="var(--tl-long)" stroke-width="4" stroke-dasharray="9 7"/>
+      <text x="401.5" y="-4" font-size="36" font-weight="700" fill="var(--tl-long)" text-anchor="middle">本页 52</text>
+      <line x1="176.0" y1="278" x2="1000" y2="278" stroke="var(--line)" stroke-width="2"/>
+      <line x1="176.0" y1="278" x2="176.0" y2="287" stroke="var(--ink-soft)" stroke-width="2"/>
+      <text x="176.0" y="318" font-size="28" fill="var(--ink-soft)" text-anchor="middle">0</text>
+      <line x1="392.8" y1="278" x2="392.8" y2="287" stroke="var(--ink-soft)" stroke-width="2"/>
+      <text x="392.8" y="318" font-size="28" fill="var(--ink-soft)" text-anchor="middle">50</text>
+      <line x1="609.7" y1="278" x2="609.7" y2="287" stroke="var(--ink-soft)" stroke-width="2"/>
+      <text x="609.7" y="318" font-size="28" fill="var(--ink-soft)" text-anchor="middle">100</text>
+      <line x1="826.5" y1="278" x2="826.5" y2="287" stroke="var(--ink-soft)" stroke-width="2"/>
+      <text x="826.5" y="318" font-size="28" fill="var(--ink-soft)" text-anchor="middle">150</text>
+      <text x="1000" y="318" font-size="26" fill="var(--ink-soft)" text-anchor="end">WCPM</text>
+      <rect x="176.0" y="341" width="48" height="25" rx="6" fill="var(--sc-band2)"/>
+      <text x="242.0" y="364" font-size="28" fill="var(--ink-soft)">中间一半 · 25–75 百分位</text>
+      <line x1="198.0" y1="389" x2="198.0" y2="420" stroke="var(--sc-mid)" stroke-width="5"/>
+      <text x="242.0" y="416" font-size="28" fill="var(--ink-soft)">一半人在这条线上 · 50 百分位</text>
+      </svg>
+      <p class="sc-note">52 个正确词/分钟。<b>这一份的对标是硬的</b>：Wonders 就是美国本土三年级教材，所以下面「三年级」那一行不是参照系，是同一批孩子读同一个年级的书。52 落在<b>三年级秋季的 10–25 百分位</b>之间。</p>
+
+      <p class="sc-h sc-sep">断句语调 · NAEP 朗读流利度 4 级</p>
+      <div class="naep">
+        <div class="nv"><span class="lv">4</span><span class="ds">整句成组读，有语调、有表情</span></div>
+        <div class="nv"><span class="lv">3</span><span class="ds">三四个词一组，断句基本合在意思上</span></div>
+        <div class="nv now"><span class="lv">2</span><span class="ds">两个词一组，偶尔三四个，还没什么语调</span><span class="you">在这里</span></div>
+        <div class="nv"><span class="lv">1</span><span class="ds">一个词一个词往外蹦</span></div>
+      </div>
+      <p class="sc-note">平均 2.0 个词一组，是第 2 级的下沿——比读超8 时（2.8–3.0）退回去了一截。书一难，句子就重新变成一个词一个词往外蹦。</p>
+
+    </section>
+
+    <h2 class="mini-h"><span>📐</span> 分数是怎么来的</h2>
+    <section class="box how">
+      <p><b>准确率 89.0%</b>（读对 187 / 全文 210 词，含第 11 页标题）。替换、漏读、读错音计错；
+        插入的词和退回去重读只算不流利、不计错。Language Detective 方框和图片说明没读，不计入。</p>
+      <p><b>每分钟正确词数 52</b>（WCPM）= 读对的词数 ÷ 214.6 秒 × 60。
+        <b>这一份的年级对标是硬的</b>——Wonders 本来就是美国本土三年级教材，
+        Hasbrouck &amp; Tindal 的三年级常模在这里是同类相比，不是借来的参照。</p>
+      <p><b>断句</b>取 107 次停顿里断在句子中间的那 98 次，平均 2.0 个词一组。</p>
+      <p style="margin-bottom:0">录音 214.6 秒，用 macOS 本机语音框架离线转写并取逐词时间戳，再用能量包络找出所有 ≥0.25 秒的停顿。
+        <b>发音一项是从转写结果推断的</b>，不如亲耳听准。这一篇错得多、生词密，
+        个别判定（比如 sun→some、rain→ring）建议你抽听一下 165–185 秒那一段。</p>
+    </section>
+
+    <a class="back" href="../">← 返回点读评价</a>
+
+    <p class="foot">点读评价 · 一段录音，一张成绩单 🎤</p>
+    <script src="../../beian.js"></script>
+    <script src="../../busuanzi.js"></script>
+
+  </main>
+
+</body>
+</html>
