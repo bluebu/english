@@ -23,7 +23,8 @@ ROOT = Path(__file__).resolve().parent.parent
 REPORTS, DAILY = ROOT / "reports", ROOT / "daily"
 SPECS = ROOT.parent / "homework" / "specs"
 
-FIELDS = ("date", "order", "score", "title", "sub", "words", "secs", "acc", "wcpm")
+FIELDS = ("date", "order", "cat", "score", "title", "sub", "words", "secs", "acc", "wcpm")
+CAT_ORDER = ("单词", "超8", "G3", "语法")
 
 
 def read_meta(path):
@@ -39,15 +40,22 @@ def read_meta(path):
 
 
 def homework_items(date):
-    """从当天的打卡 spec 里挑出 [点读] / [读] 两类条目，抄成纯文本。"""
+    """从当天的打卡 spec 里挑出会出报告的那几项，抄成纯文本。
+
+    [练] 下面还有 AI 之类不评的条目，所以只留标题带「抄写」的那一条。
+    """
     f = SPECS / (date.replace("-", "") + ".txt")
     if not f.exists():
         return []
     items, cur = [], None
     for line in f.read_text().split("\n"):
-        m = re.match(r"\[(点读|读)\]\s*(.+)", line.strip())
+        m = re.match(r"\[(点读|读|语法|练)\]\s*(.+)", line.strip())
         if m:
-            cur = {"kind": m.group(1), "title": m.group(2).split("|")[0].strip(), "subs": []}
+            kind, title = m.group(1), m.group(2).split("|")[0].strip()
+            if kind == "练" and "抄写" not in title:
+                cur = None
+                continue
+            cur = {"kind": kind, "title": title, "subs": []}
             items.append(cur)
             continue
         if cur is not None:
@@ -70,7 +78,9 @@ def zh_date(iso):
 
 def build(date):
     reports = [m for m in (read_meta(p) for p in sorted(REPORTS.glob("*.html"))) if m]
-    day = sorted([r for r in reports if r["date"] == date], key=lambda r: int(r["order"]))
+    rank = lambda c: CAT_ORDER.index(c) if c in CAT_ORDER else len(CAT_ORDER)
+    day = sorted([r for r in reports if r["date"] == date],
+                 key=lambda r: (rank(r["cat"]), int(r["order"])))
     if not day:
         sys.exit(f"{date} 没有报告")
 
@@ -84,14 +94,18 @@ def build(date):
     acc = correct / words * 100
     wcpm = correct / sum(float(r["secs"]) for r in passages) * 60
 
-    rows = []
+    rows, seen = [], None
     for r in day:
+        if r["cat"] != seen:                       # 每换一类插一条小标签
+            seen = r["cat"]
+            rows.append(f'        <p class="cat">{r["cat"]}</p>')
+        ac = f'{r["acc"]}%' if r["acc"] != "-" else "—"
         wc = r["wcpm"] if r["wcpm"] != "-" else "—"
         rows.append(f'''        <a class="r" href="{html.escape(r["href"], quote=True)}">
           <span class="n">{r["score"]}</span>
           <span class="tt"><span class="zh">{r["title"]}</span>
             <span class="en">{r["sub"]}</span></span>
-          <span class="m"><b>{r["acc"]}%</b><i>准确率</i></span>
+          <span class="m"><b>{ac}</b><i>正确率</i></span>
           <span class="m"><b>{wc}</b><i>词/分</i></span>
         </a>''')
 
@@ -103,10 +117,10 @@ def build(date):
             subs = ("<ul>" + "".join(f"<li>{html.escape(s)}</li>" for s in it["subs"]) + "</ul>") if it["subs"] else ""
             lis.append(f'<li><b>[{it["kind"]}]</b> {html.escape(it["title"])}{subs}</li>')
         hw_html = f'''
-    <h2 class="mini-h"><span>📋</span> 今天打卡单上的朗读部分</h2>
+    <h2 class="mini-h"><span>📋</span> 今天打卡单上，这几项出了报告</h2>
     <section class="box hw">
       <ul class="hwl">{"".join(lis)}</ul>
-      <p class="sc-note">上面每一项都录了音、出了报告，全部完成 ✓</p>
+      <p class="sc-note">上面每一项都做完了，各出了一份报告 ✓</p>
     </section>
 '''
     todos = "\n".join(

@@ -19,7 +19,7 @@ REPORTS = ROOT / "reports"
 DAILY = ROOT / "daily"
 INDEX = ROOT / "index.html"
 
-FIELDS = ("date", "order", "score", "title", "sub")
+FIELDS = ("date", "order", "cat", "score", "title", "sub")
 
 
 def read_meta(path: Path):
@@ -34,6 +34,14 @@ def read_meta(path: Path):
     return got
 
 
+# 一天之内报告按这个顺序分组；没列到的分类排在最后
+CAT_ORDER = ("单词", "超8", "G3", "语法")
+
+
+def cat_rank(c):
+    return CAT_ORDER.index(c) if c in CAT_ORDER else len(CAT_ORDER)
+
+
 def zh_date(iso: str) -> str:
     y, m, d = iso.split("-")
     return f"{int(m)}月{int(d)}日"
@@ -46,14 +54,18 @@ def render(reports):
 
     out = ["<!-- LIST:BEGIN 由 tools/build_index.py 自动生成，别手改 -->"]
     for i, date in enumerate(sorted(days, reverse=True)):          # 新的一天在最前
-        items = sorted(days[date], key=lambda r: int(r["order"]))  # 一天之内按课本顺序
+        items = sorted(days[date], key=lambda r: (cat_rank(r["cat"]), int(r["order"])))
         cls = "day first" if i == 0 else "day"
         # 当天有小结页就在日期行右边挂个入口，没有就不挂
         link = (f'<a href="./daily/{date}.html">当日小结 →</a>'
                 if (DAILY / f"{date}.html").exists() else "")
         out.append(f'      <div class="{cls}"><b>{zh_date(date)}</b>'
                    f'<span>{len(items)} 份</span><hr>{link}</div>')
+        seen_cat = None
         for r in items:
+            if r["cat"] != seen_cat:                               # 每换一类插一条小标签
+                seen_cat = r["cat"]
+                out.append(f'      <p class="cat">{r["cat"]}</p>')
             out.append(f'''      <div class="row">
         <span class="n">{r["score"]}</span>
         <span class="tt"><span class="zh">{r["title"]}</span>

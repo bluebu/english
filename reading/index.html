@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>点读评价</title>
-  <meta name="description" content="把一段朗读录音变成一张成绩单：逐字比对读错在哪，看看停顿都断在什么地方，再挑三件下次可以试试的小事。" />
+  <title>打卡评价</title>
+  <meta name="description" content="每天打卡做完的作业，一样一样看：朗读逐字比对，语法逐题归因，字迹逐条打分，再挑三件明天可以试试的小事。" />
   <meta name="theme-color" content="#FBF6EB" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
   <!-- 分享卡片：og 文案照抄本页 <title>/<meta description>，改描述时两处同步；微信读 <title>+页面首图，QQ/iMessage 等读 og（og:image 必须绝对地址） -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="我的英语小屋" />
-  <meta property="og:title" content="点读评价" />
-  <meta property="og:description" content="把一段朗读录音变成一张成绩单：逐字比对读错在哪，看看停顿都断在什么地方，再挑三件下次可以试试的小事。" />
+  <meta property="og:title" content="打卡评价" />
+  <meta property="og:description" content="每天打卡做完的作业，一样一样看：朗读逐字比对，语法逐题归因，字迹逐条打分，再挑三件明天可以试试的小事。" />
   <meta property="og:url" content="https://english.hi-ruby.com/reading/" />
   <meta property="og:image" content="https://english.hi-ruby.com/share.png" />
   <meta name="twitter:card" content="summary" />
@@ -80,6 +80,11 @@
             border-radius:999px; padding:4px 11px; white-space:nowrap; }
     .day a:active{ transform:translateY(1px); }
 
+    .cat{ margin:14px 2px 2px; font-family:var(--font-display); font-weight:700;
+          font-size:.78rem; letter-spacing:.06em; color:var(--read);
+          background:var(--read-bg); border-radius:999px; padding:3px 11px;
+          align-self:flex-start; }
+    .cat:first-of-type{ margin-top:2px; }
     .list{ display:flex; flex-direction:column; gap:12px; }
     .row{
       display:flex; align-items:center; gap:12px;
@@ -128,26 +133,27 @@
   <main class="wrap">
 
     <header class="hero">
-      <span class="eyebrow">READ ALOUD · 点读评价</span>
-      <h1>点读<span style="color:var(--read)">评价</span></h1>
-      <p class="sub">读一段，录下来，看看这一遍读成了什么样</p>
+      <span class="eyebrow">DAILY REVIEW · 打卡评价</span>
+      <h1>打卡<span style="color:var(--read)">评价</span></h1>
+      <p class="sub">今天的作业做完了，一样一样看看做成了什么样</p>
     </header>
 
     <section class="note">
-      <p style="margin:0">每份报告都看<b>四件事</b>：</p>
+      <p style="margin:0">打卡单上的每一项，做完都对应一份报告：</p>
       <ol>
-        <li>哪几个词读岔了 —— 和课本原文逐字对</li>
-        <li>停顿都断在哪儿 —— 每一次歇气都画在时间轴上</li>
-        <li>速度和准确率各是多少 —— 有数字，能和上一次比</li>
-        <li>下次试试哪三件小事</li>
+        <li><b>朗读</b> —— 和课本原文逐字对，停顿画在时间轴上，速度和准确率都有数</li>
+        <li><b>语法</b> —— 错在哪几题不重要，错在哪一类才重要</li>
+        <li><b>抄写</b> —— 字形 / 贴线 / 间距 / 大小，逐条看</li>
       </ol>
-      <p class="tip">🎤 录音只留在电脑里，页面上只放分析结果。</p>
+      <p class="tip">📋 每天的报告按 单词 · 超8 · G3 · 语法 分好类；一天读完点「当日小结」。<br>
+        🎤 录音和作业照片只留在电脑里，页面上只放分析结果。</p>
     </section>
 
     <h2 class="mini-h"><span>📄</span> 报告</h2>
     <nav class="list">
 <!-- LIST:BEGIN 由 tools/build_index.py 自动生成，别手改 -->
-      <div class="day first"><b>8月25日</b><span>5 份</span><hr><a href="./daily/2026-08-25.html">当日小结 →</a></div>
+      <div class="day first"><b>8月25日</b><span>7 份</span><hr><a href="./daily/2026-08-25.html">当日小结 →</a></div>
+      <p class="cat">单词</p>
       <div class="row">
         <span class="n">68</span>
         <span class="tt"><span class="zh">超8 · Lesson 3 · 单词表</span>
@@ -156,6 +162,15 @@
           <a href="./reports/chao8-lesson3-words.html">看报告</a>
         </span>
       </div>
+      <div class="row">
+        <span class="n">69</span>
+        <span class="tt"><span class="zh">单词抄写 · 字迹</span>
+          <span class="en">closet ×3 · clothes ×3</span></span>
+        <span class="links">
+          <a href="./reports/handwriting-20260825.html">看报告</a>
+        </span>
+      </div>
+      <p class="cat">超8</p>
       <div class="row">
         <span class="n">58</span>
         <span class="tt"><span class="zh">超8 · Lesson 3 · 第 65 页</span>
@@ -180,6 +195,7 @@
           <a href="./reports/chao8-lesson3-p67.html">看报告</a>
         </span>
       </div>
+      <p class="cat">G3</p>
       <div class="row">
         <span class="n">43</span>
         <span class="tt"><span class="zh">Wonders G3 · The Great Wall of LA</span>
@@ -188,12 +204,21 @@
           <a href="./reports/wonders-g3-great-wall.html">看报告</a>
         </span>
       </div>
+      <p class="cat">语法</p>
+      <div class="row">
+        <span class="n">62</span>
+        <span class="tt"><span class="zh">语法练习 · Unit 2 冠词</span>
+          <span class="en">波冰语法练习册 · p.8–10 · 39 空</span></span>
+        <span class="links">
+          <a href="./reports/grammar-unit2-articles.html">看报告</a>
+        </span>
+      </div>
 <!-- LIST:END -->
     </nav>
 
     <a class="back" href="../">← 返回栏目页</a>
 
-    <p class="foot">点读评价 · 一段录音，一张成绩单 🎤</p>
+    <p class="foot">打卡评价 · 每天的作业，一份成绩单 📋</p>
     <script src="../beian.js"></script>
     <script src="../busuanzi.js"></script>
 

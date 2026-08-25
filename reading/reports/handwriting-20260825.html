@@ -3,19 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>${zh}打卡小结</title>
-  <meta name="description" content="${zh}的朗读打卡：${n} 份报告合在一起看，读了 ${words} 个词、${secs}，整体准确率 ${acc}%。" />
+  <title>单词抄写 字迹 · 打卡评价</title>
+  <meta name="description" content="closet 和 clothes 各抄三遍：干净好认，丢分全在一致性——同一个 l 写出三种样子，两行用了两条基线。" />
   <meta name="theme-color" content="#FBF6EB" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>" />
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
   <!-- 分享卡片：og 文案照抄本页 <title>/<meta description>，改描述时两处同步；微信读 <title>+页面首图，QQ/iMessage 等读 og（og:image 必须绝对地址） -->
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="我的英语小屋" />
-  <meta property="og:title" content="${zh}打卡小结" />
-  <meta property="og:description" content="${zh}的朗读打卡：${n} 份报告合在一起看，读了 ${words} 个词、${secs}，整体准确率 ${acc}%。" />
-  <meta property="og:url" content="https://english.hi-ruby.com/reading/daily/${date}.html" />
+  <meta property="og:title" content="单词抄写 字迹 · 打卡评价" />
+  <meta property="og:description" content="closet 和 clothes 各抄三遍：干净好认，丢分全在一致性——同一个 l 写出三种样子，两行用了两条基线。" />
+  <meta property="og:url" content="https://english.hi-ruby.com/reading/reports/handwriting-20260825.html" />
   <meta property="og:image" content="https://english.hi-ruby.com/share.png" />
   <meta name="twitter:card" content="summary" />
+  <!-- 目录页 / 当日小结用：tools/build_index.py 和 build_daily.py 读这几行 -->
+  <meta name="report-date" content="2026-08-25" />
+  <meta name="report-order" content="62" />
+  <meta name="report-cat" content="单词" />
+  <meta name="report-score" content="69" />
+  <meta name="report-title" content="单词抄写 · 字迹" />
+  <meta name="report-sub" content="closet ×3 · clothes ×3" />
+  <meta name="report-words" content="6" />
+  <meta name="report-secs" content="0" />
+  <meta name="report-acc" content="-" />
+  <meta name="report-wcpm" content="-" />
   <style>
     :root{
       --paper:#FBF6EB; --card:#FFFDF8; --ink:#4A3F36; --ink-soft:#9A8C7C;
@@ -131,52 +142,6 @@
     .cmp .r .d.up{ background:var(--what-bg); color:#1F7A55; }
     .cmp .r .d.down{ background:var(--do-bg); color:#B4442A; }
 
-    /* 横向对比条 */
-    .hz{ display:flex; flex-direction:column; gap:10px; margin:12px 0 0; }
-    .h1{ display:flex; align-items:center; gap:10px; font-size:.9rem; }
-    .h1 .k{ flex:0 0 5.4em; color:var(--ink-soft); }
-    .h1 .t{ flex:1 1 auto; height:16px; border-radius:999px;
-            background:rgba(120,104,84,.10); overflow:hidden; }
-    .h1 .t i{ display:block; height:100%; border-radius:999px; background:var(--read); }
-    .h1 .v{ flex:0 0 4.2em; text-align:right; font-family:var(--font-display); font-weight:700; }
-
-    /* 当日小结 */
-    .hwl{ margin:0; padding-left:1.25em; }
-    .hwl li{ margin:4px 0; }
-    .hwl b{ color:var(--read); }
-    .hwl ul{ margin:4px 0 0; padding-left:1.1em; color:var(--ink-soft); font-size:.9rem; }
-    .tbl .cat{ margin:12px 2px 0; font-family:var(--font-display); font-weight:700;
-               font-size:.78rem; letter-spacing:.06em; color:var(--read);
-               background:var(--read-bg); border-radius:999px; padding:3px 11px;
-               align-self:flex-start; }
-    .tbl .cat:first-child{ margin-top:0; }
-    .tbl{ display:flex; flex-direction:column; gap:10px; }
-    .tbl .r{
-      display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink);
-      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
-      box-shadow:0 2px 0 var(--line); padding:12px 14px;
-    }
-    .tbl .r:active{ transform:translateY(1px); box-shadow:0 1px 0 var(--line); }
-    .tbl .n{
-      flex:0 0 auto; width:42px; height:42px; border-radius:14px; line-height:1;
-      display:grid; place-items:center; background:var(--read-bg); color:var(--read);
-      font-family:var(--font-display); font-weight:800; font-size:1.05rem;
-    }
-    .tbl .tt{ flex:1 1 auto; min-width:0; line-height:1.35; }
-    .tbl .zh{ display:block; font-weight:600; font-size:.95rem; }
-    .tbl .en{ display:block; font-family:var(--font-display); font-size:.76rem; color:var(--ink-soft);
-              overflow-wrap:break-word; }
-    .tbl .m{ flex:0 0 auto; text-align:right; min-width:3.6em; }
-    .tbl .m b{ display:block; font-family:var(--font-display); font-size:.95rem; }
-    .tbl .m i{ display:block; font-style:normal; font-size:.68rem; color:var(--ink-soft); }
-
-    @media (max-width:430px){
-      .tbl .r{ flex-wrap:wrap; }
-      .tbl .tt{ flex-basis:calc(100% - 52px); }
-      .tbl .m{ margin-left:52px; text-align:left; }
-      .tbl .m + .m{ margin-left:18px; }
-    }
-
     /* 停顿地图 */
     .tl svg{ display:block; width:100%; height:auto; overflow:visible; }
     .legend{ display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; font-size:.82rem; color:var(--ink-soft); }
@@ -251,42 +216,108 @@
   <main class="wrap">
 
     <header class="hero">
-      <span class="eyebrow">DAILY REVIEW · 当日小结</span>
-      <h1>${zh}<b>打卡小结</b></h1>
-      <p class="sub">${title}</p>
+      <span class="eyebrow">DAILY REVIEW · 打卡评价</span>
+      <h1>单词抄写 · <b>字迹</b></h1>
+      <p class="sub">closet ×3 · clothes ×3 · 2026 年 8 月 25 日</p>
     </header>
 
     <section class="box score">
-      <span class="num"><b>${acc}<small>%</small></b><span>整体准确率</span></span>
+      <span class="num"><b>69</b><span>／100</span></span>
       <span class="say">
-        <p class="lead">${lead}</p>
-        <p class="tip">${tip}</p>
+        <p class="lead">干净、好认，是清秀那一挂。</p>
+        <p class="tip">笔画利落、没有涂改、力度均匀、竖直方向一致——这几样是最难练的，她已经有了。
+          丢分全在<b>「一致性」</b>：同一个字母写出好几种样子，两行还用了两条不同的基线。</p>
       </span>
+      <div class="bars" style="flex-basis:100%">
+        <div class="bar"><span class="nm">字形</span><span class="track"><i class="fill" style="width:73%"></i></span><span class="val">22/30</span></div>
+        <div class="bar"><span class="nm">贴线</span><span class="track"><i class="fill" style="width:60%"></i></span><span class="val">15/25</span></div>
+        <div class="bar"><span class="nm">间距</span><span class="track"><i class="fill" style="width:60%"></i></span><span class="val">12/20</span></div>
+        <div class="bar"><span class="nm">大小</span><span class="track"><i class="fill" style="width:75%"></i></span><span class="val">15/20</span></div>
+        <div class="bar"><span class="nm">整洁</span><span class="track"><i class="fill" style="width:100%"></i></span><span class="val">5/5</span></div>
+      </div>
     </section>
 
-    <h2 class="mini-h"><span>📊</span> 今天一共读了</h2>
-    <div class="stats">
-      <div class="stat s1"><b>${words}</b><span>个词（不含单词表）</span></div>
-      <div class="stat s2"><b>${wcpm}</b><span>每分钟正确词数</span></div>
-      <div class="stat s3"><b>${secs}</b><span>录音总时长</span></div>
-      <div class="stat s4"><b>${n}</b><span>份报告</span></div>
-    </div>
-${hw}
-    <h2 class="mini-h"><span>📄</span> ${n} 份报告</h2>
-    <div class="tbl">
-${rows}
+    <h2 class="mini-h"><span>🔍</span> 三处扣分</h2>
+    <div class="diff">
+
+      <div class="d">
+        <span class="n">1</span>
+        <span class="en"><span class="lbl">最该改</span>一个 <mark>l</mark>，写出了三种样子</span>
+        <span class="en"><span class="lbl">具体</span>第 1 个 <ins>c+l 连成一团</ins>（乍看像 doset）·
+          第 2 个写成大写 <ins>L</ins>（cLoset）· 第 3 个又连回去</span>
+        <span class="why">同一行三遍，三个不一样。<b>cl 粘在一起会被读成 d</b>——
+          这不只是好不好看，是会认错词。clothes 那行的 l 反而三个都统一，说明她做得到。</span>
+      </div>
+
+      <div class="d">
+        <span class="n">2</span>
+        <span class="en"><span class="lbl">第二处</span>两行坐在<mark>两条不同的线</mark>上</span>
+        <span class="en"><span class="lbl">具体</span>closet 那行稳稳压在<ins>红线</ins>上 ✓ ·
+          clothes 那行<ins>骑在蓝线上</ins>，线从字母中间穿过去</span>
+        <span class="why">第一行做得很标准，第二行整个抬起来了半格。
+          抄写本来就是练「每个字都落在同一条线上」这件事。</span>
+      </div>
+
+      <div class="d">
+        <span class="n">3</span>
+        <span class="en"><span class="lbl">第三处</span><mark>间距</mark>忽紧忽松</span>
+        <span class="en"><span class="lbl">具体</span>词内 <ins>c-l-o 挤成一团</ins>、<ins>s-e-t 又松开</ins> ·
+          三个词之间空得过大，而且第 1–2 个的间隔比 2–3 个还宽</span>
+        <span class="why">词距宽到能再塞下一个单词。字母之间反而该松的没松、该紧的没紧。</span>
+      </div>
+
     </div>
 
-${blocks}
+    <h2 class="mini-h"><span>🌟</span> 已经很好的地方</h2>
+    <section class="box">
+      <p style="margin:0">
+        <b>整洁和斜度这两项满分。</b>全页没有一处涂改、没有描重笔，下笔力度从头到尾一样；
+        所有字母都是端正的竖直方向，没有忽左忽右。<br>
+        <span style="color:var(--ink-soft);font-size:.9rem">
+          c / o / s / e / t / h 的形状都很规范，x 高度（中间那一格的高度）基本齐平。
+          这些是练字里最花时间的部分，她已经过关了。</span>
+      </p>
+    </section>
 
-    <h2 class="mini-h"><span>✏️</span> 明天试试这三件事</h2>
+    <h2 class="mini-h"><span>✏️</span> 下次试试这三件事</h2>
     <div class="todo">
-${todos}
+      <div class="t">
+        <span class="ic">✍️</span>
+        <span><p class="h">这次只练一个字母：l</p>
+          <p class="d2">写完 closet 眯眼看一下：cl 有没有粘成一个 d ？
+            只要 l 是一根干净的竖线、和前面的字母留一丝缝，这个词立刻就清楚了。</p></span>
+      </div>
+      <div class="t">
+        <span class="ic">📏</span>
+        <span><p class="h">下笔前先认一条基线</p>
+          <p class="d2">整页都用红线当「地面」，每个字母的脚都踩在它上面。
+            这一页第一行做到了，第二行忘了——不是不会，是没盯。</p></span>
+      </div>
+      <div class="t">
+        <span class="ic">👆</span>
+        <span><p class="h">词距用一根手指量</p>
+          <p class="d2">两个单词之间空一根食指宽就够。现在的间隔能塞下两个词，
+            一行只写得下三遍，右边大半张纸空着。</p></span>
+      </div>
     </div>
+
+    <h2 class="mini-h"><span>📐</span> 这份是怎么打的</h2>
+    <section class="box how">
+      <p>用的是美国写字教材通行的<b>可读性五要素</b>（Zaner-Bloser 的 shape / size / spacing / slant /
+        smoothness），四线格练习再加一条<b>贴线</b>：</p>
+      <p><b>字形 30</b>（字母形状是否规范、同一字母是否每次都一样）·
+        <b>贴线 25</b>（是否都落在同一条基线上）·
+        <b>间距 20</b>（字母之间、单词之间是否匀）·
+        <b>大小 20</b>（x 高度和上伸部是否齐平）·
+        <b>整洁 5</b>（涂改、力度、斜度）。</p>
+      <p style="margin-bottom:0">打卡单要求「单词抄写 · 每天 2 个」，closet 和 clothes 各抄 3 遍，
+        <b>数量完成 ✓</b>。这份只评字迹，不评拼写（两个词都抄对了）。
+        评分看的是照片，纸面实物可能更清楚一些。</p>
+    </section>
 
     <a class="back" href="../">← 返回打卡评价</a>
 
-    <p class="foot">打卡评价 · 一天的作业，一页看完 📋</p>
+    <p class="foot">打卡评价 · 每天的作业，一份成绩单 📋</p>
     <script src="../../beian.js"></script>
     <script src="../../busuanzi.js"></script>
 

@@ -3,19 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>${zh}打卡小结</title>
-  <meta name="description" content="${zh}的朗读打卡：${n} 份报告合在一起看，读了 ${words} 个词、${secs}，整体准确率 ${acc}%。" />
+  <title>语法练习 Unit 2 冠词 · 打卡评价</title>
+  <meta name="description" content="前两大题 39 个空错了 15 个，其中 7 个是同一个毛病——该不填冠词的地方填了 the。" />
   <meta name="theme-color" content="#FBF6EB" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>" />
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
   <!-- 分享卡片：og 文案照抄本页 <title>/<meta description>，改描述时两处同步；微信读 <title>+页面首图，QQ/iMessage 等读 og（og:image 必须绝对地址） -->
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="我的英语小屋" />
-  <meta property="og:title" content="${zh}打卡小结" />
-  <meta property="og:description" content="${zh}的朗读打卡：${n} 份报告合在一起看，读了 ${words} 个词、${secs}，整体准确率 ${acc}%。" />
-  <meta property="og:url" content="https://english.hi-ruby.com/reading/daily/${date}.html" />
+  <meta property="og:title" content="语法练习 Unit 2 冠词 · 打卡评价" />
+  <meta property="og:description" content="前两大题 39 个空错了 15 个，其中 7 个是同一个毛病——该不填冠词的地方填了 the。" />
+  <meta property="og:url" content="https://english.hi-ruby.com/reading/reports/grammar-unit2-articles.html" />
   <meta property="og:image" content="https://english.hi-ruby.com/share.png" />
   <meta name="twitter:card" content="summary" />
+  <!-- 目录页 / 当日小结用：tools/build_index.py 和 build_daily.py 读这几行 -->
+  <meta name="report-date" content="2026-08-25" />
+  <meta name="report-order" content="308" />
+  <meta name="report-cat" content="语法" />
+  <meta name="report-score" content="62" />
+  <meta name="report-title" content="语法练习 · Unit 2 冠词" />
+  <meta name="report-sub" content="波冰语法练习册 · p.8–10 · 39 空" />
+  <meta name="report-words" content="39" />
+  <meta name="report-secs" content="0" />
+  <meta name="report-acc" content="61.5" />
+  <meta name="report-wcpm" content="-" />
   <style>
     :root{
       --paper:#FBF6EB; --card:#FFFDF8; --ink:#4A3F36; --ink-soft:#9A8C7C;
@@ -131,52 +142,6 @@
     .cmp .r .d.up{ background:var(--what-bg); color:#1F7A55; }
     .cmp .r .d.down{ background:var(--do-bg); color:#B4442A; }
 
-    /* 横向对比条 */
-    .hz{ display:flex; flex-direction:column; gap:10px; margin:12px 0 0; }
-    .h1{ display:flex; align-items:center; gap:10px; font-size:.9rem; }
-    .h1 .k{ flex:0 0 5.4em; color:var(--ink-soft); }
-    .h1 .t{ flex:1 1 auto; height:16px; border-radius:999px;
-            background:rgba(120,104,84,.10); overflow:hidden; }
-    .h1 .t i{ display:block; height:100%; border-radius:999px; background:var(--read); }
-    .h1 .v{ flex:0 0 4.2em; text-align:right; font-family:var(--font-display); font-weight:700; }
-
-    /* 当日小结 */
-    .hwl{ margin:0; padding-left:1.25em; }
-    .hwl li{ margin:4px 0; }
-    .hwl b{ color:var(--read); }
-    .hwl ul{ margin:4px 0 0; padding-left:1.1em; color:var(--ink-soft); font-size:.9rem; }
-    .tbl .cat{ margin:12px 2px 0; font-family:var(--font-display); font-weight:700;
-               font-size:.78rem; letter-spacing:.06em; color:var(--read);
-               background:var(--read-bg); border-radius:999px; padding:3px 11px;
-               align-self:flex-start; }
-    .tbl .cat:first-child{ margin-top:0; }
-    .tbl{ display:flex; flex-direction:column; gap:10px; }
-    .tbl .r{
-      display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink);
-      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
-      box-shadow:0 2px 0 var(--line); padding:12px 14px;
-    }
-    .tbl .r:active{ transform:translateY(1px); box-shadow:0 1px 0 var(--line); }
-    .tbl .n{
-      flex:0 0 auto; width:42px; height:42px; border-radius:14px; line-height:1;
-      display:grid; place-items:center; background:var(--read-bg); color:var(--read);
-      font-family:var(--font-display); font-weight:800; font-size:1.05rem;
-    }
-    .tbl .tt{ flex:1 1 auto; min-width:0; line-height:1.35; }
-    .tbl .zh{ display:block; font-weight:600; font-size:.95rem; }
-    .tbl .en{ display:block; font-family:var(--font-display); font-size:.76rem; color:var(--ink-soft);
-              overflow-wrap:break-word; }
-    .tbl .m{ flex:0 0 auto; text-align:right; min-width:3.6em; }
-    .tbl .m b{ display:block; font-family:var(--font-display); font-size:.95rem; }
-    .tbl .m i{ display:block; font-style:normal; font-size:.68rem; color:var(--ink-soft); }
-
-    @media (max-width:430px){
-      .tbl .r{ flex-wrap:wrap; }
-      .tbl .tt{ flex-basis:calc(100% - 52px); }
-      .tbl .m{ margin-left:52px; text-align:left; }
-      .tbl .m + .m{ margin-left:18px; }
-    }
-
     /* 停顿地图 */
     .tl svg{ display:block; width:100%; height:auto; overflow:visible; }
     .legend{ display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; font-size:.82rem; color:var(--ink-soft); }
@@ -251,42 +216,114 @@
   <main class="wrap">
 
     <header class="hero">
-      <span class="eyebrow">DAILY REVIEW · 当日小结</span>
-      <h1>${zh}<b>打卡小结</b></h1>
-      <p class="sub">${title}</p>
+      <span class="eyebrow">DAILY REVIEW · 打卡评价</span>
+      <h1>语法练习 · Unit 2 <b>冠词</b></h1>
+      <p class="sub">波冰小学英语语法练习册 · 第 8–10 页 · 2026 年 8 月 25 日</p>
     </header>
 
     <section class="box score">
-      <span class="num"><b>${acc}<small>%</small></b><span>整体准确率</span></span>
+      <span class="num"><b>62</b><span>／100</span></span>
       <span class="say">
-        <p class="lead">${lead}</p>
-        <p class="tip">${tip}</p>
+        <p class="lead">a 和 an 会挑了，「不填」还没进脑子。</p>
+        <p class="tip">前两大题 39 个空错了 15 个，<b>其中 7 个是同一个毛病</b>——
+          该空着不填冠词的地方，她填了 the。这不是 15 个零散的错，是<b>一个规则的缺口</b>。</p>
       </span>
+      <div class="bars" style="flex-basis:100%">
+        <div class="bar"><span class="nm">一、a/an</span><span class="track"><i class="fill" style="width:57%"></i></span><span class="val">8/14</span></div>
+        <div class="bar"><span class="nm">二、圈冠词</span><span class="track"><i class="fill" style="width:64%"></i></span><span class="val">16/25</span></div>
+      </div>
     </section>
 
-    <h2 class="mini-h"><span>📊</span> 今天一共读了</h2>
+    <h2 class="mini-h"><span>📊</span> 四个数字</h2>
     <div class="stats">
-      <div class="stat s1"><b>${words}</b><span>个词（不含单词表）</span></div>
-      <div class="stat s2"><b>${wcpm}</b><span>每分钟正确词数</span></div>
-      <div class="stat s3"><b>${secs}</b><span>录音总时长</span></div>
-      <div class="stat s4"><b>${n}</b><span>份报告</span></div>
-    </div>
-${hw}
-    <h2 class="mini-h"><span>📄</span> ${n} 份报告</h2>
-    <div class="tbl">
-${rows}
+      <div class="stat s2"><b>61.5%</b><span>前两大题 24/39 空</span></div>
+      <div class="stat s4"><b>15</b><span>处错</span></div>
+      <div class="stat s3"><b>7</b><span>处是「该不填却填了」</span></div>
+      <div class="stat s1"><b>3</b><span>类错因</span></div>
     </div>
 
-${blocks}
+    <h2 class="mini-h"><span>🧩</span> 15 处错，其实只有三类</h2>
+    <div class="diff">
 
-    <h2 class="mini-h"><span>✏️</span> 明天试试这三件事</h2>
+      <div class="d">
+        <span class="n">7</span>
+        <span class="en"><span class="lbl">最大的一类</span>该<mark>不填</mark>，却填了</span>
+        <span class="en"><span class="lbl">具体</span>playing <ins>the</ins> football · in <ins>the</ins> Boston ·
+          go to <ins>the</ins> school · by <ins>the</ins> bus · <ins>the</ins> good news ·
+          <ins>an</ins> Teachers' Day · in <ins>the</ins> September</span>
+        <span class="why">球类、地名、go to school、by + 交通工具、谚语、节日、月份——
+          这些位置英语<b>习惯上什么都不加</b>。她每次都往里填了一个词。
+          第三大题里能看清的两空（Grade Three、by bus）也是同样的错。</span>
+      </div>
+
+      <div class="d">
+        <span class="n">5</span>
+        <span class="en"><span class="lbl">第二类</span>a / an 看<mark>字母</mark>，没听<mark>读音</mark></span>
+        <span class="en"><span class="lbl">具体</span><ins>a</ins> honest boy · <ins>an</ins> uniform ·
+          <ins>An</ins> university ｜ <ins>a</ins> insect · <ins>a</ins> engineer</span>
+        <span class="why">前三个是经典陷阱：honest 的 h <b>不发音</b>（读 /ˈɒnɪst/，要 an）；
+          uniform 和 university 开头是 /j/ 这个<b>辅音</b>（要 a）。<br>
+          后两个更基础——insect、engineer 明明是元音开头，忘了加 n。</span>
+      </div>
+
+      <div class="d">
+        <span class="n">3</span>
+        <span class="en"><span class="lbl">第三类</span>零散</span>
+        <span class="en"><span class="lbl">具体</span>begins with <ins>the</ins> "s" ·
+          uses <ins>the</ins> X-ray ｜ there lived <ins>the</ins> old fisherman</span>
+        <span class="why">前两空：题目写着「<b>用 a 或 an 填空</b>」，只能二选一，她填了 the ——
+          题干没看完。（正确都是 an：字母 "s" 读 /es/、X 读 /eks/，都是元音开头。）<br>
+          最后一个：故事里<b>第一次出现</b>的人物用 a/an，不用 the。</span>
+      </div>
+
+    </div>
+
+    <h2 class="mini-h"><span>🌟</span> 做对的地方</h2>
+    <section class="box">
+      <p style="margin:0">
+        <b>第 8 页第二大题 5 个空全对</b>：a pencil → The pencil、The sun、the sky、The lady。
+        <b>「第一次提到用 a，再提到用 the」这条她是懂的</b>——第 1 小题就是这个考点。<br>
+        <span style="color:var(--ink-soft);font-size:.9rem">
+          an hour（h 不发音）也做对了，说明「看读音」这条不是完全没有，只是还不稳；
+          the Browns'、the other、the United States、Once upon a time、near the sea 这些固定说法都圈对了。</span>
+      </p>
+    </section>
+
+    <h2 class="mini-h"><span>✏️</span> 下次试试这三件事</h2>
     <div class="todo">
-${todos}
+      <div class="t">
+        <span class="ic">🚫</span>
+        <span><p class="h">列一张「什么都不加」的清单</p>
+          <p class="d2">球类 play football · 三餐 have lunch · 学科 · 星期 on Monday · 月份 in September ·
+            节日 Teachers' Day · by + 车 by bus · go to school / go to bed。
+            <b>7 处错全在这张单子上</b>，这一张纸能捞回一半分。</p></span>
+      </div>
+      <div class="t">
+        <span class="ic">👂</span>
+        <span><p class="h">a 还是 an，先读出声再决定</p>
+          <p class="d2">an hour · a uniform · an honest boy · a university —— 这四个排一排读一遍。
+            规则不是「看首字母是不是 aeiou」，是<b>「听第一个音是不是元音」</b>。</p></span>
+      </div>
+      <div class="t">
+        <span class="ic">👀</span>
+        <span><p class="h">动笔前把题干读完</p>
+          <p class="d2">第一大题写着「用 a 或 an 填空」，有两空填了 the。这两分不是不会，是没看题。</p></span>
+      </div>
     </div>
+
+    <h2 class="mini-h"><span>📐</span> 这份是怎么算的</h2>
+    <section class="box how">
+      <p><b>只统计前两大题</b>：第一大题 12 题 14 空、第二大题 12 题 25 空，合计 39 空，对 24 空。</p>
+      <p><b>第三大题没有逐空打分</b>——她的答案字母写在红色题号上面，两层叠在一起，
+        照片这个分辨率下逐空判读不可靠。能看清的几空（1=D ✓、2=C ✗、3=C ✗、4=D ✓、7=A ✓）
+        已经并入上面的错因分析，但不计入 39 空。要精确统计的话，第 9–10 页拍清楚一点再发我。</p>
+      <p style="margin-bottom:0">这一单元正好是语法小手册<b>第 2 关「名词 + 冠词」</b>的内容，
+        两边讲的是同一件事，可以对着看。</p>
+    </section>
 
     <a class="back" href="../">← 返回打卡评价</a>
 
-    <p class="foot">打卡评价 · 一天的作业，一页看完 📋</p>
+    <p class="foot">打卡评价 · 每天的作业，一份成绩单 📋</p>
     <script src="../../beian.js"></script>
     <script src="../../busuanzi.js"></script>
 
