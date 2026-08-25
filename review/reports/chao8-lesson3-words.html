@@ -37,6 +37,7 @@
       --do:#EE7D5B;  --do-bg:#FBE0D5;
       --what:#45B988; --what-bg:#D8F2E6;
       --read:var(--c-word,#5BA97E); --read-bg:var(--c-word-bg,#E2F1E9);
+      --score:#DAA32B; --score-bg:#FAF0DB;
       --sc-hard:#F6DCD1; --sc-inst:#FBEFC9; --sc-indep:#D8F2E6;
       --sc-band1:#EAE0D0; --sc-band2:#CFE3F3; --sc-mid:#3E9BD6;
       --tl-speech:#CDEBDD; --tl-end:#6FB6E2; --tl-long:#EE7D5B; --tl-mid:#CBBCA9;
@@ -85,9 +86,9 @@
     .score{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:26px; }
     .score .num{
       flex:0 0 auto; width:112px; height:112px; border-radius:28px;
-      background:var(--read-bg); display:grid; place-items:center; line-height:1;
+      background:var(--score-bg,var(--read-bg)); display:grid; place-items:center; line-height:1;
     }
-    .score .num b{ font-family:var(--font-display); font-size:2.9rem; color:var(--read); }
+    .score .num b{ font-family:var(--font-display); font-size:2.9rem; color:var(--score,var(--read)); }
     .score .num span{ font-size:.78rem; color:var(--ink-soft); margin-top:4px; }
     .score .say{ flex:1 1 220px; min-width:0; }
     .score .say p{ margin:0; }
@@ -101,7 +102,7 @@
       flex:1 1 auto; height:12px; border-radius:999px; background:rgba(120,104,84,.10);
       overflow:hidden;
     }
-    .bar .fill{ display:block; height:100%; border-radius:999px; background:var(--read); }
+    .bar .fill{ display:block; height:100%; border-radius:999px; background:var(--score,var(--read)); }
     .bar .val{ flex:0 0 3.4em; text-align:right; font-family:var(--font-display); font-weight:700; }
 
     /* 关键数字 */

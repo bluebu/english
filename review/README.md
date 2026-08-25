@@ -14,6 +14,7 @@ review/
   tools/figures.py                  停顿地图 + 「三把尺子上的位置」三张图
   tools/build_index.py              刷新目录页列表：按日期倒序分组
   tools/build_daily.py              生成当日小结页
+  tools/paint_scores.py             给每份报告刷分数色（越差越红）
   tools/daily_template.html         当日小结的页面模板（$name 占位）
   daily/YYYY-MM-DD.json             当日小结的文字部分，手写
   daily/YYYY-MM-DD.html             生成结果
@@ -31,7 +32,8 @@ python3 tools/analyze.py 录音.m4a > data/超8-lesson3-p65.json
 
 # 3) 拿课本原文逐字比对，套 reports/ 里现成的一份改
 
-# 4) 刷新目录页
+# 4) 刷分数色 + 刷新目录页
+python3 tools/paint_scores.py
 python3 tools/build_index.py
 
 # 5) 当天的报告都做完后，写 daily/<日期>.json，再生成当日小结
@@ -78,6 +80,25 @@ python3 tools/build_index.py        # 小结页存在时，日期行右边会自
 - **每份报告整页的主色 `--read` 就是它的分类色**——打开一份报告，颜色就告诉你这是哪一类
 - `homework/generate_checklist.py` 生成时会正则解析 `palette.css` 取这五个色；
   改完颜色要重跑一次打卡单生成脚本
+
+### 分数色（和分类色是两回事）
+
+**分类色说「这是哪一类」，分数色说「做得怎么样」——越差越红。** 同一张卡上并存：
+分类标签和「看报告」按钮吃分类色，分数徽章吃分数色。
+
+色标在 `tools/figures.py` 的 `SCORE_STOPS`，五个锚点之间线性插值：
+
+| 分数 | 色 |
+|---|---|
+| ≤40 | 红 `#D2685F` |
+| 55 | 橙 `#DE8A45` |
+| 70 | 金 `#D9A727` |
+| 82 | 黄绿 `#8FAE49` |
+| ≥92 | 绿 `#4FA97A` |
+
+`score_color(s)` 返回 (前景色, 浅底色)；传 `None` / `"-"` 得到灰色（没有分数的项）。
+目录页和小结页由生成脚本注入行内 `--s` / `--sbg`；报告页面用
+`python3 tools/paint_scores.py` 把 `--score` / `--score-bg` 刷进 `:root`，**改了分数就重跑**。
 
 `report-order` 只管同一类内部的先后，用「书序 × 100 + 页码」：
 超8 = 61–67，Wonders = 208–211，语法练习册 = 308–310。

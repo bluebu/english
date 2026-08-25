@@ -14,6 +14,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from figures import score_color  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 REPORTS = ROOT / "reports"
 DAILY = ROOT / "daily"
@@ -43,9 +46,14 @@ CAT_COLOR = {
 }
 
 
-def cat_style(cat):
+def cat_style(cat, score=None):
+    """分类色 --c/--cbg 说「哪一类」，分数色 --s/--sbg 说「好不好」，各管各的。"""
     tok, c, bg = CAT_COLOR.get(cat, ("drill", "#A97EC4", "#F0E7F7"))
-    return f'--c:var(--c-{tok},{c});--cbg:var(--c-{tok}-bg,{bg})'
+    out = f'--c:var(--c-{tok},{c});--cbg:var(--c-{tok}-bg,{bg})'
+    if score is not None:
+        fg, sbg = score_color(score)
+        out += f';--s:{fg};--sbg:{sbg}'
+    return out
 
 
 # 一天之内报告按这个顺序分组；没列到的分类排在最后
@@ -80,7 +88,7 @@ def render(reports):
             if r["cat"] != seen_cat:                               # 每换一类插一条小标签
                 seen_cat = r["cat"]
                 out.append(f'      <p class="cat" style="{cat_style(seen_cat)}">{seen_cat}</p>')
-            out.append(f'''      <div class="row" style="{cat_style(r["cat"])}">
+            out.append(f'''      <div class="row" style="{cat_style(r["cat"], r["score"])}">
         <span class="n">{r["score"]}</span>
         <span class="tt"><span class="zh">{r["title"]}</span>
           <span class="en">{r["sub"]}</span></span>

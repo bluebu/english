@@ -19,6 +19,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from figures import score_color  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 REPORTS, DAILY = ROOT / "reports", ROOT / "daily"
 SPECS = ROOT.parent / "homework" / "specs"
@@ -35,9 +38,14 @@ CAT_COLOR = {
 }
 
 
-def cat_style(cat):
+def cat_style(cat, score=None):
+    """分类色 --c/--cbg 说「哪一类」，分数色 --s/--sbg 说「好不好」，各管各的。"""
     tok, c, bg = CAT_COLOR.get(cat, ("drill", "#A97EC4", "#F0E7F7"))
-    return f'--c:var(--c-{tok},{c});--cbg:var(--c-{tok}-bg,{bg})'
+    out = f'--c:var(--c-{tok},{c});--cbg:var(--c-{tok}-bg,{bg})'
+    if score is not None:
+        fg, sbg = score_color(score)
+        out += f';--s:{fg};--sbg:{sbg}'
+    return out
 
 
 def read_meta(path):
@@ -114,7 +122,7 @@ def build(date):
             rows.append(f'        <p class="cat" style="{cat_style(seen)}">{seen}</p>')
         ac = f'{r["acc"]}%' if r["acc"] != "-" else "—"
         wc = r["wcpm"] if r["wcpm"] != "-" else "—"
-        rows.append(f'''        <a class="r" href="{html.escape(r["href"], quote=True)}" style="{cat_style(r["cat"])}">
+        rows.append(f'''        <a class="r" href="{html.escape(r["href"], quote=True)}" style="{cat_style(r["cat"], r["score"])}">
           <span class="n">{r["score"]}</span>
           <span class="tt"><span class="zh">{r["title"]}</span>
             <span class="en">{r["sub"]}</span></span>
@@ -145,6 +153,7 @@ def build(date):
     return tpl.substitute(
         date=date, zh=zh_date(date), title=note["title"], lead=note["lead"], tip=note["tip"],
         words=words, secs=mmss(secs), acc=f"{acc:.1f}", wcpm=f"{wcpm:.0f}", n=len(day),
+        accfg=score_color(acc)[0], accbg=score_color(acc)[1],
         hw=hw_html, rows="\n".join(rows), blocks="\n".join(note["blocks"]), todos=todos)
 
 

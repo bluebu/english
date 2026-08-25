@@ -170,3 +170,37 @@ def timeline_svg(data, bounds, stalls):
            f'绿色是发声，蓝色是句末停顿，橙色和灰色是句中停顿">\n'
            + ''.join(f'  {s}\n' for s in out) + '</svg>')
     return svg, counts
+
+
+# ── 分数色：越差越红 ────────────────────────────────────────────
+# 五个锚点，中间线性插值。和分类色是两回事：
+#   分类色说「这是哪一类」，分数色说「做得怎么样」，同一张卡上各管各的。
+SCORE_STOPS = [
+    (40, (0xD2, 0x68, 0x5F)),   # 红   吃力
+    (55, (0xDE, 0x8A, 0x45)),   # 橙   要补
+    (70, (0xD9, 0xA7, 0x27)),   # 金   一般
+    (82, (0x8F, 0xAE, 0x49)),   # 黄绿 不错
+    (92, (0x4F, 0xA9, 0x7A)),   # 绿   很好
+]
+PAPER = (0xFF, 0xFD, 0xF8)      # 底色，用来调出浅色版
+
+
+def score_color(score, tint=0.86):
+    """分数 → (前景色, 浅底色)。分数可以是 0–100 的数，也可以是 None/'-'。"""
+    if score is None or score == "-":
+        return "#9A8C7C", "rgba(120,104,84,.10)"
+    v = float(score)
+    lo, hi = SCORE_STOPS[0], SCORE_STOPS[-1]
+    if v <= lo[0]:
+        rgb = lo[1]
+    elif v >= hi[0]:
+        rgb = hi[1]
+    else:
+        for (a, ca), (b, cb) in zip(SCORE_STOPS, SCORE_STOPS[1:]):
+            if a <= v <= b:
+                t = (v - a) / (b - a)
+                rgb = tuple(round(ca[i] + (cb[i] - ca[i]) * t) for i in range(3))
+                break
+    fg = "#%02X%02X%02X" % rgb
+    bg = "#%02X%02X%02X" % tuple(round(rgb[i] + (PAPER[i] - rgb[i]) * tint) for i in range(3))
+    return fg, bg

@@ -72,11 +72,15 @@
 
     /* 总分 */
     .score{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:26px; }
+    /* 小结页这一格装的是「92.8%」不是两位数分数，宽度得让它自己撑 */
     .score .num{
-      flex:0 0 auto; width:112px; height:112px; border-radius:28px;
-      background:var(--read-bg); display:grid; place-items:center; line-height:1;
+      flex:0 0 auto; width:auto; min-width:112px; min-height:112px; padding:14px 20px;
+      border-radius:28px; background:var(--read-bg);
+      display:grid; place-items:center; align-content:center; line-height:1;
     }
-    .score .num b{ font-family:var(--font-display); font-size:2.9rem; color:var(--read); }
+    .score .num b{ font-family:var(--font-display); font-size:2.3rem; color:var(--read);
+                   white-space:nowrap; }
+    .score .num b small{ font-size:.5em; margin-left:1px; }
     .score .num span{ font-size:.78rem; color:var(--ink-soft); margin-top:4px; }
     .score .say{ flex:1 1 220px; min-width:0; }
     .score .say p{ margin:0; }
@@ -163,7 +167,7 @@
     .tbl .n{
       flex:0 0 auto; width:42px; height:42px; border-radius:14px; line-height:1;
       display:grid; place-items:center;
-      background:var(--cbg,var(--read-bg)); color:var(--c,var(--read));
+      background:var(--sbg,var(--read-bg)); color:var(--s,var(--read));
       font-family:var(--font-display); font-weight:800; font-size:1.05rem;
     }
     .tbl .tt{ flex:1 1 auto; min-width:0; line-height:1.35; }
@@ -261,7 +265,7 @@
     </header>
 
     <section class="box score">
-      <span class="num"><b>${acc}<small>%</small></b><span>整体准确率</span></span>
+      <span class="num" style="background:${accbg}"><b style="color:${accfg}">${acc}<small>%</small></b><span>整体准确率</span></span>
       <span class="say">
         <p class="lead">${lead}</p>
         <p class="tip">${tip}</p>

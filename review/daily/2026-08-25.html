@@ -72,11 +72,15 @@
 
     /* 总分 */
     .score{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:26px; }
+    /* 小结页这一格装的是「92.8%」不是两位数分数，宽度得让它自己撑 */
     .score .num{
-      flex:0 0 auto; width:112px; height:112px; border-radius:28px;
-      background:var(--read-bg); display:grid; place-items:center; line-height:1;
+      flex:0 0 auto; width:auto; min-width:112px; min-height:112px; padding:14px 20px;
+      border-radius:28px; background:var(--read-bg);
+      display:grid; place-items:center; align-content:center; line-height:1;
     }
-    .score .num b{ font-family:var(--font-display); font-size:2.9rem; color:var(--read); }
+    .score .num b{ font-family:var(--font-display); font-size:2.3rem; color:var(--read);
+                   white-space:nowrap; }
+    .score .num b small{ font-size:.5em; margin-left:1px; }
     .score .num span{ font-size:.78rem; color:var(--ink-soft); margin-top:4px; }
     .score .say{ flex:1 1 220px; min-width:0; }
     .score .say p{ margin:0; }
@@ -163,7 +167,7 @@
     .tbl .n{
       flex:0 0 auto; width:42px; height:42px; border-radius:14px; line-height:1;
       display:grid; place-items:center;
-      background:var(--cbg,var(--read-bg)); color:var(--c,var(--read));
+      background:var(--sbg,var(--read-bg)); color:var(--s,var(--read));
       font-family:var(--font-display); font-weight:800; font-size:1.05rem;
     }
     .tbl .tt{ flex:1 1 auto; min-width:0; line-height:1.35; }
@@ -261,7 +265,7 @@
     </header>
 
     <section class="box score">
-      <span class="num"><b>92.8<small>%</small></b><span>整体准确率</span></span>
+      <span class="num" style="background:#E6F1E6"><b style="color:#4FA97A">92.8<small>%</small></b><span>整体准确率</span></span>
       <span class="say">
         <p class="lead">实词抓得住，虚词还在飘。</p>
         <p class="tip">今天七份作业里，朗读<b>丢了 6 次词尾 -s</b>（该有的没有），语法<b>多加了 7 次冠词</b>（不该有的加了）。一个丢一个多，其实是同一层东西没稳住——<b>词尾和冠词这类小标记</b>。生词、长词、长句她反而拿得下来。</p>
@@ -285,14 +289,14 @@
     <h2 class="mini-h"><span>📄</span> 7 份报告</h2>
     <div class="tbl">
         <p class="cat" style="--c:var(--c-word,#5BA97E);--cbg:var(--c-word-bg,#E2F1E9)">单词</p>
-        <a class="r" href="../reports/chao8-lesson3-words.html" style="--c:var(--c-word,#5BA97E);--cbg:var(--c-word-bg,#E2F1E9)">
+        <a class="r" href="../reports/chao8-lesson3-words.html" style="--c:var(--c-word,#5BA97E);--cbg:var(--c-word-bg,#E2F1E9);--s:#DAA32B;--sbg:#FAF0DB">
           <span class="n">68</span>
           <span class="tt"><span class="zh">超8 · Lesson 3 · 单词表</span>
             <span class="en">Words &amp; Expressions · 20 words</span></span>
           <span class="m"><b>68.4%</b><i>正确率</i></span>
           <span class="m"><b>—</b><i>词/分</i></span>
         </a>
-        <a class="r" href="../reports/handwriting-20260825.html" style="--c:var(--c-word,#5BA97E);--cbg:var(--c-word-bg,#E2F1E9)">
+        <a class="r" href="../reports/handwriting-20260825.html" style="--c:var(--c-word,#5BA97E);--cbg:var(--c-word-bg,#E2F1E9);--s:#D9A529;--sbg:#FAF1DB">
           <span class="n">69</span>
           <span class="tt"><span class="zh">单词抄写 · 字迹</span>
             <span class="en">closet ×3 · clothes ×3</span></span>
@@ -300,21 +304,21 @@
           <span class="m"><b>—</b><i>词/分</i></span>
         </a>
         <p class="cat" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9)">超8</p>
-        <a class="r" href="../reports/chao8-lesson3-p65.html" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9)">
+        <a class="r" href="../reports/chao8-lesson3-p65.html" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9);--s:#DD903F;--sbg:#FAEEDE">
           <span class="n">58</span>
           <span class="tt"><span class="zh">超8 · Lesson 3 · 第 65 页</span>
             <span class="en">Prince Darling · 105 words</span></span>
           <span class="m"><b>95.2%</b><i>正确率</i></span>
           <span class="m"><b>72</b><i>词/分</i></span>
         </a>
-        <a class="r" href="../reports/chao8-lesson3-p66.html" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9)">
+        <a class="r" href="../reports/chao8-lesson3-p66.html" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9);--s:#DC9639;--sbg:#FAEFDD">
           <span class="n">61</span>
           <span class="tt"><span class="zh">超8 · Lesson 3 · 第 66 页</span>
             <span class="en">Prince Darling · 110 words</span></span>
           <span class="m"><b>96.4%</b><i>正确率</i></span>
           <span class="m"><b>74</b><i>词/分</i></span>
         </a>
-        <a class="r" href="../reports/chao8-lesson3-p67.html" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9)">
+        <a class="r" href="../reports/chao8-lesson3-p67.html" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9);--s:#DC9639;--sbg:#FAEFDD">
           <span class="n">61</span>
           <span class="tt"><span class="zh">超8 · Lesson 3 · 第 67 页</span>
             <span class="en">Prince Darling · 76 words</span></span>
@@ -322,7 +326,7 @@
           <span class="m"><b>78</b><i>词/分</i></span>
         </a>
         <p class="cat" style="--c:var(--c-listen,#4A90D9);--cbg:var(--c-listen-bg,#DFECFA)">G3</p>
-        <a class="r" href="../reports/wonders-g3-great-wall.html" style="--c:var(--c-listen,#4A90D9);--cbg:var(--c-listen-bg,#DFECFA)">
+        <a class="r" href="../reports/wonders-g3-great-wall.html" style="--c:var(--c-listen,#4A90D9);--cbg:var(--c-listen-bg,#DFECFA);--s:#D46F5A;--sbg:#F9E9E2">
           <span class="n">43</span>
           <span class="tt"><span class="zh">Wonders G3 · The Great Wall of LA</span>
             <span class="en">Chapter 2 · p.8–11 · 210 words</span></span>
@@ -330,7 +334,7 @@
           <span class="m"><b>52</b><i>词/分</i></span>
         </a>
         <p class="cat" style="--c:var(--c-gram,#D97070);--cbg:var(--c-gram-bg,#FAE4E4)">语法</p>
-        <a class="r" href="../reports/grammar-unit2-articles.html" style="--c:var(--c-gram,#D97070);--cbg:var(--c-gram-bg,#FAE4E4)">
+        <a class="r" href="../reports/grammar-unit2-articles.html" style="--c:var(--c-gram,#D97070);--cbg:var(--c-gram-bg,#FAE4E4);--s:#DC9837;--sbg:#FAEFDD">
           <span class="n">62</span>
           <span class="tt"><span class="zh">语法练习 · Unit 2 冠词</span>
             <span class="en">波冰语法练习册 · p.8–10 · 39 空</span></span>
