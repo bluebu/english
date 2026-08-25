@@ -26,6 +26,19 @@ SPECS = ROOT.parent / "homework" / "specs"
 FIELDS = ("date", "order", "cat", "score", "title", "sub", "words", "secs", "acc", "wcpm")
 CAT_ORDER = ("单词", "超8", "G3", "语法")
 
+# 分类 → palette.css 里的色 token（fallback 是同一份值，防 CSS 没加载）
+CAT_COLOR = {
+    "单词": ("word", "#5BA97E", "#E2F1E9"),
+    "超8":  ("read", "#E08B3C", "#FBEBD9"),
+    "G3":   ("listen", "#4A90D9", "#DFECFA"),
+    "语法": ("gram", "#D97070", "#FAE4E4"),
+}
+
+
+def cat_style(cat):
+    tok, c, bg = CAT_COLOR.get(cat, ("drill", "#A97EC4", "#F0E7F7"))
+    return f'--c:var(--c-{tok},{c});--cbg:var(--c-{tok}-bg,{bg})'
+
 
 def read_meta(path):
     head = path.read_text()[:9000]
@@ -98,10 +111,10 @@ def build(date):
     for r in day:
         if r["cat"] != seen:                       # 每换一类插一条小标签
             seen = r["cat"]
-            rows.append(f'        <p class="cat">{r["cat"]}</p>')
+            rows.append(f'        <p class="cat" style="{cat_style(seen)}">{seen}</p>')
         ac = f'{r["acc"]}%' if r["acc"] != "-" else "—"
         wc = r["wcpm"] if r["wcpm"] != "-" else "—"
-        rows.append(f'''        <a class="r" href="{html.escape(r["href"], quote=True)}">
+        rows.append(f'''        <a class="r" href="{html.escape(r["href"], quote=True)}" style="{cat_style(r["cat"])}">
           <span class="n">{r["score"]}</span>
           <span class="tt"><span class="zh">{r["title"]}</span>
             <span class="en">{r["sub"]}</span></span>

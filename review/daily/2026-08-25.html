@@ -8,6 +8,8 @@
   <meta name="theme-color" content="#FBF6EB" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>" />
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+  <!-- 分类色见根目录 palette.css（单一真源） -->
+  <link rel="stylesheet" href="../../palette.css" />
   <!-- 分享卡片：og 文案照抄本页 <title>/<meta description>，改描述时两处同步；微信读 <title>+页面首图，QQ/iMessage 等读 og（og:image 必须绝对地址） -->
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="我的英语小屋" />
@@ -146,8 +148,9 @@
     .hwl b{ color:var(--read); }
     .hwl ul{ margin:4px 0 0; padding-left:1.1em; color:var(--ink-soft); font-size:.9rem; }
     .tbl .cat{ margin:12px 2px 0; font-family:var(--font-display); font-weight:700;
-               font-size:.78rem; letter-spacing:.06em; color:var(--read);
-               background:var(--read-bg); border-radius:999px; padding:3px 11px;
+               font-size:.78rem; letter-spacing:.06em;
+               color:var(--c,var(--read)); background:var(--cbg,var(--read-bg));
+               border-radius:999px; padding:3px 11px;
                align-self:flex-start; }
     .tbl .cat:first-child{ margin-top:0; }
     .tbl{ display:flex; flex-direction:column; gap:10px; }
@@ -159,7 +162,8 @@
     .tbl .r:active{ transform:translateY(1px); box-shadow:0 1px 0 var(--line); }
     .tbl .n{
       flex:0 0 auto; width:42px; height:42px; border-radius:14px; line-height:1;
-      display:grid; place-items:center; background:var(--read-bg); color:var(--read);
+      display:grid; place-items:center;
+      background:var(--cbg,var(--read-bg)); color:var(--c,var(--read));
       font-family:var(--font-display); font-weight:800; font-size:1.05rem;
     }
     .tbl .tt{ flex:1 1 auto; min-width:0; line-height:1.35; }
@@ -280,53 +284,53 @@
 
     <h2 class="mini-h"><span>📄</span> 7 份报告</h2>
     <div class="tbl">
-        <p class="cat">单词</p>
-        <a class="r" href="../reports/chao8-lesson3-words.html">
+        <p class="cat" style="--c:var(--c-word,#5BA97E);--cbg:var(--c-word-bg,#E2F1E9)">单词</p>
+        <a class="r" href="../reports/chao8-lesson3-words.html" style="--c:var(--c-word,#5BA97E);--cbg:var(--c-word-bg,#E2F1E9)">
           <span class="n">68</span>
           <span class="tt"><span class="zh">超8 · Lesson 3 · 单词表</span>
             <span class="en">Words &amp; Expressions · 20 words</span></span>
           <span class="m"><b>68.4%</b><i>正确率</i></span>
           <span class="m"><b>—</b><i>词/分</i></span>
         </a>
-        <a class="r" href="../reports/handwriting-20260825.html">
+        <a class="r" href="../reports/handwriting-20260825.html" style="--c:var(--c-word,#5BA97E);--cbg:var(--c-word-bg,#E2F1E9)">
           <span class="n">69</span>
           <span class="tt"><span class="zh">单词抄写 · 字迹</span>
             <span class="en">closet ×3 · clothes ×3</span></span>
           <span class="m"><b>—</b><i>正确率</i></span>
           <span class="m"><b>—</b><i>词/分</i></span>
         </a>
-        <p class="cat">超8</p>
-        <a class="r" href="../reports/chao8-lesson3-p65.html">
+        <p class="cat" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9)">超8</p>
+        <a class="r" href="../reports/chao8-lesson3-p65.html" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9)">
           <span class="n">58</span>
           <span class="tt"><span class="zh">超8 · Lesson 3 · 第 65 页</span>
             <span class="en">Prince Darling · 105 words</span></span>
           <span class="m"><b>95.2%</b><i>正确率</i></span>
           <span class="m"><b>72</b><i>词/分</i></span>
         </a>
-        <a class="r" href="../reports/chao8-lesson3-p66.html">
+        <a class="r" href="../reports/chao8-lesson3-p66.html" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9)">
           <span class="n">61</span>
           <span class="tt"><span class="zh">超8 · Lesson 3 · 第 66 页</span>
             <span class="en">Prince Darling · 110 words</span></span>
           <span class="m"><b>96.4%</b><i>正确率</i></span>
           <span class="m"><b>74</b><i>词/分</i></span>
         </a>
-        <a class="r" href="../reports/chao8-lesson3-p67.html">
+        <a class="r" href="../reports/chao8-lesson3-p67.html" style="--c:var(--c-read,#E08B3C);--cbg:var(--c-read-bg,#FBEBD9)">
           <span class="n">61</span>
           <span class="tt"><span class="zh">超8 · Lesson 3 · 第 67 页</span>
             <span class="en">Prince Darling · 76 words</span></span>
           <span class="m"><b>94.7%</b><i>正确率</i></span>
           <span class="m"><b>78</b><i>词/分</i></span>
         </a>
-        <p class="cat">G3</p>
-        <a class="r" href="../reports/wonders-g3-great-wall.html">
+        <p class="cat" style="--c:var(--c-listen,#4A90D9);--cbg:var(--c-listen-bg,#DFECFA)">G3</p>
+        <a class="r" href="../reports/wonders-g3-great-wall.html" style="--c:var(--c-listen,#4A90D9);--cbg:var(--c-listen-bg,#DFECFA)">
           <span class="n">43</span>
           <span class="tt"><span class="zh">Wonders G3 · The Great Wall of LA</span>
             <span class="en">Chapter 2 · p.8–11 · 210 words</span></span>
           <span class="m"><b>89.0%</b><i>正确率</i></span>
           <span class="m"><b>52</b><i>词/分</i></span>
         </a>
-        <p class="cat">语法</p>
-        <a class="r" href="../reports/grammar-unit2-articles.html">
+        <p class="cat" style="--c:var(--c-gram,#D97070);--cbg:var(--c-gram-bg,#FAE4E4)">语法</p>
+        <a class="r" href="../reports/grammar-unit2-articles.html" style="--c:var(--c-gram,#D97070);--cbg:var(--c-gram-bg,#FAE4E4)">
           <span class="n">62</span>
           <span class="tt"><span class="zh">语法练习 · Unit 2 冠词</span>
             <span class="en">波冰语法练习册 · p.8–10 · 39 空</span></span>

@@ -31,6 +31,7 @@
 - `homework/` = 每日打卡作业单(群公告 → spec → A4 打印单,目录页 `homework/index.html` 的列表由生成脚本自动刷新;工作流 → `/homework` skill)。
 - `review/` = 打卡评价(每天打卡做完的作业逐项出报告:朗读=本机离线转写+停顿分析+逐字比对,语法=错因归类,抄写=字迹逐条打分;报告按 单词/超8/G3/语法 分类,每天一份当日小结。目录页 `review/index.html`;口径与工作流 → `review/README.md`。**录音和作业照片不进仓库**,页面只放分析结果)。
 - **分享卡片**:每页配 og 标签,**og:title / og:description 逐字照抄本页 `<title>` / `<meta description>`**,不另写文案;描述用自然口语、无广告腔。微信缩略图 = `<body>` 首部隐藏的 share 图(0 尺寸 overflow:hidden 包裹,忌 `display:none`;og:image 用绝对地址)。
+- **分类色**:集中在根 `palette.css`(站点级单一真源,五色);打卡单按「作业动作」用、打卡评价按「内容分类」用,同一件事同一个色。`review/` 的页面 link 它并带 fallback,`homework/generate_checklist.py` 生成时解析它。
 - **备案号**:集中在根 `beian.js`(常量,换号只改这一处);每页页脚后一行 `<script src="…/beian.js">` 注入,新页面照加(404 页须用绝对路径 `/beian.js`)。
 - 分支 **master**;自定义域名 `english.hi-ruby.com`(根目录 `CNAME`)。本地预览 `make up`。
 - **重大改动 / 体系取舍先和用户讨论**;改完用 playwright 截图自检(手机 + iPad 视口);确认后 **commit + push 到 master**(用户已授权直接 push;commit 末尾加 Co-Authored-By 行)。

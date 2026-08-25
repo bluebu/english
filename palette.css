@@ -1,0 +1,21 @@
+/* 站点分类色 · 单一真源
+ * ─────────────────────────────────────────────────────────────
+ * 打卡单(homework/)按「作业动作」上色，打卡评价(review/)按「内容分类」上色，
+ * 同一件事共用同一个色。换色只改这个文件：
+ *   · review/ 的页面直接 link 它（缺文件时有 fallback 兜底，不会变成没颜色）
+ *   · homework/generate_checklist.py 生成时解析它，改完重跑脚本即可
+ *
+ *   作业动作（打卡单）        内容分类（打卡评价）
+ *   听 · 指读        蓝   →   G3（Wonders）
+ *   读 · 点读        橙   →   超8
+ *   词 · 抄写        绿   →   单词
+ *   语法             红   →   语法
+ *   练 · AI          紫   →   （备用，新分类先用这个）
+ */
+:root{
+  --c-listen:#4A90D9;  --c-listen-bg:#DFECFA;
+  --c-read:#E08B3C;    --c-read-bg:#FBEBD9;
+  --c-word:#5BA97E;    --c-word-bg:#E2F1E9;
+  --c-gram:#D97070;    --c-gram-bg:#FAE4E4;
+  --c-drill:#A97EC4;   --c-drill-bg:#F0E7F7;
+}

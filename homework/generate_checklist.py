@@ -26,15 +26,31 @@ MARK_END = "<!-- LIST:END -->"
 MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+def _palette():
+    """从根目录 palette.css 取五个基色（和打卡评价栏目共用同一份）。
+
+    读不到就退回内置值——脚本不能因为少个 CSS 文件就跑不了。
+    """
+    fallback = {"listen": "#4A90D9", "read": "#E08B3C", "word": "#5BA97E",
+                "gram": "#D97070", "drill": "#A97EC4"}
+    f = Path(__file__).resolve().parent.parent / "palette.css"
+    if not f.exists():
+        return fallback
+    found = dict(re.findall(r"--c-(\w+)\s*:\s*(#[0-9A-Fa-f]{6})", f.read_text()))
+    return {k: found.get(k, v) for k, v in fallback.items()}
+
+
+_C = _palette()
+
 # 类别关键字 → 色条颜色；标签里含哪个关键字就用哪个色
 CATEGORY_COLORS = [
-    ("听", "#4a90d9"), ("指", "#4a90d9"),
-    ("读", "#e08b3c"), ("点", "#e08b3c"),
-    ("词", "#5ba97e"), ("写", "#5ba97e"),
-    ("练", "#a97ec4"), ("AI", "#a97ec4"),
-    ("语", "#d97070"), ("法", "#d97070"),
+    ("听", _C["listen"]), ("指", _C["listen"]),
+    ("读", _C["read"]),   ("点", _C["read"]),
+    ("词", _C["word"]),   ("写", _C["word"]),
+    ("练", _C["drill"]),  ("AI", _C["drill"]),
+    ("语", _C["gram"]),   ("法", _C["gram"]),
 ]
-CYCLE = ["#4a90d9", "#e08b3c", "#5ba97e", "#a97ec4", "#d97070"]
+CYCLE = [_C["listen"], _C["read"], _C["word"], _C["drill"], _C["gram"]]
 
 META_KEYS = {"date", "title", "subtitle", "cheer", "memo", "tip-left", "tip-right"}
 

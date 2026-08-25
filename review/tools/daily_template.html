@@ -8,6 +8,8 @@
   <meta name="theme-color" content="#FBF6EB" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>" />
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+  <!-- 分类色见根目录 palette.css（单一真源） -->
+  <link rel="stylesheet" href="../../palette.css" />
   <!-- 分享卡片：og 文案照抄本页 <title>/<meta description>，改描述时两处同步；微信读 <title>+页面首图，QQ/iMessage 等读 og（og:image 必须绝对地址） -->
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="我的英语小屋" />
@@ -146,8 +148,9 @@
     .hwl b{ color:var(--read); }
     .hwl ul{ margin:4px 0 0; padding-left:1.1em; color:var(--ink-soft); font-size:.9rem; }
     .tbl .cat{ margin:12px 2px 0; font-family:var(--font-display); font-weight:700;
-               font-size:.78rem; letter-spacing:.06em; color:var(--read);
-               background:var(--read-bg); border-radius:999px; padding:3px 11px;
+               font-size:.78rem; letter-spacing:.06em;
+               color:var(--c,var(--read)); background:var(--cbg,var(--read-bg));
+               border-radius:999px; padding:3px 11px;
                align-self:flex-start; }
     .tbl .cat:first-child{ margin-top:0; }
     .tbl{ display:flex; flex-direction:column; gap:10px; }
@@ -159,7 +162,8 @@
     .tbl .r:active{ transform:translateY(1px); box-shadow:0 1px 0 var(--line); }
     .tbl .n{
       flex:0 0 auto; width:42px; height:42px; border-radius:14px; line-height:1;
-      display:grid; place-items:center; background:var(--read-bg); color:var(--read);
+      display:grid; place-items:center;
+      background:var(--cbg,var(--read-bg)); color:var(--c,var(--read));
       font-family:var(--font-display); font-weight:800; font-size:1.05rem;
     }
     .tbl .tt{ flex:1 1 auto; min-width:0; line-height:1.35; }
