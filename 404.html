@@ -8,7 +8,10 @@
     // 旧书签兜底:根目录时代的 /lesson-NN.html 已搬到 /grammar/ 下
     (function () {
       var m = location.pathname.match(/^\/(lesson-\d{2}\.html)$/);
-      if (m) location.replace('/grammar/' + m[1]);
+      if (m) return location.replace('/grammar/' + m[1]);
+      // 打卡评价栏目 2026-08-25 从 /reading/ 搬到 /review/
+      if (location.pathname.indexOf('/reading/') === 0)
+        return location.replace('/review/' + location.pathname.slice(9) + location.search + location.hash);
     })();
   </script>
 </head>

@@ -1,10 +1,9 @@
-# 打卡评价（reading/）
+# 打卡评价（review/）
 
 每天打卡做完的作业，逐项出一份能和下次对比的成绩单。
-（目录名还叫 `reading/` 是历史原因，栏目已经不只管朗读。）
 
 ```
-reading/
+review/
   index.html                       目录页（列表由 build_index.py 刷新，别手改）
   reports/<书>-<课>-p<页>.html      每次一份报告
   data/<同名>.json                  声学分析结果（停顿、语速）

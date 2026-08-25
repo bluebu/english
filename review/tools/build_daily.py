@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""生成某一天的点读总结页：reading/daily/YYYY-MM-DD.html
+"""生成某一天的点读总结页：review/daily/YYYY-MM-DD.html
 
-    python3 tools/build_daily.py 2026-08-25      # 在 reading/ 目录下
+    python3 tools/build_daily.py 2026-08-25      # 在 review/ 目录下
 
 数据来源两处：
   1. reports/*.html 里的 report-* meta —— 表格和合计全自动算

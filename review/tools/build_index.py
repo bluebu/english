@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""刷新 reading/index.html 的报告列表：按日期倒序分组，同一天内按 report-order 排。
+"""刷新 review/index.html 的报告列表：按日期倒序分组，同一天内按 report-order 排。
 
 每份报告在 <head> 里自带五行 meta（report-date / -order / -score / -title / -sub），
 这里只读那几行，不解析正文。加了新报告就跑一次：
 
-    python3 tools/build_index.py        # 在 reading/ 目录下
+    python3 tools/build_index.py        # 在 review/ 目录下
 
 列表写在 index.html 的 LIST:BEGIN / LIST:END 之间，别手改那一段。
 """
