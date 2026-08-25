@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>点读评价</title>
+  <meta name="description" content="把一段朗读录音变成一张成绩单：逐字比对读错在哪，看看停顿都断在什么地方，再挑三件下次可以试试的小事。" />
+  <meta name="theme-color" content="#FBF6EB" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <!-- 分享卡片：og 文案照抄本页 <title>/<meta description>，改描述时两处同步；微信读 <title>+页面首图，QQ/iMessage 等读 og（og:image 必须绝对地址） -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="我的英语小屋" />
+  <meta property="og:title" content="点读评价" />
+  <meta property="og:description" content="把一段朗读录音变成一张成绩单：逐字比对读错在哪，看看停顿都断在什么地方，再挑三件下次可以试试的小事。" />
+  <meta property="og:url" content="https://english.hi-ruby.com/reading/" />
+  <meta property="og:image" content="https://english.hi-ruby.com/share.png" />
+  <meta name="twitter:card" content="summary" />
+  <style>
+    :root{
+      --paper:#FBF6EB; --card:#FFFDF8; --ink:#4A3F36; --ink-soft:#9A8C7C;
+      --line:rgba(120,104,84,.16); --grid:rgba(120,104,84,.05);
+      --who:#3E9BD6; --who-bg:#DCEFFB;
+      --do:#EE7D5B;  --do-bg:#FBE0D5;
+      --what:#45B988; --what-bg:#D8F2E6;
+      --read:#E2A413; --read-bg:#FBEFC9;
+      --font-display: ui-rounded,"SF Pro Rounded","Hiragino Maru Gothic ProN",
+                      "Varela Round","Quicksand","PingFang SC",system-ui,sans-serif;
+      --font-cn:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+      --radius:20px;
+    }
+    *{ box-sizing:border-box; }
+    html{ -webkit-text-size-adjust:100%; }
+    body{
+      margin:0; font-family:var(--font-cn); color:var(--ink); line-height:1.7;
+      background-color:var(--paper);
+      background-image:
+        radial-gradient(60% 50% at 88% -5%, rgba(226,164,19,.13), transparent 70%),
+        radial-gradient(55% 45% at -8% 8%,  rgba(62,155,214,.10), transparent 70%),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size:100% 100%,100% 100%,26px 26px,26px 26px;
+      background-attachment:fixed,fixed,scroll,scroll;
+    }
+    .wrap{ max-width:760px; margin:0 auto; padding:0 20px 80px; }
+
+    .hero{ text-align:center; padding:44px 0 8px; }
+    .eyebrow{
+      display:inline-block; font-family:var(--font-display); font-size:.78rem;
+      letter-spacing:.18em; color:var(--ink-soft);
+      border:1.5px solid var(--line); border-radius:999px; padding:4px 14px;
+      background:var(--card);
+    }
+    h1{ font-family:var(--font-display); font-size:clamp(1.9rem,7vw,2.6rem);
+        margin:14px 0 6px; line-height:1.25; }
+    .sub{ color:var(--ink-soft); margin:0; }
+
+    .note{
+      background:var(--card); border:1.5px solid var(--line); border-radius:var(--radius);
+      padding:16px 20px; margin:26px 0 30px;
+      box-shadow:0 2px 0 var(--line); font-size:.95rem;
+    }
+    .note b{ color:var(--read); }
+    .note .tip{ color:var(--ink-soft); font-size:.88rem; margin:6px 0 0; }
+    .note ol{ margin:8px 0 0; padding-left:1.3em; }
+    .note li{ margin:2px 0; }
+
+    .mini-h{
+      font-family:var(--font-display); font-size:1.05rem; margin:30px 4px 12px;
+      display:flex; align-items:center; gap:8px;
+    }
+
+    .list{ display:flex; flex-direction:column; gap:12px; }
+    .row{
+      display:flex; align-items:center; gap:12px;
+      background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+      padding:12px 14px; box-shadow:0 2px 0 var(--line);
+    }
+    .row .n{
+      flex:0 0 auto; width:44px; height:44px; border-radius:14px;
+      display:grid; place-items:center; line-height:1;
+      font-family:var(--font-display); font-weight:800; font-size:1.1rem;
+      background:var(--read-bg); color:var(--read);
+    }
+    .row .tt{ flex:1 1 auto; min-width:0; line-height:1.35; }
+    .row .zh{ display:block; font-weight:600; }
+    .row .en{ display:block; font-family:var(--font-display); font-size:.8rem;
+              color:var(--ink-soft); overflow-wrap:break-word; }
+    .row .links{ flex:0 0 auto; display:flex; gap:8px; }
+    .row .links a{
+      font-family:var(--font-display); font-weight:700; font-size:.82rem;
+      text-decoration:none; border-radius:999px; padding:6px 12px;
+      border:transparent; color:var(--read); background:var(--read-bg);
+      white-space:nowrap;
+    }
+    .row .links a:active{ transform:translateY(1px); }
+
+    .back{
+      display:inline-block; margin-top:34px; font-family:var(--font-display);
+      font-weight:700; text-decoration:none; color:var(--ink-soft);
+    }
+    .foot{ text-align:center; color:var(--ink-soft); font-size:.85rem; margin-top:40px; }
+
+    @media (max-width:480px){
+      .row{ flex-wrap:wrap; }
+      .row .tt{ flex-basis:calc(100% - 56px); }
+      .row .links{ margin-left:56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 微信分享缩略图：抓页面首张 ≥300px 的图；容器不能 display:none，否则会被跳过 -->
+  <div style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <img src="../share.png" width="512" height="512" alt="" />
+  </div>
+
+  <main class="wrap">
+
+    <header class="hero">
+      <span class="eyebrow">READ ALOUD · 点读评价</span>
+      <h1>点读<span style="color:var(--read)">评价</span></h1>
+      <p class="sub">读一段，录下来，看看这一遍读成了什么样</p>
+    </header>
+
+    <section class="note">
+      <p style="margin:0">每份报告都看<b>四件事</b>：</p>
+      <ol>
+        <li>哪几个词读岔了 —— 和课本原文逐字对</li>
+        <li>停顿都断在哪儿 —— 83 秒里每一次歇气都画出来</li>
+        <li>速度和准确率各是多少 —— 有数字，能和上一次比</li>
+        <li>下次试试哪三件小事</li>
+      </ol>
+      <p class="tip">🎤 录音只留在电脑里，页面上只放分析结果。</p>
+    </section>
+
+    <h2 class="mini-h"><span>📄</span> 报告</h2>
+    <nav class="list">
+<!-- LIST:BEGIN 新报告加在最前面 -->
+      <div class="row">
+        <span class="n">58</span>
+        <span class="tt"><span class="zh">超8 · Lesson 3 · 第 65 页</span>
+          <span class="en">Prince Darling · 105 words · Aug 25</span></span>
+        <span class="links">
+          <a href="./reports/chao8-lesson3-p65.html">看报告</a>
+        </span>
+      </div>
+<!-- LIST:END -->
+    </nav>
+
+    <a class="back" href="../">← 返回栏目页</a>
+
+    <p class="foot">点读评价 · 一段录音，一张成绩单 🎤</p>
+    <script src="../beian.js"></script>
+    <script src="../busuanzi.js"></script>
+
+  </main>
+
+</body>
+</html>
