@@ -34,7 +34,7 @@
 - **分类色**:集中在根 `palette.css`(站点级单一真源,五色);打卡单按「作业动作」用、打卡评价按「内容分类」用,同一件事同一个色。`review/` 的页面 link 它并带 fallback,`homework/generate_checklist.py` 生成时解析它。
 - **备案号**:集中在根 `beian.js`(常量,换号只改这一处);每页页脚后一行 `<script src="…/beian.js">` 注入,新页面照加(404 页须用绝对路径 `/beian.js`)。
 - 分支 **master**;自定义域名 `english.hi-ruby.com`(根目录 `CNAME`)。本地预览 `make up`。
-- **重大改动 / 体系取舍先和用户讨论**;改完用 playwright 截图自检(手机 + iPad 视口);确认后 **commit + push 到 master**(用户已授权直接 push;commit 末尾加 Co-Authored-By 行)。
+- **重大改动 / 体系取舍先和用户讨论**;改完用 playwright 截图自检(手机 + iPad 视口),然后**直接 commit + push 到 master**——不用问、不用等确认(commit 末尾加 Co-Authored-By 行)。
 
 ## 11 关大纲
 1 句子(主语+谓语) · 2 名词+冠词(a/an/the,→引入宾语) · 3 代词 · 4 动词(动作/系动词,→引入系动词+表语/主系表) · 5 时态 · 6 形容词 · 7 副词 · 8 比较级 · 9 介词 · 10 连词 · 11 句子四类+标点。
