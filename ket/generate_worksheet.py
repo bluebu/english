@@ -82,15 +82,22 @@ TEMPLATE = """<!DOCTYPE html>
   /* 合集模式：章节标题占一整行（跨两栏，等同一行单词的高度）；pad 为对齐占位 */
   .item.section {{ grid-column: 1 / -1; font-weight: 700; font-size: 15px; min-height: 43px; }}
   .item.pad {{ min-height: 43px; }}
-  /* 答案对照版：紧凑两栏、无线格，英文答案靠右 */
-  .items.compact {{ row-gap: 6px; }}
+  /* 答案对照版：竖排 5 个一组、一行两组；紧凑无线格，英文答案靠右 */
+  .items.compact {{ display: block; }}
+  .items.compact .band {{
+    display: grid; grid-template-columns: 1fr 1fr; column-gap: 30px;
+    padding: 3px 6px; margin: 0 -6px 2px; border-radius: 3px;
+    break-inside: avoid;
+  }}
+  /* 组行交替浅底：一眼看出哪 5 个是一组，不占额外高度 */
+  .items.compact .band.alt {{ background: #f1f3f5; }}
+  .items.compact .group {{ display: flex; flex-direction: column; row-gap: 6px; }}
   .ans {{ display: flex; align-items: baseline; flex-wrap: wrap; min-height: 20px; font-size: 12.5px; }}
   .ans .no {{ width: 26px; color: #555; font-size: 11px; flex-shrink: 0; }}
   .ans .pos {{ color: #888; font-size: 9.5px; font-style: italic; margin-left: 3px; }}
   .ans .en {{ margin-left: auto; font-weight: 600; padding-left: 12px; }}
   .ans .ph {{ color: #666; font-size: 11px; margin-left: 6px; }}
-  .ans.section {{ grid-column: 1 / -1; font-weight: 700; font-size: 13.5px; min-height: 26px; align-items: flex-end; }}
-  .ans.pad {{ min-height: 20px; }}
+  .ans.section {{ font-weight: 700; font-size: 13.5px; min-height: 26px; align-items: flex-end; margin-bottom: 8px; }}
   .footer {{ margin-top: 8px; text-align: right; color: #999; font-size: 10px; }}
 </style>
 </head>
@@ -124,11 +131,19 @@ PAD_TEMPLATE = '    <div class="item pad"></div>'
 ANS_ITEM_TEMPLATE = ('    <div class="ans"><span class="no">{no}</span>'
                      '<span class="zh">{zh}</span>{pos}'
                      '<span class="en">{word}</span>{ph}</div>')
-ANS_SECTION_TEMPLATE = '    <div class="ans section">{title}</div>'
-ANS_PAD_TEMPLATE = '    <div class="ans pad"></div>'
+ANS_SECTION_TEMPLATE = '  <div class="ans section">{title}</div>'
+
+ANS_BAND_TEMPLATE = '  <div class="band{cls}">\n{groups}\n  </div>'
+ANS_GROUP_TEMPLATE = '    <div class="group">\n{items}\n    </div>'
 
 PER_PAGE = 30      # 默写卷：两列 × 15 行，行距和四线格加大后一页放 30 个舒适
-ANS_PER_PAGE = 70  # 答案对照版：紧凑行高，两列 × 35 行
+
+# 答案对照版：竖排 GROUP 个一组，一行两组；按估算高度(px)切页
+ANS_GROUP = 5
+ANS_ROW_H, ANS_ROW_GAP = 20, 6      # 单行高、组内行距
+ANS_BAND_GAP = 8                    # 组行上下留白（padding 3+3 + margin 2）
+ANS_SEC_H, ANS_SEC_GAP = 26, 8      # 章节标题行
+ANS_PAGE_H = 970                    # A4 去掉页边距 / 页眉 / 页脚后可用高度
 
 # 合集分册：out_stem -> 收录的主题编号范围（上册定稿不再变动，新主题进下册）
 VOLUMES = {
@@ -238,16 +253,59 @@ def main(csv_path: str, pdf: bool = False) -> None:
     write_doc(src.stem, title, pages, pdf)
 
 
+def build_answer_doc(sections: list, out_stem: str, title: str,
+                     pdf: bool = False) -> None:
+    """答案对照版：竖排 ANS_GROUP 个一组，一行两组；按估算高度切页，
+    整组不跨页，章节标题不落在页尾（后面至少跟一组）。"""
+    blocks, total = [], 0   # blocks: (高度, html, 是否章节标题)
+    for sec_title, rows in sections:
+        total += len(rows)
+        blocks.append((ANS_SEC_H + ANS_SEC_GAP,
+                       ANS_SECTION_TEMPLATE.format(title=html.escape(sec_title)),
+                       True))
+        items = [ans_item_html(row, i) for i, row in enumerate(rows, 1)]
+        groups = [items[i:i + ANS_GROUP]
+                  for i in range(0, len(items), ANS_GROUP)]
+        for i in range(0, len(groups), 2):
+            pair = groups[i:i + 2]
+            n = max(len(g) for g in pair)
+            band = ANS_BAND_TEMPLATE.format(
+                cls="" if (i // 2) % 2 == 0 else " alt",
+                groups="\n".join(
+                    ANS_GROUP_TEMPLATE.format(
+                        items="\n".join("  " + it for it in g)) for g in pair))
+            blocks.append((n * ANS_ROW_H + (n - 1) * ANS_ROW_GAP + ANS_BAND_GAP,
+                           band, False))
+
+    pages_items, page_items, used = [], [], 0
+    for i, (h, cell, is_sec) in enumerate(blocks):
+        need = h + (blocks[i + 1][0] if is_sec and i + 1 < len(blocks) else 0)
+        if page_items and used + need > ANS_PAGE_H:
+            pages_items.append(page_items)
+            page_items, used = [], 0
+        page_items.append(cell)
+        used += h
+    if page_items:
+        pages_items.append(page_items)
+
+    pages = [render_page(title, items, total, p + 1, len(pages_items),
+                         items_class=" compact", info="")
+             for p, items in enumerate(pages_items)]
+    write_doc(out_stem, title, pages, pdf)
+
+
 def build_doc(sections: list, out_stem: str, title: str,
               pdf: bool = False, answers: bool = False) -> None:
     """把若干 (章节标题, rows) 连排成一份卷子：章节之间不分页，
     章节标题占一整行（2 个词位）；标题起点不在行首时补空位，
     且不让标题落在页面最后一行。题号沿用各章 CSV 里的 no。
     answers=True 生成答案对照版（紧凑、无线格，显示英文和音标）。"""
-    per_page = ANS_PER_PAGE if answers else PER_PAGE
-    section_tpl = ANS_SECTION_TEMPLATE if answers else SECTION_TEMPLATE
-    pad_tpl = ANS_PAD_TEMPLATE if answers else PAD_TEMPLATE
-    render_item = ans_item_html if answers else item_html
+    if answers:
+        return build_answer_doc(sections, out_stem, title, pdf)
+    per_page = PER_PAGE
+    section_tpl = SECTION_TEMPLATE
+    pad_tpl = PAD_TEMPLATE
+    render_item = item_html
 
     cells = []  # (占用词位数, html)
     total = 0
@@ -276,8 +334,7 @@ def build_doc(sections: list, out_stem: str, title: str,
         pages_items.append(page_items)
 
     pages = [render_page(title, items, total, p + 1, len(pages_items),
-                         items_class=" compact" if answers else "",
-                         info="" if answers else INFO_HTML)
+                         info=INFO_HTML)
              for p, items in enumerate(pages_items)]
     write_doc(out_stem, title, pages, pdf)
 

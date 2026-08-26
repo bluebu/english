@@ -63,15 +63,19 @@
   /* 合集模式：章节标题占一整行（跨两栏，等同一行单词的高度）；pad 为对齐占位 */
   .item.section { grid-column: 1 / -1; font-weight: 700; font-size: 15px; min-height: 43px; }
   .item.pad { min-height: 43px; }
-  /* 答案对照版：紧凑两栏、无线格，英文答案靠右 */
-  .items.compact { row-gap: 6px; }
+  /* 答案对照版：竖排 5 个一组、一行两组；紧凑无线格，英文答案靠右 */
+  .items.compact { display: block; }
+  .items.compact .band {
+    display: grid; grid-template-columns: 1fr 1fr;
+    column-gap: 30px; margin-bottom: 8px; break-inside: avoid;
+  }
+  .items.compact .group { display: flex; flex-direction: column; row-gap: 6px; }
   .ans { display: flex; align-items: baseline; flex-wrap: wrap; min-height: 20px; font-size: 12.5px; }
   .ans .no { width: 26px; color: #555; font-size: 11px; flex-shrink: 0; }
   .ans .pos { color: #888; font-size: 9.5px; font-style: italic; margin-left: 3px; }
   .ans .en { margin-left: auto; font-weight: 600; padding-left: 12px; }
   .ans .ph { color: #666; font-size: 11px; margin-left: 6px; }
-  .ans.section { grid-column: 1 / -1; font-weight: 700; font-size: 13.5px; min-height: 26px; align-items: flex-end; }
-  .ans.pad { min-height: 20px; }
+  .ans.section { font-weight: 700; font-size: 13.5px; min-height: 26px; align-items: flex-end; margin-bottom: 8px; }
   .footer { margin-top: 8px; text-align: right; color: #999; font-size: 10px; }
 </style>
 </head>
